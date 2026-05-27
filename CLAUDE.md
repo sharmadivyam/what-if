@@ -1,0 +1,130 @@
+# HistoryOS — Claude Code Instructions
+
+## What This Project Is
+A counterfactual historical reasoning engine.
+Users ask "what if" questions about history.
+System retrieves verified historical context via RAG
+and simulates consequences using multi-agent reasoning.
+Output explicitly separates VERIFIED facts from
+SIMULATED consequences with confidence scores.
+
+## Architecture Overview
+- 5 agents connected sequentially via LangGraph
+- ChromaDB for local vector storage
+- Cerebras qwen-3-235b-a22b-instruct-2507 for all LLM calls (free, OpenAI-compatible)
+- sentence-transformers all-mpnet-base-v2 for embeddings (local, free, no API key)
+- Streamlit for frontend UI
+- Total API cost: ₹0
+
+## Critical Rules — Never Violate These
+1. Never mix verified facts with simulated content
+2. Every fact must cite its source chunk ID
+3. Max 4 causal reasoning steps (hallucination guard)
+4. All agents must return Pydantic models, not raw strings
+5. Always handle ChromaDB empty state gracefully
+6. Never call LLM without retrieved context (no raw GPT)
+7. All LLM calls use get_llm_client(), all embeddings use
+   get_embedding_function() from core/llm_client.py — never instantiate
+   provider clients directly in agent files
+
+## Folder Structure
+historios/
+├── data/
+│   ├── raw/              # downloaded wikipedia text
+│   └── processed/        # chunked text ready for embedding
+├── ingestion/
+│   ├── wikipedia_loader.py
+│   ├── chunker.py
+│   └── embedder.py
+├── vectorstore/
+│   └── chroma_client.py
+├── core/
+│   └── llm_client.py     # provider clients: Cerebras LLM + local embeddings
+├── agents/
+│   ├── query_understanding.py
+│   ├── retrieval_engine.py
+│   ├── grounding_layer.py
+│   ├── reasoning_agent.py
+│   └── confidence_scorer.py
+├── pipeline/
+│   └── historios_pipeline.py
+├── output/
+│   └── report_generator.py
+├── frontend/
+│   └── app.py
+├── evaluation/
+│   ├── test_cases.json
+│   └── evaluator.py
+├── .claude/
+│   └── commands/         # custom slash commands
+├── config.py
+├── requirements.txt
+├── .env
+└── CLAUDE.md
+
+## Tech Stack
+- Python 3.11
+- LangGraph (agent orchestration)
+- LangChain (LLM + retrieval utilities)
+- ChromaDB (local vector database)
+- Cerebras qwen-3-235b-a22b-instruct-2507 (LLM — free, OpenAI-compatible API)
+- sentence-transformers all-mpnet-base-v2 (embeddings — local, free, no API key)
+- Wikipedia Python API (data source)
+- Tavily API (web search)
+- Pydantic v2 (structured outputs)
+- Streamlit (frontend)
+
+## Current Build Phase
+Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
+
+## Completed Components
+[x] Folder structure
+[x] requirements.txt
+[x] config.py
+[x] wikipedia_loader.py
+[x] chunker.py
+[x] embedder.py
+[x] chroma_client.py
+[ ] query_understanding.py
+[ ] retrieval_engine.py
+[ ] grounding_layer.py
+[ ] reasoning_agent.py
+[ ] confidence_scorer.py
+[ ] historios_pipeline.py
+[ ] report_generator.py
+[ ] app.py
+[ ] evaluation/test_cases.json
+[ ] evaluation/evaluator.py
+
+## Known Issues Log
+- Runtime Python is 3.12.10, not 3.11 as documented above. Non-blocking so far;
+  update the Tech Stack note (or pin 3.11) once confirmed.
+- `requirements.txt` declares `wikipedia-api` (import `wikipediaapi`), NOT the
+  older `wikipedia` package. The two have incompatible APIs and `wikipedia-api`
+  raises no `DisambiguationError`. `wikipedia_loader.py` detects disambiguation
+  pages by inspecting page categories instead. Keep this in mind for any future
+  Wikipedia code.
+- Installed `wikipedia-api` is v0.15.0 — a major rewrite that uses `httpx` (not
+  `requests`) and has built-in retry (`max_retries` / `retry_wait`, exponential
+  backoff) raising a single `wikipediaapi.WikipediaException` base type. The
+  loader relies on that retry and catches `WikipediaException` to skip.
+- ENV GOTCHA: the Bash/PowerShell tools do NOT inherit the venv activated in an
+  interactive shell. Bare `pip` resolves to the global Programs Python and bare
+  `python` to the Windows Store Python — two different interpreters, neither the
+  venv. Always invoke the venv explicitly:
+  `D:\historyos\venv\Scripts\python.exe -m pip ...` and `... -m ingestion.xxx`.
+  (Installed in the venv so far: `wikipedia-api`, `langchain-core`, `tiktoken`,
+  `openai`, `torch`, `chromadb`, `sentence-transformers`. Remaining
+  `requirements.txt` entries still need installing as later phases need them.)
+- CONFIG GOTCHA: values in `.env` SHADOW the defaults in `config.py` (config reads
+  the environment first, via `_get`). When changing a setting's default in
+  `config.py`, also update `.env` AND `.env.example` — otherwise the stale `.env`
+  value silently wins at runtime. This bit the chunker twice (`CHUNK_SIZE`, then
+  `EMBEDDING_MODEL`).
+- CEREBRAS MODELS: `llama-3.3-70b` is NOT available on this account (404). Use the
+  model ids returned by `client.models.list()`; we run `qwen-3-235b-a22b-instruct-2507`.
+- WINDOWS CONSOLE ENCODING: Python stdout defaults to cp1252 here, so PRINTING
+  article text containing non-cp1252 chars (e.g. `ā` U+0101, en-dash) raises
+  `UnicodeEncodeError` and aborts the script — not just garbled display. Any script
+  that prints chunk/article text must set `PYTHONIOENCODING=utf-8` or call
+  `sys.stdout.reconfigure(encoding="utf-8")`. The stored data itself is valid UTF-8.

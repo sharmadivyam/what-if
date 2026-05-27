@@ -1,0 +1,56 @@
+# ── Secrets ────────────────────────────────────────────────────────────────
+# Real keys live in .env (CEREBRAS_API_KEY, TAVILY_API_KEY). NEVER commit it.
+# The committed template is .env.example.
+.env
+.env.*
+!.env.example
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Project data (regenerable — do not commit) ───────────────────────────────
+# ChromaDB persistent store: binary, large, rebuilt by ingestion/embedder.py.
+data/chroma/
+# Wikipedia ingestion artifacts: re-downloadable via wikipedia_loader.py and
+# re-derivable via chunker.py. Drop these lines if you'd rather pin the corpus.
+data/raw/
+data/processed/
+
+# ── Model / tooling caches ───────────────────────────────────────────────────
+# sentence-transformers / HuggingFace local cache, if it lands in the project.
+.cache/
+*.log
+
+# ── Testing & coverage ───────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ── Editors / OS ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── Claude Code ──────────────────────────────────────────────────────────────
+# Keep shared project config + custom commands under .claude/, but not the
+# per-machine local settings.
+.claude/settings.local.json

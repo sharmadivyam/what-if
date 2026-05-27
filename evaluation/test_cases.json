@@ -1,0 +1,4 @@
+{
+  "description": "Test cases for the HistoryOS evaluator. Each case is a counterfactual 'what if' question with optional expectations the evaluator checks against (grounded facts, max causal steps, required source coverage).",
+  "cases": []
+}

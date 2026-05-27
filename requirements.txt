@@ -1,0 +1,14 @@
+langchain
+# langchain-openai  # removed: OpenAI LLM/embeddings integration no longer used
+#                     (LLM = Cerebras via the raw `openai` client; embeddings local)
+langchain-community
+langgraph
+chromadb
+openai  # OpenAI-compatible client for Cerebras (not OpenAI itself)
+wikipedia-api
+tavily-python
+pydantic
+streamlit
+python-dotenv
+tiktoken
+sentence-transformers
