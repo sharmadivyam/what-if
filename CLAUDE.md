@@ -33,6 +33,7 @@ historios/
 │   ├── raw/              # downloaded wikipedia text
 │   └── processed/        # chunked text ready for embedding
 ├── ingestion/
+│   ├── topics.py             # CORPUS_TOPICS — the canonical ingestion list
 │   ├── wikipedia_loader.py
 │   ├── chunker.py
 │   └── embedder.py
@@ -87,8 +88,8 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] chroma_client.py
 [ ] query_understanding.py
 [ ] retrieval_engine.py
-[ ] grounding_layer.py
-[ ] reasoning_agent.py
+[x] grounding_layer.py
+[x] reasoning_agent.py
 [ ] confidence_scorer.py
 [ ] historios_pipeline.py
 [ ] report_generator.py
@@ -121,8 +122,19 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
   `config.py`, also update `.env` AND `.env.example` — otherwise the stale `.env`
   value silently wins at runtime. This bit the chunker twice (`CHUNK_SIZE`, then
   `EMBEDDING_MODEL`).
-- CEREBRAS MODELS: `llama-3.3-70b` is NOT available on this account (404). Use the
-  model ids returned by `client.models.list()`; we run `qwen-3-235b-a22b-instruct-2507`.
+- CEREBRAS MODELS: the available model list on this account CHANGES over time —
+  always confirm with `client.models.list()`. `llama-3.3-70b` was 404, then
+  `qwen-3-235b-a22b-instruct-2507` also went 404 (2026-05-27). Currently only
+  `gpt-oss-120b` and `zai-glm-4.7` are available; we run **`gpt-oss-120b`** (set in
+  `.env`, `.env.example`, and the `config.py` default — keep all three in sync per
+  the CONFIG GOTCHA). If you hit a model 404, re-list and update those three.
+- CEREBRAS FREE-TIER RATE LIMIT: the free tier hard-throttles bursts with HTTP 429
+  `queue_exceeded` ("high traffic") and ~60s `Retry-After` waits — it canNOT sustain
+  ~10+ sequential calls per pipeline run. Two mitigations are in place: (1) the
+  shared client uses `max_retries=6` (core/llm_client.py) to ride out transient
+  429s; (2) the grounding layer BATCHES per pool — one LLM call for all primary
+  chunks + one for all analogy chunks (2 calls/run), not one call per chunk. Keep
+  per-run LLM call counts low; prefer batching over per-item loops.
 - WINDOWS CONSOLE ENCODING: Python stdout defaults to cp1252 here, so PRINTING
   article text containing non-cp1252 chars (e.g. `ā` U+0101, en-dash) raises
   `UnicodeEncodeError` and aborts the script — not just garbled display. Any script

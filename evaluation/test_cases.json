@@ -1,4 +1,45 @@
 {
-  "description": "Test cases for the HistoryOS evaluator. Each case is a counterfactual 'what if' question with optional expectations the evaluator checks against (grounded facts, max causal steps, required source coverage).",
-  "cases": []
+  "description": "Test cases for the HistoryOS evaluator. Each case is a counterfactual 'what if' question targeted at the ingested corpus (see ingestion/topics.py). Used by evaluation/evaluator.py to spot-check critical rules end-to-end.",
+  "cases": [
+    {
+      "id": "mughal_industrialization",
+      "question": "What if the Mughal Empire had industrialized before the British arrived?",
+      "expected_corpus": ["Mughal Empire", "British Raj", "Industrial Revolution", "Meiji Restoration"]
+    },
+    {
+      "id": "no_british_raj",
+      "question": "What if Britain had never colonized India and the British East India Company had been expelled in 1757?",
+      "expected_corpus": ["British Raj", "Mughal Empire", "Indian independence movement"]
+    },
+    {
+      "id": "no_ww2_invasion",
+      "question": "What if Germany had not invaded Poland in 1939 and the Second World War had been delayed by a decade?",
+      "expected_corpus": ["Causes of World War II", "Cold War"]
+    },
+    {
+      "id": "rome_resists",
+      "question": "What if the Western Roman Empire had successfully resisted the barbarian invasions of the 5th century?",
+      "expected_corpus": ["Fall of the Western Roman Empire", "Byzantine Empire"]
+    },
+    {
+      "id": "louis_xvi_survives",
+      "question": "What if Louis XVI had escaped to Austria before the French Revolution executed him?",
+      "expected_corpus": ["French Revolution"]
+    },
+    {
+      "id": "no_genghis",
+      "question": "What if Genghis Khan had died in childhood before unifying the Mongol tribes?",
+      "expected_corpus": ["Mongol Empire", "Mongol invasions of India"]
+    },
+    {
+      "id": "ottoman_modernizes",
+      "question": "What if the Ottoman Empire had successfully completed its Tanzimat modernization and survived past 1922?",
+      "expected_corpus": ["Ottoman Empire", "Decline and modernization of the Ottoman Empire", "Meiji Restoration"]
+    },
+    {
+      "id": "cuban_missile_war",
+      "question": "What if the Cuban Missile Crisis had escalated into a nuclear exchange between the United States and the Soviet Union?",
+      "expected_corpus": ["Cold War"]
+    }
+  ]
 }

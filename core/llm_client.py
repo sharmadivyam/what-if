@@ -45,9 +45,15 @@ def get_llm_client() -> "OpenAI":
             )
         from openai import OpenAI
 
+        # max_retries above the SDK default (2): the free Cerebras tier throttles
+        # bursts with 429 "queue_exceeded", and HistoryOS fires several sequential
+        # calls per run (e.g. the grounding layer's per-chunk extraction). The SDK
+        # honours Retry-After and backs off exponentially, so the extra headroom
+        # lets a run ride out transient rate limits instead of crashing mid-pipeline.
         _llm_client = OpenAI(
             api_key=settings.CEREBRAS_API_KEY,
             base_url=settings.CEREBRAS_BASE_URL,
+            max_retries=6,
         )
     return _llm_client
 

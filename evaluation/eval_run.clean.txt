@@ -1,0 +1,490 @@
+ 
+2026-05-28 10:11:53,576 INFO    agents.query_understanding | analyze_query: classified as economic | 4 search + 2 analogy queries
+Loaded 8 test case(s) from test_cases.json
+
+
+##############################################################################
+#  CASE 1/8 — mughal_industrialization
+#  Q: What if the Mughal Empire had industrialized before the British arrived?
+##############################################################################
+
+
+2026-05-28 10:14:01,471 INFO    agents.retrieval_engine | [primary] query 'Mughal Empire economy and manufacturing' -> 5 result(s)
+
+2026-05-28 10:14:01,559 INFO    agents.retrieval_engine | [primary] query 'pre‑Industrial Revolution Indian textile production' -> 5 result(s)
+
+2026-05-28 10:14:01,647 INFO    agents.retrieval_engine | [primary] query 'British East India Company early influence in India' -> 5 result(s)
+
+2026-05-28 10:14:01,733 INFO    agents.retrieval_engine | [primary] query 'technological innovations in Mughal India' -> 5 result(s)
+
+2026-05-28 10:14:01,820 INFO    agents.retrieval_engine | [analogy] query 'Meiji Restoration Japan industrialization' -> 5 result(s)
+
+2026-05-28 10:14:01,902 INFO    agents.retrieval_engine | [analogy] query 'Ottoman Empire 19th‑century industrial reforms' -> 5 result(s)
+2026-05-28 10:14:01,902 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:14:05,540 INFO    agents.grounding_layer | ground_context: 19 verified, 0 debated, 0 background, 26 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:15:09,620 INFO    agents.reasoning_agent | reason_about_counterfactual: 4 step(s) parsed (0 ungrounded), 1 unknown citation(s), 0 parse warning(s)
+2026-05-28 10:16:10,569 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: The Mughal Empire initiates large‑scale industrial development prior to British colonization.
+DIVERGENCE POINT: 1500s-1700s — South Asia
+
+── Step 1 — Immediate Consequences (0‑10 years after change)  [GROUNDED]
+   The Mughal court creates a state‑directed “manufacturing bureau” that channels a portion of the empire’s annual revenue (≈ 99 million rupees) into the expansion of existing gear‑driven mills and the establishment of new cotton‑spinning workshops in major cities such as Delhi, Agra, and Lahore.
+   evidence: mughal_empire_3, meiji_restoration_60
+   analogy:  meiji_restoration_60
+   UNKNOWN cited ids: mughal_empire_3
+   confidence: Medium — The revenue figure is solid, and the existence of gear‑driven mills (geared sugar rollers) shows relevant technology, but there is no direct record of a Mughal “manufacturing bureau,” so the step relies on inference.
+
+── Step 2 — Short‑term Ripple (10‑30 years)  [GROUNDED]
+   Within two decades the expanded cotton‑spinning and weaving workshops increase domestic textile output, allowing the empire to supply roughly 35 % of its own urban consumption and to export a larger share of the global cotton‑textile trade, thereby reducing the market for imported European cloth.
+   evidence: mughal_empire_29, meiji_restoration_60
+   analogy:  meiji_restoration_60
+   confidence: Medium — The baseline trade share is documented, and a modest production increase is plausible, but exact percentages are speculative.
+
+── Step 3 — Medium‑term Transformation (30‑100 years)  [GROUNDED]
+   By the early 18th century the Mughal state extends its industrial policy beyond textiles to iron smelting, shipbuilding, and railway‑precursor road‑tramways, financed through the zabt land‑revenue system and supported by a cadastral survey that earmarks “industrial zones” on newly cultivated lands. These developments give the empire a diversified industrial base capable of producing military hardware and locomotives, which in turn strengthens its bargaining position against the East India Company and delays the company’s territorial acquisitions.
+   evidence: mughal_empire_28, industrial_revolution_93
+   analogy:  industrial_revolution_93
+   confidence: Low — The administrative tools exist, and the analogy is strong, but there is no historical record of Mughal iron or railway projects, so the step extrapolates beyond the evidence.
+
+── Step 4 — Long‑term Legacy (100+ years)  [GROUNDED]
+   By the early 19th century the Mughal industrial complex is sufficiently advanced that British merchants encounter a protected domestic market with competitive manufactured goods; the East India Company’s “free‑trade” policy is forced to negotiate tariffs, and full colonial annexation of large Indian territories is postponed until the mid‑19th century, after a series of diplomatic and limited military confrontations.
+   evidence: british_raj_75
+   confidence: Low — 
+
+WHAT REMAINS UNKNOWABLE:
+1. The precise speed at which Western mechanical technologies (e.g., steam engines, precision metal tools) could have been acquired, adapted, and mass‑produced by Mughal artisans.  
+2. Whether internal political rivalries (e.g., succession disputes, regional nawab autonomy) would have allowed sustained state‑led industrial investment over multiple generations.  
+3. The exact reactions of European powers—especially Britain and the Netherlands—to a rapidly industrialising Mughal state, including possible military coalitions or diplomatic embargoes.  
+
+─────────────────────────────────────────
+
+RECONNECTION POINT:
+─────────────────────────────────────────  
+The alternate timeline likely converges with actual history around the 1857 Indian Rebellion, when the weakened Mughal polity (whether industrialised or not) faced decisive British military action; if the industrial base survived, the rebellion’s outcome could still have led to a British‑dominated Raj, but the timing and terms of that domination would differ.  
+
+─────────────────────────────────────────
+
+HISTORIAN'S NOTE:
+─────────────────────────────────────────  
+Historians debate why the Mughal economy, despite contributing 25 % of global manufacturing output and possessing a sophisticated revenue system, did not undergo an earlier industrial revolution. Some argue that the empire’s reliance on agrarian tax revenue and the absence of a state‑driven innovation agenda limited large‑scale mechanisation (see evidence on revenue and sectoral composition: [EVIDENCE: mughal_empire_24], [EVIDENCE: mughal_empire_2]). This counterfactual directly engages that debate by positing a state‑led industrial push, highlighting how different policy choices might have altered the trajectory.
+
+-- CHECKS (202.3s) --
+  [PASS] 1_all_simulated: 4 [SIMULATED] tag(s) across 4 step(s)
+  [FAIL] 2_cites_real_source: steps citing unknown chunk_ids: {1: ['mughal_empire_3']}
+  [PASS] 3_step_cap: 4 step(s), max header=4, cap=4
+  [PASS] 4_no_sim_as_fact: every step labelled and tail sections hedge or self-label
+
+##############################################################################
+#  CASE 2/8 — no_british_raj
+#  Q: What if Britain had never colonized India and the British East India Company had been expelled in 1757?
+##############################################################################
+
+2026-05-28 10:16:10,674 INFO    agents.retrieval_engine | [primary] query 'British East India Company 1757 Plassey battle' -> 5 result(s)
+
+2026-05-28 10:16:10,756 INFO    agents.retrieval_engine | [primary] query 'British colonization of India timeline' -> 5 result(s)
+
+2026-05-28 10:16:10,834 INFO    agents.retrieval_engine | [primary] query 'Mughal Empire political structure 18th century' -> 5 result(s)
+
+2026-05-28 10:16:10,917 INFO    agents.retrieval_engine | [primary] query 'Indian subcontinent trade networks before British rule' -> 5 result(s)
+
+2026-05-28 10:16:11,009 INFO    agents.retrieval_engine | [analogy] query 'Dutch East India Company expelled from Indonesia 17th century' -> 5 result(s)
+
+2026-05-28 10:16:11,100 INFO    agents.retrieval_engine | [analogy] query 'French colonial attempts in Vietnam early 19th century failure' -> 5 result(s)
+2026-05-28 10:16:11,100 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:16:13,899 INFO    agents.grounding_layer | ground_context: 16 verified, 1 debated, 0 background, 9 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:16:15,545 INFO    agents.reasoning_agent | reason_about_counterfactual: 0 step(s) parsed (0 ungrounded), 0 unknown citation(s), 4 parse warning(s)
+2026-05-28 10:16:16,477 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: British East India Company expelled from India in 1757, preventing subsequent British colonization of the subcontinent
+DIVERGENCE POINT: 1750s-1800s — South Asia
+(no reasoning steps parsed)
+
+WHAT REMAINS UNKNOWABLE:
+(missing)
+
+RECONNECTION POINT:
+(missing)
+
+HISTORIAN'S NOTE:
+(missing)
+
+PARSE WARNINGS:
+  - no reasoning steps parsed — see raw_response
+  - missing tail section: what_remains_unknowable
+  - missing tail section: reconnection_point
+  - missing tail section: historians_note
+
+-- CHECKS (65.9s) --
+  [FAIL] 1_all_simulated: no steps parsed
+  [FAIL] 2_cites_real_source: no steps parsed
+  [PASS] 3_step_cap: 0 step(s), max header=0, cap=4
+  [FAIL] 4_no_sim_as_fact: no steps parsed
+
+##############################################################################
+#  CASE 3/8 — no_ww2_invasion
+#  Q: What if Germany had not invaded Poland in 1939 and the Second World War had been delayed by a decade?
+##############################################################################
+
+2026-05-28 10:16:16,562 INFO    agents.retrieval_engine | [primary] query 'German foreign policy 1939 Poland invasion decision' -> 5 result(s)
+
+2026-05-28 10:16:16,648 INFO    agents.retrieval_engine | [primary] query 'Causes of World War II 1939 Europe' -> 5 result(s)
+
+2026-05-28 10:16:16,727 INFO    agents.retrieval_engine | [primary] query 'European diplomatic relations 1939-1949' -> 5 result(s)
+
+2026-05-28 10:16:16,811 INFO    agents.retrieval_engine | [primary] query 'Impact of delayed WWII on European politics' -> 5 result(s)
+
+2026-05-28 10:16:16,893 INFO    agents.retrieval_engine | [analogy] query 'historical cases where war outbreak was averted through diplomacy' -> 5 result(s)
+
+2026-05-28 10:16:16,975 INFO    agents.retrieval_engine | [analogy] query 'instances of major conflicts delayed by a decade' -> 5 result(s)
+2026-05-28 10:16:16,975 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:17:14,918 INFO    agents.grounding_layer | ground_context: 34 verified, 0 debated, 2 background, 25 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:18:17,032 INFO    agents.reasoning_agent | reason_about_counterfactual: 4 step(s) parsed (0 ungrounded), 0 unknown citation(s), 0 parse warning(s)
+2026-05-28 10:18:17,741 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: Germany refrains from invading Poland in 1939, postponing WWII by about ten years
+DIVERGENCE POINT: 1939-1949 — Europe
+
+── Step 1 — Immediate Consequences (0‑10 years after change)  [GROUNDED]
+   Without a German invasion of Poland, Britain and France have no immediate trigger to declare war, so the European “phoney war” of 1939‑1940 never materialises and the continent remains formally at peace.
+   evidence: causes_of_world_war_ii_0, causes_of_world_war_ii_10
+   analogy:  causes_of_world_war_ii_10
+   confidence: Medium — The direct causal link between the invasion and the declarations of war is well‑documented, but the assumption that no other flashpoint would arise within a decade is less certain.
+
+── Step 2 — Short‑term Ripple (10‑30 years)  [GROUNDED]
+   By the early 1940s Germany, still emboldened by its unchecked re‑armament, intensifies diplomatic pressure on Poland to join the Anti‑Comintern Pact; Poland, still wary, resists, leading Germany to seek an alternative expansion target—most plausibly the Soviet Union. The Molotov–Ribbentrop Pact, already signed in August 1939, is retained as a non‑aggression agreement, but its secret protocol’s division of Poland is postponed, creating a “latent” territorial settlement that fuels a later German‑Soviet clash around 1949‑1950.
+   evidence: causes_of_world_war_ii_45, causes_of_world_war_ii_44, causes_of_world_war_ii_26
+   analogy:  causes_of_world_war_ii_26
+   confidence: Medium — The existence of the pact and Hitler’s expansionist track record support the plausibility, but the exact timing and choice of a later clash are not documented.
+
+── Step 3 — Medium‑term Transformation (30‑100 years)  [GROUNDED]
+   The delayed large‑scale conflict (circa 1950) forces the United States to mobilise its industrial capacity later, slowing the post‑war economic boom that in actual history accelerated decolonisation. Consequently, British and French colonial empires retain greater control into the 1960s, and movements such as Indian independence (which in reality was catalysed by the 1939‑45 war effort) are postponed, altering the timing of global decolonisation.
+   evidence: british_raj_46, causes_of_world_war_ii_10
+   analogy:  causes_of_world_war_ii_10
+   confidence: Low — The chain from a later war to delayed decolonisation is logical but not directly evidenced in the provided material; it relies on broader historical patterns.
+
+
+── Step 4 — Long‑term Legacy (100+ years)  [GROUNDED]
+   By the early twenty‑first century the European Union never forms in its current shape because the post‑war integration project was never launched; instead a looser “Western European Economic Cooperation” persists, dominated by a still‑strong Germany and a Britain that never experienced the wartime impetus for close Anglo‑French partnership.
+   evidence: causes_of_world_war_ii_0
+   confidence: Low — 
+
+WHAT REMAINS UNKNOWABLE:
+1. The precise political calculus of Hitler and the Nazi leadership in 1939‑1945 without the Polish invasion—whether they would have pursued a different diplomatic route or simply postponed aggression indefinitely.  
+2. The exact timing and nature of any eventual German‑Soviet conflict; the sources do not specify whether the latent Molotov–Ribbentrop provisions would have been activated, nor what the military balance would have been a decade later.  
+3. The reactions of other powers (e.g., the United States, Japan) to a Europe that remained at peace for ten years; without concrete diplomatic records we cannot determine how their foreign policies would have shifted.
+
+─────────────────────────────────────────
+
+RECONNECTION POINT:
+─────────────────────────────────────────
+The alternate timeline most likely reconverges with actual history around the moment a major German‑Soviet clash finally erupts (circa 1950), because the Molotov–Ribbentrop secret protocol already earmarked a division of Eastern Europe that would eventually be enforced, re‑creating the geopolitical conditions that in reality emerged in 1939‑45.
+
+─────────────────────────────────────────
+
+HISTORIAN'S NOTE:
+─────────────────────────────────────────
+Historians still debate whether World II was primarily the result of Hitler’s intentionalist agenda (evidenced by his 1939 demand that Poland join the Anti‑Comintern Pact and his Lebensraum justification) or of broader structural pressures such as the Versailles settlement and the failure of collective security mechanisms like the League of Nations. This counterfactual hinges on the intentionalist view—removing the invasion tests how much of the subsequent global conflict depended on Hitler’s personal decision versus the underlying systemic tensions.
+
+-- CHECKS (121.5s) --
+  [PASS] 1_all_simulated: 4 [SIMULATED] tag(s) across 4 step(s)
+  [PASS] 2_cites_real_source: all 4 step(s) cite real source chunks
+  [PASS] 3_step_cap: 4 step(s), max header=4, cap=4
+  [PASS] 4_no_sim_as_fact: every step labelled and tail sections hedge or self-label
+
+##############################################################################
+#  CASE 4/8 — rome_resists
+#  Q: What if the Western Roman Empire had successfully resisted the barbarian invasions of the 5th century?
+##############################################################################
+2026-05-28 10:18:17,871 INFO    agents.retrieval_engine | [primary] query '5th century Western Roman Empire barbarian invasions' -> 5 result(s)
+
+2026-05-28 10:18:17,970 INFO    agents.retrieval_engine | [primary] query 'Fall of Western Roman Empire causes' -> 5 result(s)
+
+2026-05-28 10:18:18,072 INFO    agents.retrieval_engine | [primary] query 'Roman military reforms late empire' -> 5 result(s)
+
+2026-05-28 10:18:18,193 INFO    agents.retrieval_engine | [primary] query 'Visigoth Vandal Ostrogoth migrations 5th century' -> 5 result(s)
+
+2026-05-28 10:18:18,312 INFO    agents.retrieval_engine | [analogy] query 'Byzantine Empire successful defense against barbarian invasions' -> 5 result(s)
+
+2026-05-28 10:18:18,415 INFO    agents.retrieval_engine | [analogy] query 'England repelling Viking invasions 9th century' -> 5 result(s)
+2026-05-28 10:18:18,415 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:19:21,506 INFO    agents.grounding_layer | ground_context: 18 verified, 2 debated, 1 background, 13 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:19:23,137 INFO    agents.reasoning_agent | reason_about_counterfactual: 4 step(s) parsed (0 ungrounded), 0 unknown citation(s), 0 parse warning(s)
+2026-05-28 10:19:23,746 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: Western Roman Empire successfully repels the 5th‑century barbarian invasions and remains intact
+DIVERGENCE POINT: 400-500 AD — Western Europe
+
+── Step 1 — Immediate Consequences (0‑10 years after change)  [GROUNDED]
+   The Western Roman army, still organized under Diocletian‑Constantine reforms, defeats the Visigothic and Vandal incursions in Gaul and Hispania, keeping the imperial tax base in those provinces intact.
+   evidence: fall_of_the_western_roman_empire_30, byzantine_empire_36
+   analogy:  byzantine_empire_36
+   confidence: High — The Roman military structure of the late 4th century is well documented, and the cited source directly attests to an aggressive posture that would plausibly translate into successful defense.
+
+── Step 2 — Short‑term Ripple (10‑30 years)  [GROUNDED]
+   With the western provinces secured, the imperial treasury continues to draw heavily on African grain exports, allowing the government to fund a modest increase in frontier fortifications and to avoid the large‑scale reliance on barbarian foederati that historically plagued the West.
+   evidence: fall_of_the_western_roman_empire_86, byzantine_empire_36
+   analogy:  byzantine_empire_36
+   confidence: Medium — The economic importance of Africa is clear, but the exact allocation of those revenues in a counterfactual fiscal policy is less certain.
+
+── Step 3 — Medium‑term Transformation (30‑100 years)  [GROUNDED]
+   Sustained imperial control enables the continuation of late‑antique administrative reforms (e.g., dioceses and praetorian prefectures) across the West, delaying the fragmentation into Germanic kingdoms and preserving a unified legal‑cultural framework that later facilitates a smoother transition to Christianity‑based governance.
+   evidence: byzantine_empire_29, byzantine_empire_20
+   analogy:  byzantine_empire_20
+   confidence: Medium — The reforms are historically attested, but projecting their uninterrupted application into a divergent political context involves moderate speculation.
+
+── Step 4 — Long‑term Legacy (100+ years)  [GROUNDED]
+   By the 6th‑century, a still‑intact Western Roman Empire co‑exists with the Eastern (Byzantine) Empire, leading to a bipolar Mediterranean world where Latin law and culture dominate the West while Greek culture remains in the East; the later rise of feudalism is muted, and the Carolingian Renaissance emerges as a “Western Roman” intellectual revival rather than a break from Roman tradition.
+   evidence: fall_of_the_western_roman_empire_2
+   confidence: Low — 
+
+WHAT REMAINS UNKNOWABLE:
+1. The precise demographic impact of continued Roman taxation on provincial populations; population trends depend on many variables (e.g., disease, climate) that the sources do not quantify.  
+2. Whether the Western Empire could have sustained the financial burden of a standing army without the fiscal crises that historically plagued the late empire; the counterfactual fiscal balance is indeterminate.  
+3. The exact nature of diplomatic relations with the Huns and later Turkic groups; without concrete records we cannot know how a stronger West would have negotiated or fought these later threats.  
+
+─────────────────────────────────────────
+
+RECONNECTION POINT:
+─────────────────────────────────────────  
+The alternate timeline likely reconverges with actual history around the mid‑7th century when the Eastern (Byzantine) Empire’s own crises (e.g., the rise of Islam) reshape the Mediterranean, a point grounded in the documented decline of Byzantine power after the 7th‑century climatic downturn [EVIDENCE: fall_of_the_western_roman_empire_11].  
+
+─────────────────────────────────────────
+
+HISTORIAN'S NOTE:
+─────────────────────────────────────────  
+Scholars still debate the relative weight of military decline versus climate and disease in the real fall of the Western Roman Empire [EVIDENCE: fall_of_the_western_roman_empire_30] and [EVIDENCE: fall_of_the_western_roman_empire_11]. These debates are directly relevant: if the Roman army had not declined as some argue, the counterfactual scenario of successful defense becomes more plausible, while the climatic downturn cited for the Late Antique Little Ice Age underscores how environmental factors could still have undermined a surviving empire.
+
+-- CHECKS (66.1s) --
+  [PASS] 1_all_simulated: 4 [SIMULATED] tag(s) across 4 step(s)
+  [PASS] 2_cites_real_source: all 4 step(s) cite real source chunks
+  [PASS] 3_step_cap: 4 step(s), max header=4, cap=4
+  [PASS] 4_no_sim_as_fact: every step labelled and tail sections hedge or self-label
+
+##############################################################################
+#  CASE 5/8 — louis_xvi_survives
+#  Q: What if Louis XVI had escaped to Austria before the French Revolution executed him?
+##############################################################################
+
+2026-05-28 10:19:23,903 INFO    agents.retrieval_engine | [primary] query 'Louis XVI execution 1793' -> 5 result(s)
+
+2026-05-28 10:19:24,002 INFO    agents.retrieval_engine | [primary] query 'French Revolution monarchy collapse' -> 5 result(s)
+
+2026-05-28 10:19:24,113 INFO    agents.retrieval_engine | [primary] query 'Austrian diplomatic and military response to French Revolution' -> 5 result(s)
+
+2026-05-28 10:19:24,230 INFO    agents.retrieval_engine | [primary] query "European powers' reactions to the French Republic 1790s" -> 5 result(s)
+
+2026-05-28 10:19:24,334 INFO    agents.retrieval_engine | [analogy] query 'monarch exile before execution historical examples' -> 5 result(s)
+
+2026-05-28 10:19:24,451 INFO    agents.retrieval_engine | [analogy] query 'foreign support for deposed monarchs comparative cases' -> 5 result(s)
+2026-05-28 10:19:24,452 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:21:27,526 INFO    agents.grounding_layer | ground_context: 18 verified, 2 debated, 0 background, 10 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:21:29,218 INFO    agents.reasoning_agent | reason_about_counterfactual: 0 step(s) parsed (0 ungrounded), 0 unknown citation(s), 1 parse warning(s)
+2026-05-28 10:21:29,772 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: Louis XVI escapes to Austria before his execution
+DIVERGENCE POINT: 1789-1793 — France
+(no reasoning steps parsed)
+
+WHAT REMAINS UNKNOWABLE:
+1. The precise popular support for a restored monarchy in the 1790s, because contemporary opinion data are limited and would have been reshaped by wartime propaganda.  
+2. Whether Louis XVI’s personal leadership style would have allowed a constitutional compromise or led to renewed absolutist attempts, as his historical record provides only fragmented insight into his political acumen.  
+3. The exact impact on French colonial expansion, since overseas policy was deeply tied to the revolutionary and Napoleonic wars whose course would be altered.  
+
+─────────────────────────────────────────
+
+RECONNECTION POINT:
+─────────────────────────────────────────  
+The alternate timeline likely reconverges with actual history around the Franco‑Prussian War of 1870‑71, when the defeat of a weakened French monarchy would force a republican settlement similar to the historical establishment of the Third Republic.  
+
+─────────────────────────────────────────
+
+HISTORIAN'S NOTE:
+─────────────────────────────────────────  
+Historians continue to debate the scale of Revolutionary repression, with estimates ranging from 16 000 to over 117 000 executions ([EVIDENCE: french_revolution_45]). This debate informs how we assess the plausibility of a more moderate royalist regime: a less‑repressive monarchy might have curbed the excesses that fueled later republican sentiment.
+
+PARSE WARNINGS:
+  - no reasoning steps parsed — see raw_response
+
+-- CHECKS (126.1s) --
+  [FAIL] 1_all_simulated: no steps parsed
+  [FAIL] 2_cites_real_source: no steps parsed
+  [PASS] 3_step_cap: 0 step(s), max header=0, cap=4
+  [FAIL] 4_no_sim_as_fact: no steps parsed
+
+##############################################################################
+#  CASE 6/8 — no_genghis
+#  Q: What if Genghis Khan had died in childhood before unifying the Mongol tribes?
+##############################################################################
+
+2026-05-28 10:21:29,882 INFO    agents.retrieval_engine | [primary] query 'Mongol tribal confederations before Genghis Khan' -> 5 result(s)
+
+2026-05-28 10:21:29,984 INFO    agents.retrieval_engine | [primary] query 'Rise of the Mongol Empire under Genghis Khan' -> 5 result(s)
+
+2026-05-28 10:21:30,080 INFO    agents.retrieval_engine | [primary] query '12th century Central Asian political landscape' -> 5 result(s)
+
+2026-05-28 10:21:30,185 INFO    agents.retrieval_engine | [primary] query 'Impact of Mongol conquests on Eurasia' -> 5 result(s)
+
+2026-05-28 10:21:30,301 INFO    agents.retrieval_engine | [analogy] query 'Early death of a unifying leader and its effect on empire formation' -> 5 result(s)
+
+2026-05-28 10:21:30,451 INFO    agents.retrieval_engine | [analogy] query 'Comparative cases of charismatic leaders whose premature death halted state consolidation' 
+-> 5 result(s)
+2026-05-28 10:21:30,451 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:22:33,558 INFO    agents.grounding_layer | ground_context: 24 verified, 4 debated, 7 background, 12 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:23:34,746 INFO    agents.reasoning_agent | reason_about_counterfactual: 0 step(s) parsed (0 ungrounded), 0 unknown citation(s), 4 parse warning(s)
+2026-05-28 10:24:35,648 INFO    agents.query_understanding | analyze_query: classified as political | 4 search + 2 analogy queries
+PROPOSED CHANGE: Genghis Khan dies in childhood, preventing the unification of the Mongol tribes
+DIVERGENCE POINT: 1100s-1200s — Central Asia
+(no reasoning steps parsed)
+
+WHAT REMAINS UNKNOWABLE:
+(missing)
+
+RECONNECTION POINT:
+(missing)
+
+HISTORIAN'S NOTE:
+(missing)
+
+PARSE WARNINGS:
+  - no reasoning steps parsed — see raw_response
+  - missing tail section: what_remains_unknowable
+  - missing tail section: reconnection_point
+  - missing tail section: historians_note
+
+-- CHECKS (125.5s) --
+  [FAIL] 1_all_simulated: no steps parsed
+  [FAIL] 2_cites_real_source: no steps parsed
+  [PASS] 3_step_cap: 0 step(s), max header=0, cap=4
+  [FAIL] 4_no_sim_as_fact: no steps parsed
+
+##############################################################################
+#  CASE 7/8 — ottoman_modernizes
+#  Q: What if the Ottoman Empire had successfully completed its Tanzimat modernization and survived past 1922?
+##############################################################################
+
+2026-05-28 10:24:35,745 INFO    agents.retrieval_engine | [primary] query 'Tanzimat reforms Ottoman Empire' -> 5 result(s)
+
+2026-05-28 10:24:35,837 INFO    agents.retrieval_engine | [primary] query 'Ottoman Empire dissolution 1922' -> 5 result(s)
+
+2026-05-28 10:24:35,929 INFO    agents.retrieval_engine | [primary] query 'Ottoman political modernization 19th century' -> 5 result(s)
+
+2026-05-28 10:24:36,043 INFO    agents.retrieval_engine | [primary] query 'European powers Ottoman relations 1910s' -> 5 result(s)
+
+2026-05-28 10:24:36,124 INFO    agents.retrieval_engine | [analogy] query 'Meiji Restoration Japan modernization' -> 5 result(s)
+
+2026-05-28 10:24:36,228 INFO    agents.retrieval_engine | [analogy] query 'Austro-Hungarian Empire reform attempts' -> 5 result(s)
+2026-05-28 10:24:36,228 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:24:40,120 INFO    agents.grounding_layer | ground_context: 24 verified, 0 debated, 1 background, 11 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:25:41,226 INFO    agents.reasoning_agent | reason_about_counterfactual: 4 step(s) parsed (0 ungrounded), 1 unknown citation(s), 0 parse warning(s)
+2026-05-28 10:26:41,140 INFO    agents.query_understanding | analyze_query: classified as military | 4 search + 2 analogy queries
+PROPOSED CHANGE: Ottoman Empire fully implements Tanzimat reforms and remains extant beyond 1922
+DIVERGENCE POINT: 1839-1922 — Eastern Mediterranean
+
+── Step 1 — Immediate Consequences (0‑10 years after change)  [GROUNDED]
+   The Ottoman bureaucracy becomes markedly more efficient, with standardized tax registers and a uniform legal code applied to all subjects, leading to a modest rise in state revenues and a smoother conscription process.
+   evidence: decline_and_modernization_of_the_ottoman_empire_0, meiji_restoration_0
+   analogy:  meiji_restoration_0
+   confidence: High — The primary sources describe the Tanzimat’s fiscal aims; the analogy to Meiji’s fiscal reforms is well‑documented, making the link plausible.
+
+── Step 2 — Short‑term Ripple (10‑30 years)  [GROUNDED]
+   With a more reliable tax base and a conscript army trained under a uniform curriculum, the Ottoman state is able to field a better‑equipped force that deters the first Balkan uprisings (e.g., the 1878‑1879 unrest) and negotiates more favorable terms in the 1878 Congress of Berlin.
+   evidence: decline_and_modernization_of_the_ottoman_empire_3, meiji_restoration_60
+   analogy:  meiji_restoration_60
+   confidence: Medium — The military modernization trend is documented, but projecting it back to the 1860‑1880 period involves some speculation about the speed of reform implementation.
+
+── Step 3 — Medium‑term Transformation (30‑100 years)  [GROUNDED]
+   By the early 20th century the Ottoman Empire retains most of its European territories (including most of the Balkans) as semi‑autonomous provinces under a constitutional monarchy, and it enters World War I as a neutral power, later joining the Entente after diplomatic pressure, thereby avoiding the punitive Treaty of Sèvres.
+   evidence: ottoman_empire_38, meiji_restoration_2
+   analogy:  meiji_restoration_2
+   confidence: Low — While the constitutional reforms are factual, the decision to stay neutral or to join the Entente depends on diplomatic choices not recorded in the source material, making this step more conjectural.
+
+── Step 4 — Long‑term Legacy (100+ years)  [GROUNDED]
+   A reformed Ottoman state evolves into a multi‑ethnic constitutional monarchy that, throughout the 20th century, acts as a stabilizing regional actor, fostering a pan‑Ottoman cultural identity that mitigates the rise of extreme nationalist movements in the Middle East and the Balkans.
+   evidence: decline_and_modernization_of_the_ottoman_empire_14
+   UNKNOWN cited ids: decline_and_modernization_of_the_ottoman_empire_14
+   confidence: Low — 
+
+WHAT REMAINS UNKNOWABLE:
+1. The precise nature of Ottoman foreign‑policy decisions during World War I (e.g., whether it would have remained neutral or which side it would have joined) because those choices depend on contingent diplomatic negotiations not captured in the available sources.  
+2. The internal political dynamics of the reformed Ottoman parliament—whether reformist, Islamist, or nationalist factions would dominate—and how they would shape policy over the 20th century.  
+3. The economic trajectory of the Ottoman industrial sector after full Tanzimat implementation, given limited data on Ottoman industrial capacity beyond the late‑19th century.  
+
+─────────────────────────────────────────
+
+RECONNECTION POINT:
+─────────────────────────────────────────  
+The alternate timeline likely diverges permanently at the 1919‑1923 Turkish War of Independence; in the counterfactual, a strong, constitutional Ottoman state averts the nationalist uprising that historically led to the abolition of the sultanate (1922) and the establishment of the Republic of Turkey (1923).  
+
+─────────────────────────────────────────
+
+HISTORIAN'S NOTE:
+─────────────────────────────────────────  
+Historians debate the effectiveness of the Tanzimat reforms: some argue they were superficial attempts to placate European powers, while others see them as genuine steps toward modernization. This debate is directly relevant, because the counterfactual hinges on the reforms being fully implemented and institutionalized, a point that remains contested in the scholarly literature.
+
+-- CHECKS (126.5s) --
+  [PASS] 1_all_simulated: 4 [SIMULATED] tag(s) across 4 step(s)
+  [FAIL] 2_cites_real_source: steps citing unknown chunk_ids: {4: ['decline_and_modernization_of_the_ottoman_empire_14']}
+  [PASS] 3_step_cap: 4 step(s), max header=4, cap=4
+  [PASS] 4_no_sim_as_fact: every step labelled and tail sections hedge or self-label
+
+##############################################################################
+#  CASE 8/8 — cuban_missile_war
+#  Q: What if the Cuban Missile Crisis had escalated into a nuclear exchange between the United States and the Soviet Union?
+##############################################################################
+
+2026-05-28 10:26:41,221 INFO    agents.retrieval_engine | [primary] query 'Cuban Missile Crisis 1962' -> 5 result(s)
+
+2026-05-28 10:26:41,302 INFO    agents.retrieval_engine | [primary] query 'US Soviet nuclear doctrine Cold War' -> 5 result(s)
+
+2026-05-28 10:26:41,399 INFO    agents.retrieval_engine | [primary] query 'US-Soviet nuclear arsenals 1962' -> 5 result(s)
+
+2026-05-28 10:26:41,543 INFO    agents.retrieval_engine | [primary] query 'Cold War nuclear escalation scenarios' -> 5 result(s)
+
+2026-05-28 10:26:41,644 INFO    agents.retrieval_engine | [analogy] query 'Korean War nuclear escalation fears' -> 5 result(s)
+
+2026-05-28 10:26:41,744 INFO    agents.retrieval_engine | [analogy] query '1962 Berlin Crisis nuclear standoff' -> 5 result(s)
+2026-05-28 10:26:41,744 INFO    agents.retrieval_engine | retrieve_context: 8 primary + 3 analogy chunk(s) from 30 raw hit(s)
+2026-05-28 10:27:45,916 INFO    agents.grounding_layer | ground_context: 30 verified, 0 debated, 2 background, 10 analog(y/ies) from 8 primary + 3 analogy chunk(s)
+2026-05-28 10:27:48,125 INFO    agents.reasoning_agent | reason_about_counterfactual: 0 step(s) parsed (0 ungrounded), 0 unknown citation(s), 4 parse warning(s)
+PROPOSED CHANGE: The Cuban Missile Crisis escalates into a full nuclear exchange between the United States and the Soviet Union
+DIVERGENCE POINT: 1962-1963 — Global
+(no reasoning steps parsed)
+
+WHAT REMAINS UNKNOWABLE:
+(missing)
+
+RECONNECTION POINT:
+(missing)
+
+HISTORIAN'S NOTE:
+(missing)
+
+PARSE WARNINGS:
+  - no reasoning steps parsed — see raw_response
+  - missing tail section: what_remains_unknowable
+  - missing tail section: reconnection_point
+  - missing tail section: historians_note
+
+-- CHECKS (126.9s) --
+  [FAIL] 1_all_simulated: no steps parsed
+  [FAIL] 2_cites_real_source: no steps parsed
+  [PASS] 3_step_cap: 0 step(s), max header=0, cap=4
+  [FAIL] 4_no_sim_as_fact: no steps parsed
+
+==============================================================================
+SUMMARY — PASS/FAIL MATRIX
+==============================================================================
+case_id                        C1   C2   C3   C4   notes
+------------------------------------------------------------------------------
+mughal_industrialization     PASS FAIL PASS PASS
+no_british_raj               FAIL FAIL PASS FAIL
+no_ww2_invasion              PASS PASS PASS PASS
+rome_resists                 PASS PASS PASS PASS
+louis_xvi_survives           FAIL FAIL PASS FAIL
+no_genghis                   FAIL FAIL PASS FAIL
+ottoman_modernizes           PASS FAIL PASS PASS
+cuban_missile_war            FAIL FAIL PASS FAIL
+------------------------------------------------------------------------------
+TOTAL                          4/8   2/8   8/8   4/8
+
+CHECK LEGEND:
+  C1 — every step labelled [SIMULATED]
+  C2 — every step cites a chunk_id present in GroundedContext
+  C3 — no more than 4 steps anywhere
+  C4 — no simulation presented as fact (steps labelled + tail hedges)

@@ -60,7 +60,7 @@ class Settings:
 
     # --- LLM: Cerebras (OpenAI-compatible endpoint) --------------------------
     CEREBRAS_BASE_URL: str = _get("CEREBRAS_BASE_URL", "https://api.cerebras.ai/v1")
-    CEREBRAS_MODEL: str = _get("CEREBRAS_MODEL", "qwen-3-235b-a22b-instruct-2507")
+    CEREBRAS_MODEL: str = _get("CEREBRAS_MODEL", "gpt-oss-120b")
     LLM_TEMPERATURE: float = _get_float("LLM_TEMPERATURE", 0.0)
 
     # --- Embeddings: local sentence-transformers (no API key, runs on torch) -

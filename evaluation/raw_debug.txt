@@ -1,0 +1,287 @@
+##############################################################################
+# CASE: no_british_raj
+# Q:    What if Britain had never colonized India and the British East India Company had been expelled in 1757?
+# proposed_change: British East India Company expelled from India in 1757, preventing subsequent British colonization of the subcontinent
+# divergence_point: 1750s-1900s — South Asia
+# parse_warnings: ['no reasoning steps parsed — see raw_response', 'missing tail section: what_remains_unknowable', 'missing tail section: reconnection_point', 'missing tail section: historians_note']
+# steps parsed: 0
+##############################################################################
+
+----- raw_response BEGIN -----
+**PROPOSED CHANGE:** British East India Company expelled from India in 1757, preventing subsequent British colonization of the subcontinent  
+
+**DIVERGENCE POINT:** 1750s‑1900s — South Asia  
+
+---  
+
+### Step 1 — Immediate Consequences (0‑10 years after change)  
+[SIMULATED] The defeat of the East India Company’s forces at Plassey and their expulsion from Bengal removes the company’s nascent military and administrative foothold in India, leaving Sir Jahangir Nawab (Siraj ud‑Daulah) in control of Bengal and preserving the fragmented Mughal‑Maratha balance of power.  
+
+- **Evidence basis:** The Battle of Plassey “established the company as a major player in Indian affairs” [**EVIDENCE: indian_independence_movement_4**]; removing that victory logically eliminates the company’s early political leverage.  
+- **Analogy (if applicable):** The 1798 French expulsion of British troops from Guadeloupe shows how a colonial power can lose its overseas base and be forced to withdraw [**EVIDENCE: french_revolution_75**] – the parallel is the removal of a European military presence after a decisive defeat.  
+- **Confidence:** **Medium** – the direct link between the battle and company dominance is well‑documented, but the exact speed of the company’s collapse is less certain.  
+- **Reason for confidence:** Strong primary source on the battle’s importance; however, we lack detailed records of the company’s internal capacity to regroup after a loss.  
+
+---  
+
+### Step 2 — Short‑term Ripple (10‑30 years)  
+[SIMULATED] With the company absent, the Maratha Confederacy expands northward into Bengal, annexing key revenue‑rich districts and establishing a Maratha‑administered tax system that replaces the company’s one‑third produce levy.  
+
+- **Evidence basis:** During Muhammad Shah’s reign the empire “began to break up, and large areas of central India passed from Mughal to Maratha control” [**EVIDENCE: mughal_empire_12**]; the company’s taxation system “took one‑third of the produce of Indian cultivators” [**EVIDENCE: british_raj_85**]; without the latter, a regional power would likely fill the fiscal vacuum.  
+- **Analogy (if applicable):** After the British withdrew from the Caribbean in 1798, local authorities re‑asserted fiscal control, illustrating how a power vacuum can be rapidly occupied [**EVIDENCE: french_revolution_75**].  
+- **Confidence:** **Medium** – the Marathas were already expanding, but the exact timing and extent of a Bengal annexation are not recorded.  
+- **Reason for confidence:** The trend of Maratha growth is documented; however, the counterfactual timing of their move into Bengal is inferred.  
+
+---  
+
+### Step 3 — Medium‑term Transformation (30‑100 years)  
+[SIMULATED] By the early‑19th century a Maratha‑led Indian state (or a coalition of northern princely states) initiates limited industrial reforms, retaining control of the lucrative textile export sector that in reality fed British factories; this keeps Indian textile production largely under indigenous ownership and delays the integration of Indian raw cotton into British industrial capitalism.  
+
+- **Evidence basis:** By the 1760s “cloth accounted for over three‑quarters of the East India Company’s exports” [**EVIDENCE: industrial_revolution_12**]; the Mughal Empire was formally dissolved only after the 1857 rebellion [**EVIDENCE: mughal_empire_1**]; without British rule, the dissolution may not occur, allowing a native polity to manage textile trade.  
+- **Analogy (if applicable):** Early Italian and German attempts at cotton spinning in the 12th‑15th centuries failed when supply was cut off [**EVIDENCE: industrial_revolution_12**]; similarly, the loss of British demand could force Indian producers to reorient toward domestic or alternative foreign markets rather than feeding British industry.  
+- **Confidence:** **Low‑Medium** – the existence of a reformist Maratha state is plausible, but specific industrial policies are not documented.  
+- **Reason for confidence:** We have solid data on the importance of Indian textiles, yet no direct evidence of Maratha industrial policy; the simulation extrapolates from known economic incentives.  
+
+---  
+
+### Step 4 — Long‑term Legacy (100+ years)  
+[SIMULATED] By the early‑20th century the Indian subcontinent consists of a dominant Maratha‑led federation plus several semi‑autonomous princely states; British‑style legislative reforms such as the Indian Councils Act 1909 and the 1911 capital transfer to Delhi never occur, and Delhi remains the cultural‑political centre of the indigenous federation rather than a colonial capital.  
+
+- **Evidence basis:** The Indian Councils Act 1909 “gave Indians limited roles… and created a separate electorate for Muslims” [**EVIDENCE: british_raj_17**]; the 1911 capital move to Delhi was a British decision [**EVIDENCE: british_raj_11**]; without British rule, these reforms lack a colonial sponsor.  
+- **Confidence:** **Low** – long‑term political configurations are highly speculative; the simulation relies on the assumption that no other European power imposes comparable structures.  
+
+---  
+
+### WHAT REMAINS UNKNOWABLE  
+1. **Whether another European power (e.g., France or the Netherlands) would eventually colonize large parts of India** – the counterfactual provides no direct evidence of their strategic intent after 1757.  
+2. **The internal stability of a Maratha‑led federation** – we lack records on how internal factionalism, succession disputes, or external pressures would shape its longevity.  
+3. **The precise cultural and linguistic impact of a non‑British colonial trajectory** – the diffusion of English, the legal system, and railway construction are contingent on many variables not captured in the available sources.  
+
+---  
+
+### RECONNECTION POINT  
+The alternate timeline permanently diverges at the Battle of Plassey (1757); without the East India Company’s victory, the cascade of British administrative, fiscal, and legislative interventions that defined colonial India never materializes, and the subcontinent’s political map evolves along a distinct, indigenous‑centric path.  
+
+---  
+
+### HISTORIAN'S NOTE  
+Historians debate the extent to which British rule depended on cooperation with Indian elites (Marshall’s argument that the takeover “did not make a sharp break with the past”) [**EVIDENCE: british_raj_85**]; this debate is directly relevant because the counterfactual removes the British elite partnership, highlighting how indigenous power structures might have filled the vacuum.  
+A second, related debate concerns Aurangzeb’s religious conservatism and its role in weakening the Mughal state [**EVIDENCE: mughal_empire_11**]; understanding that internal decline helps gauge how much room the Marathas or other Indian actors had to expand in the absence of British interference.
+----- raw_response END -----
+
+##############################################################################
+# CASE: louis_xvi_survives
+# Q:    What if Louis XVI had escaped to Austria before the French Revolution executed him?
+# proposed_change: Louis XVI escapes to Austria before his execution in 1793
+# divergence_point: 1780s-1790s — Western Europe
+# parse_warnings: []
+# steps parsed: 4
+##############################################################################
+
+----- raw_response BEGIN -----
+PROPOSED CHANGE: Louis XVI escapes to Austria before his execution in 1793  
+
+DIVERGENCE POINT: 1780s‑1790s — Western Europe  
+
+─────────────────────────────────────────  
+Step 1 — Immediate Consequences (0‑10 years after change)  
+─────────────────────────────────────────  
+[SIMULATED] Louis XVI’s successful flight to Austria in early 1793 would have caused an immediate crisis of legitimacy for the National Convention, forcing revolutionary leaders to confront a living monarch who could become a rallying point for counter‑revolutionary forces.  
+Evidence basis: [EVIDENCE: french_revolution_0] — the historical record shows Louis XVI attempted to flee to Varennes in June 1791, a move that already discredited the monarchy; a successful escape would amplify that effect.  
+Analogy (if applicable): [EVIDENCE: decline_and_modernization_of_the_ottoman_empire_17] — the Ottoman Empire’s attempts to modernize (Tanzimat) were repeatedly undermined by nationalist uprisings supported by foreign powers, illustrating how external patronage can embolden internal opposition.  
+Confidence: High  
+Reason for confidence: The factual precedent of the Varennes flight demonstrates that a monarch’s escape directly undermines revolutionary authority; the parallel with foreign‑backed opposition in the Ottoman case is well‑documented.
+
+─────────────────────────────────────────  
+Step 2 — Short‑term Ripple (10‑30 years)  
+─────────────────────────────────────────  
+[SIMULATED] Austria, eager to use Louis XVI as a symbolic leader, would have organized a coalition of European monarchies and French royalist émigrés, prolonging the Revolutionary Wars and likely preventing the rapid French victories of 1794‑1795.  
+Evidence basis: [EVIDENCE: french_revolution_64] — France declared war on Austria in April 1792 and began conscription, showing that Austria was already a principal adversary; a living French king in Vienna would intensify that conflict.  
+Analogy (if applicable): [EVIDENCE: mongol_empire_24] — Möngke’s investigation of an internal plot led to widespread purges, demonstrating how a central figure’s survival can trigger extensive political crackdowns; similarly, Austria’s use of Louis XVI would provoke harsh revolutionary reprisals.  
+Confidence: Medium  
+Reason for confidence: The war with Austria is factual, but the exact scale of a coalition and its impact on French military successes is inferential.
+
+─────────────────────────────────────────  
+Step 3 — Medium‑term Transformation (30‑100 years)  
+─────────────────────────────────────────  
+[SIMULATED] The prolonged coalition war and the presence of a Bourbon claimant would have delayed or altered Napoleon Bonaparte’s rise; without a decisive French victory in 1799, the Consulate might never form, and France could settle into a constitutional monarchy under the Bourbons by the early‑19th century.  
+Evidence basis: [EVIDENCE: french_revolution_11] — the coup of 18 Brumaire in 1799 established Napoleon’s Consulate, a turning point that depended on the weakened post‑terror government; a stronger royalist bloc would undermine the conditions for that coup.  
+Analogy (if applicable): [EVIDENCE: decline_and_modernization_of_the_ottoman_empire_17] — the Ottoman Empire’s inability to suppress nationalist movements despite reforms shows how external pressure can force a shift toward a more conservative regime; likewise, French royalists could force a return to constitutional monarchy.  
+Confidence: Medium  
+Reason for confidence: The link between a surviving monarch and the suppression of Napoleon’s ascent is plausible, but contingent on many political variables not recorded in the source material.
+
+─────────────────────────────────────────  
+Step 4 — Long‑term Legacy (100+ years)  
+─────────────────────────────────────────  
+[SIMULATED] A Bourbon‑led constitutional monarchy would likely have preserved more of the pre‑revolutionary aristocratic and clerical property structures, slowing the secularization of French society and possibly reducing the intensity of later republican movements (e.g., the 1848 Revolution).  
+Evidence basis: [EVIDENCE: french_revolution_89] — the Revolution “permanently crippled the power of the aristocracy and drained the wealth of the Church,” indicating that a restored monarchy could reverse or blunt that trend.  
+Confidence: Low — long‑term consequences are inherently speculative beyond this point.  
+
+WHAT REMAINS UNKNOWABLE:  
+1. The precise political platform of a restored Bourbon constitutional monarchy (how much revolutionary reform it would retain).  
+2. Whether Napoleon’s military genius would have found another avenue for power (e.g., as a foreign mercenary) and how that would have reshaped European geopolitics.  
+3. The cultural impact on French republican identity and the eventual development of secular education, which depend on myriad social forces beyond elite politics.  
+
+─────────────────────────────────────────  
+RECONNECTION POINT  
+─────────────────────────────────────────  
+The alternate timeline would likely converge with actual history around the mid‑19th century, when the pressures of industrialization and popular nationalism forced most European monarchies—including a hypothetical French Bourbon regime—to adopt liberal constitutions, mirroring the real‑world 1848 Revolutions.  
+
+─────────────────────────────────────────  
+HISTORIAN'S NOTE  
+─────────────────────────────────────────  
+Historians still debate how much the French Revolution itself created the modern nation‑state concept [EVIDENCE: french_revolution_88]; this counterfactual hinges on whether a surviving monarch would have allowed that nation‑state idea to emerge, highlighting the ongoing scholarly discussion about the Revolution’s structural legacy.
+----- raw_response END -----
+
+##############################################################################
+# CASE: no_genghis
+# Q:    What if Genghis Khan had died in childhood before unifying the Mongol tribes?
+# proposed_change: Genghis Khan dies in childhood, preventing the unification of the Mongol tribes
+# divergence_point: 1100s-1200s — Central Asia
+# parse_warnings: ['no reasoning steps parsed — see raw_response', 'missing tail section: what_remains_unknowable', 'missing tail section: reconnection_point', 'missing tail section: historians_note']
+# steps parsed: 0
+##############################################################################
+
+----- raw_response BEGIN -----
+**PROPOSED CHANGE:** Genghis Khan dies in childhood, preventing the unification of the Mongol tribes  
+
+**DIVERGENCE POINT:** 1100s‑1200s — Central Asia  
+
+---
+
+### Step 1 — Immediate Consequences (0‑10 years after change)
+[SIMULATED] The death of the young Temüjin removes the only charismatic figure capable of rallying the disparate Mongol clans; the power vacuum leads to renewed internecine warfare, and the first Mongol confederation that had been weakened by the killings of Qutula and Ambaghai in the 1160s collapses completely.  
+
+**Evidence basis:** [EVIDENCE: mongol_empire_5] — This source notes that the killing of the khans Qutula and Ambaghai ended the first Mongol confederation, showing how the loss of a central leader precipitated fragmentation.  
+
+**Analogy (if applicable):** [EVIDENCE: fall_of_the_western_roman_empire_75] — The death of Emperor Constantius in 421 left no clear successor, sparking civil war and territorial loss; similarly, Temüjin’s early death would likely trigger conflict among tribal leaders.  
+
+**Confidence:** High  
+**Reason for confidence:** Direct historical precedent of leadership loss causing collapse, and the source explicitly documents a similar event among Mongol tribes.
+
+---
+
+### Step 2 — Short‑term Ripple (10‑30 years)
+[SIMULATED] In the absence of a unifying Genghis Khan, one of the rival clans—most plausibly the Naiman or Merkits—temporarily dominates the steppe, but lacks the organizational capacity to launch large‑scale campaigns beyond their immediate borders. Consequently, the Khwarezmian Empire continues to expand northward, while the Jin dynasty in northern China faces no coordinated Mongol threat.  
+
+**Evidence basis:** [EVIDENCE: mongol_empire_5] — The same source indicates that after the early killings, no single leader emerged to unite the tribes, implying that any successor would be limited in scope.  
+
+**Analogy (if applicable):** [EVIDENCE: byzantine_empire_15] — Nikephoros I’s death in battle halted his administrative reforms, allowing regional powers to reassert themselves; likewise, the loss of Temüjin stalls any nascent reforms or military organization among the Mongols.  
+
+**Confidence:** Medium  
+**Reason for confidence:** While the source shows fragmentation, the identity of the dominant clan is speculative; the analogy supports the pattern but does not pinpoint which tribe would lead.
+
+---
+
+### Step 3 — Medium‑term Transformation (30‑100 years)
+[SIMULATED] Without a Mongol empire to conquer vast territories, the Silk Road remains a patchwork of regional polities. The Khwarezmian Empire solidifies control over Central Asia, the Jin dynasty retains its holdings in northern China, and the Kara‑Khitai (Western Liao) persist longer, delaying the rise of later steppe powers such as the Timurids. The lack of a Pax Mongolica means trade between East and West is slower, and technological diffusion (e.g., paper‑making, gunpowder) reaches Europe later than in actual history.  
+
+**Evidence basis:** [EVIDENCE: mongol_empire_0] — The verified fact that the Mongol Empire’s size stemmed from the unification under Genghis Khan implies that without that unification, no comparable empire would arise to dominate trade routes.  
+
+**Analogy (if applicable):** [EVIDENCE: fall_of_the_western_roman_empire_75] — The fragmentation of Roman authority after Constantius’s death led to regional powers filling the vacuum, mirroring how multiple Central Asian states would fill the void left by a non‑existent Mongol empire.  
+
+**Confidence:** Medium  
+**Reason for confidence:** The causal chain (no empire → fragmented trade) is logical, but the precise timing of technological diffusion is uncertain.
+
+---
+
+### Step 4 — Long‑term Legacy (100+ years)
+[SIMULATED] Over the ensuing centuries, the absence of a Mongol‑created “Great Yuan” dynasty means that China’s political development follows a more indigenous trajectory, likely retaining stronger Song‑era bureaucratic institutions. Europe’s exposure to Eastern inventions is delayed, potentially postponing the Renaissance’s early scientific advances. The eventual rise of the Ottoman Empire proceeds similarly, but its eastern frontiers encounter a less unified steppe region, altering the dynamics of Ottoman‑Central Asian relations.  
+
+**Evidence basis:** [EVIDENCE: mongol_empire_0] — The empire’s emergence from unification under Genghis Khan is the key driver of its later political and cultural impacts; removing that driver suggests a divergent long‑term pattern.  
+
+**Confidence:** Low — long‑term consequences are inherently speculative beyond this point.
+
+---
+
+## WHAT REMAINS UNKNOWABLE
+1. **Exact tribal leadership succession** – We cannot determine which clan, if any, would have risen to dominate the steppe after Temüjin’s death.  
+2. **Quantitative impact on Eurasian trade volumes** – Precise figures for how much slower the Silk Road would have become are unknowable without extensive economic modeling.  
+3. **Cultural‑technological diffusion timelines** – The exact dates when inventions such as gunpowder or paper would have reached Europe remain indeterminate.
+
+---
+
+## RECONNECTION POINT
+By the mid‑14th century, a new wave of steppe conquest (e.g., Timur’s empire) would likely re‑establish a large, though not as extensive, trans‑Eurasian polity, causing the alternate timeline to converge with actual history in terms of a dominant Central Asian empire, though its borders and cultural policies would differ.  
+
+---
+
+## HISTORIAN'S NOTE
+Historians debate the extent to which Mongol administrative practices influenced later Eurasian governance; one concrete point of contention concerns the use of a primitive correction fluid by 14th‑century Mongol scribes, which some scholars argue represents an early form of modern editing tools [EVIDENCE: mongol_empire_59]. This debate highlights how even seemingly minor technological details can illuminate broader questions about cultural transmission—issues that become especially salient in a counterfactual where the Mongol Empire never existed.
+----- raw_response END -----
+
+##############################################################################
+# CASE: cuban_missile_war
+# Q:    What if the Cuban Missile Crisis had escalated into a nuclear exchange between the United States and the Soviet Union?
+# proposed_change: The Cuban Missile Crisis escalates into a full nuclear exchange between the United States and the Soviet Union.
+# divergence_point: 1962-1963 — Global
+# parse_warnings: ['no reasoning steps parsed — see raw_response', 'missing tail section: what_remains_unknowable', 'missing tail section: reconnection_point', 'missing tail section: historians_note']
+# steps parsed: 0
+##############################################################################
+
+----- raw_response BEGIN -----
+**PROPOSED CHANGE:** The Cuban Missile Crisis escalates into a full nuclear exchange between the United States and the Soviet Union.  
+
+**DIVERGENCE POINT:** 1962‑1963 — Global  
+
+─────────────────────────────────────────  
+**Step 1 — Immediate Consequences (0‑10 years after change)**  
+─────────────────────────────────────────  
+[SIMULATED] Within months of the crisis, both superpowers launch thousands of warheads, destroying the majority of major urban centers in the United States, the Soviet Union, and their respective allies, resulting in an estimated 200 million immediate deaths and a severe “nuclear winter” that depresses global temperatures for several years.  
+
+Evidence basis: [EVIDENCE: cold_war_35] — Declassified U.S. plans from the late 1950s called for systematic destruction of 1,200 major urban centers in the Soviet bloc and China, showing that both sides possessed the targeting doctrine and weapon stockpiles to achieve massive urban devastation.  
+
+Analogy (if applicable): [EVIDENCE: cold_war_38] — Khrushchev’s repeated public threats (1957‑1961) that Soviet missiles could “wipe out any American or European city” illustrate the willingness of both leaders to contemplate total nuclear use, a mindset that parallels the actual escalation in this counterfactual.  
+
+Confidence: **Medium**  
+Reason for confidence: The existence of extensive targeting plans and documented nuclear rhetoric strongly support the plausibility of massive destruction, but exact casualty figures and climate effects are model‑dependent and thus not precisely known.  
+
+─────────────────────────────────────────  
+**Step 2 — Short‑term Ripple (10‑30 years)**  
+─────────────────────────────────────────  
+[SIMULATED] In the decade following the exchange, surviving populations in the United States and the Soviet Union are concentrated in peripheral, less‑contaminated regions; central governments collapse, and fragmented regional authorities emerge, while neutral countries (e.g., Canada, Sweden, Australia) become primary refuges for displaced peoples and centers of limited economic activity.  
+
+Evidence basis: [EVIDENCE: cold_war_1] — By 1949 the USSR had already installed satellite governments across Eastern Europe, indicating a hierarchical, centrally‑controlled system that would be especially vulnerable to the loss of its core industrial and administrative hubs.  
+
+Analogy (if applicable): [EVIDENCE: cold_war_53] — The erection of the Berlin Wall in 1961 shows how the Soviet bloc could physically isolate populations; after a nuclear exchange, the “wall” would be replaced by radiation‑free zones that function as de‑ facto enclaves, a parallel to how Berlin’s division created separate survivable zones.  
+
+Confidence: **Medium**  
+Reason for confidence: The structural fragility of centrally‑planned states after loss of core territories is well‑documented, but the exact pattern of post‑war migration and the capacity of neutral states to absorb refugees remain uncertain.  
+
+─────────────────────────────────────────  
+**Step 3 — Medium‑term Transformation (30‑100 years)**  
+─────────────────────────────────────────  
+[SIMULATED] By the mid‑21st century, a new bipolar order emerges: a coalition of surviving Western nations (led by a re‑constituted United States government operating from the Pacific Northwest) versus a coalition of former Soviet republics and Asian communist states (centered on a rebuilt Moscow‑less Soviet core in Siberia). Both blocs compete for scarce resources, but the experience of total nuclear war creates a strong international taboo against further strategic nuclear use, leading to the early adoption of comprehensive non‑proliferation regimes.  
+
+Evidence basis: [EVIDENCE: cold_war_30] — NSC 68 advocated a massive defense buildup and reinforced pro‑Western alliances, suggesting that the United States had the institutional capacity to reorganize and continue as a leading power even after catastrophic loss.  
+
+Analogy (if applicable): [EVIDENCE: cold_war_32] — The Korean War galvanized NATO into a formal collective defense organization; similarly, the devastation of a nuclear war could force surviving states to coalesce into new security alliances, mirroring the way regional crises have historically spurred institutional consolidation.  
+
+Confidence: **Low‑Medium**  
+Reason for confidence: While the existence of alliance‑building precedents supports the formation of new blocs, the precise geopolitical configuration after such unprecedented destruction is highly speculative.  
+
+─────────────────────────────────────────  
+**Step 4 — Long‑term Legacy (100+ years)**  
+─────────────────────────────────────────  
+[SIMULATED] A century after the exchange, the world’s dominant narrative is one of “the Great Nuclear Catastrophe,” shaping education, culture, and policy; the global community maintains a strict prohibition on strategic nuclear weapons, and space exploration proceeds under a single, civilian‑led international agency that deliberately avoids militarization.  
+
+Evidence basis: [EVIDENCE: cold_war_51] — In the 1960s the United States and USSR signed space treaties to limit the militarization of space, showing that even during the Cold War there were precedents for cooperative restraint that could be amplified after a shared trauma.  
+
+Confidence: **Low** — long‑term cultural and institutional outcomes are inherently speculative beyond this point.  
+
+─────────────────────────────────────────  
+**WHAT REMAINS UNKNOWABLE:**  
+1. The exact number of casualties and the precise severity/duration of the nuclear‑winter climate effects, because climate modelling of a global nuclear exchange remains uncertain.  
+2. How individual societies would culturally process the trauma (e.g., whether a global peace movement would arise or whether nationalism would dominate).  
+3. Whether any surviving nuclear arsenals would be retained, dismantled, or repurposed, given the lack of direct evidence about post‑war arms control decisions.  
+
+─────────────────────────────────────────  
+**RECONNECTION POINT**  
+─────────────────────────────────────────  
+The alternate timeline likely diverges permanently at the moment the United States and the Soviet Union decide to launch nuclear weapons against each other (late 1962), because the subsequent collapse of both superpowers eliminates the political structures that, in actual history, later facilitated détente, arms‑control treaties, and the eventual end of the Cold War.  
+
+─────────────────────────────────────────  
+**HISTORIAN'S NOTE**  
+─────────────────────────────────────────  
+Historians debate the extent to which Khrushchev’s aggressive posturing in 1962 “brought the world to the brink of nuclear war” (see Gaddis’s argument in [EVIDENCE: cold_war_55]). This debate is directly relevant: the counterfactual hinges on the plausibility that those brinkmanship dynamics could have tipped into actual nuclear exchange, a question that remains contested among Cold‑War scholars.
+----- raw_response END -----

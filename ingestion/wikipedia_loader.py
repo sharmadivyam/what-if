@@ -216,22 +216,28 @@ def load_topics(topics: list[str], *, force_refresh: bool = False) -> list[Docum
 
 
 if __name__ == "__main__":
-    # Manual smoke test: one normal article, one disambiguation page, one
-    # nonsense title. Run from the project root:
+    # Ingest the canonical corpus (ingestion/topics.py) into data/raw/. Already
+    # cached articles are reused (no network); only new topics are fetched. Pass
+    # explicit topics as CLI args to override — e.g. a smoke test of the skip
+    # paths: ... -m ingestion.wikipedia_loader "French Revolution" "Mercury" "Zzz".
+    # Run from the project root:
     #   D:\historyos\venv\Scripts\python.exe -m ingestion.wikipedia_loader
+    import sys
+
+    sys.stdout.reconfigure(encoding="utf-8")  # article titles may exceed cp1252
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)-7s %(name)s | %(message)s",
     )
-    demo_topics = [
-        "French Revolution",                      # normal article -> loaded
-        "Mercury",                                # disambiguation  -> skipped
-        "Asdkjqwoieur Nonexistent Topic 12345",   # not found       -> skipped
-    ]
-    docs = load_topics(demo_topics)
-    print(f"\nReturned {len(docs)} Document(s):")
+
+    from ingestion.topics import CORPUS_TOPICS
+
+    topics = sys.argv[1:] or CORPUS_TOPICS
+    docs = load_topics(topics)
+    print(f"\nReturned {len(docs)}/{len(topics)} Document(s):")
     for d in docs:
+        flag = "  [resolved via search]" if d.metadata.get("resolved_via_search") else ""
         print(
             f"  - {d.metadata['title']} "
-            f"({len(d.page_content)} chars) {d.metadata['url']}"
+            f"({len(d.page_content)} chars) {d.metadata['url']}{flag}"
         )
