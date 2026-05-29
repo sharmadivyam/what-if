@@ -19,6 +19,15 @@ SIMULATED consequences with confidence scores.
 - Cerebras qwen-3-235b-a22b-instruct-2507 for all LLM calls (free, OpenAI-compatible)
 - sentence-transformers all-mpnet-base-v2 for embeddings (local, free, no API key)
 - Streamlit for frontend UI
+- Dynamic Wikipedia fallback in the retrieval engine: when local Chroma search has
+  no genuinely relevant primary context, it fetches Wikipedia live, embeds it, and
+  re-searches (no LLM call). Tuned by four settings (defaults in `config.py`, mirror
+  in `.env` / `.env.example` per the CONFIG GOTCHA):
+  - `ENABLE_DYNAMIC_RETRIEVAL` (bool, default `True`) — master on/off switch.
+  - `DYNAMIC_SEARCH_LIMIT` (int, default `5`) — Wikipedia pages fetched per run.
+  - `DYNAMIC_CHUNK_CAP` (int, default `200`) — max chunks added per run (bounds latency).
+  - `DYNAMIC_MIN_SIMILARITY` (float, default `0.6`) — cosine floor below which the best
+    local primary hit is treated as "no real match" (the fallback trigger).
 - Total API cost: ₹0
 
 ## Critical Rules — Never Violate These
@@ -92,7 +101,7 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] embedder.py
 [x] chroma_client.py
 [ ] query_understanding.py
-[ ] retrieval_engine.py
+[x] retrieval_engine.py  (incl. dynamic Wikipedia fallback)
 [x] grounding_layer.py
 [x] reasoning_agent.py
 [x] confidence_scorer.py
@@ -151,3 +160,16 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
   `UnicodeEncodeError` and aborts the script — not just garbled display. Any script
   that prints chunk/article text must set `PYTHONIOENCODING=utf-8` or call
   `sys.stdout.reconfigure(encoding="utf-8")`. The stored data itself is valid UTF-8.
+- DYNAMIC FALLBACK TRIGGER — "empty pool" is NOT a usable signal. A populated
+  ChromaDB collection ALWAYS returns top-k results regardless of relevance, so for
+  an out-of-corpus question the primary pool comes back FULL of low-similarity junk,
+  never empty. An empty-pool check therefore only ever fires on a totally empty
+  collection — useless for the actual goal. The fallback instead triggers on a
+  RELEVANCE FLOOR: `DYNAMIC_MIN_SIMILARITY` (default 0.6), the cosine similarity
+  (`1 - distance`) below which the best local primary hit is treated as no real
+  match (an empty pool trivially clears that bar too). 0.6 was calibrated against
+  measured scores on the current 18-topic corpus: in-corpus top hits land ~0.72–0.84,
+  out-of-corpus ~0.36–0.53, leaving a clean gap. THIS THRESHOLD IS CORPUS-DEPENDENT —
+  revisit it as the corpus grows (more/denser topics can push out-of-corpus scores
+  up, or shift the in-corpus floor), e.g. by re-running the in- vs out-of-corpus
+  similarity comparison and moving the floor back into the gap.

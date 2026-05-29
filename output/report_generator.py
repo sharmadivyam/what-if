@@ -55,6 +55,32 @@ _BANNER = (
     "fact."
 )
 
+_DYNAMIC_NOTE = (
+    "> 🌐 *Augmented with a live Wikipedia fetch — the local corpus had no matching "
+    "sources for this scenario, so context was retrieved on demand. Cited sources "
+    "below are still real Wikipedia articles.*"
+)
+
+
+def _used_dynamic_sources(grounded: GroundedContext | None) -> bool:
+    """True if any retrieved chunk was tagged ``source="wikipedia_dynamic"``.
+
+    Looks up the provenance of every chunk in ``grounded.source_map`` (all chunks
+    retrieved for this run) against ChromaDB's stored metadata. Defensive: any
+    failure (empty store, lookup error) is swallowed and treated as "curated", so
+    provenance reporting can never break report generation.
+    """
+    if grounded is None or not grounded.source_map:
+        return False
+    try:
+        from vectorstore.chroma_client import get_metadata
+
+        meta = get_metadata(list(grounded.source_map.keys()))
+    except Exception:  # noqa: BLE001 — provenance is best-effort, never fatal
+        logger.debug("provenance lookup failed; assuming curated", exc_info=True)
+        return False
+    return any(m.get("source") == "wikipedia_dynamic" for m in meta.values())
+
 
 class HistoriosReport(BaseModel):
     """Structured report + display-ready Markdown for one counterfactual run.
@@ -74,6 +100,7 @@ class HistoriosReport(BaseModel):
     what_remains_unknowable: str = ""
     reconnection_point: str = ""
     historians_note: str = ""
+    augmented_with_dynamic: bool = False  # True if any source was live-fetched
     error: str | None = None
     markdown: str = ""
 
@@ -185,6 +212,7 @@ def generate_report(
         what_remains_unknowable=scored.what_remains_unknowable if scored else "",
         reconnection_point=scored.reconnection_point if scored else "",
         historians_note=scored.historians_note if scored else "",
+        augmented_with_dynamic=_used_dynamic_sources(grounded),
     )
 
     # --- Error state: honest notice, no fabricated content (Rules #5/#6) ---------
@@ -212,6 +240,8 @@ def generate_report(
     if meta:
         parts.append("  \n".join(meta))
     parts.append(_BANNER)
+    if report.augmented_with_dynamic:
+        parts.append(_DYNAMIC_NOTE)
 
     # --- The two separated sections ---------------------------------------------
     parts.append(_render_verified_section(grounded))

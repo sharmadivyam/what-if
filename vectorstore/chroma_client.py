@@ -90,25 +90,47 @@ def _metadata_for(chunk) -> dict:
     return {k: v for k, v in meta.items() if v is not None}
 
 
-def store(chunks, *, batch_size: int = 128) -> None:
+def store(chunks, *, batch_size: int = 128, extra_metadata: dict | None = None) -> None:
     """Upsert chunks (text + metadata) into the collection.
 
     Embeddings are computed by the collection's local embedding function — callers
     pass chunks only, never vectors. ``upsert`` makes this idempotent: re-storing
     the same ``chunk_id`` overwrites rather than duplicates, so ingestion is safely
     re-runnable.
+
+    ``extra_metadata`` (if given) is merged into every chunk's metadata — used by
+    the dynamic-retrieval fallback to tag on-demand fetches with
+    ``source="wikipedia_dynamic"`` so curated vs. live-fetched content stays
+    auditable. Curated ingestion passes nothing, so its metadata is unchanged.
     """
     if not chunks:
         return
 
+    extra = extra_metadata or {}
     collection = get_collection()
     for start in range(0, len(chunks), batch_size):
         batch = chunks[start : start + batch_size]
         collection.upsert(
             ids=[c.chunk_id for c in batch],
             documents=[c.text for c in batch],
-            metadatas=[_metadata_for(c) for c in batch],
+            metadatas=[{**_metadata_for(c), **extra} for c in batch],
         )
+
+
+def get_metadata(chunk_ids: list[str]) -> dict[str, dict]:
+    """Return ``{chunk_id: metadata}`` for the given ids (missing ids omitted).
+
+    Used to inspect provenance (e.g. the ``source`` tag) of already-stored chunks
+    without a similarity search. Returns ``{}`` for an empty input or empty
+    collection.
+    """
+    if not chunk_ids:
+        return {}
+    collection = get_collection()
+    if collection.count() == 0:
+        return {}
+    res = collection.get(ids=chunk_ids, include=["metadatas"])
+    return dict(zip(res["ids"], res["metadatas"]))
 
 
 def _to_results(res) -> list[SearchResult]:

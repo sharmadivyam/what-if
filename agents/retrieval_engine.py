@@ -27,8 +27,21 @@ Implementation notes:
   context, from ``search_queries``) and ``analogy_chunks`` (analogous situations
   elsewhere, from ``analogy_queries``). A chunk selected into ``primary_chunks`` is
   excluded from ``analogy_chunks`` so no ``chunk_id`` appears twice.
-- Tavily web-search augmentation is intentionally NOT implemented yet; the seam
-  is marked in ``retrieve_context`` (see ``settings.TAVILY_API_KEY``).
+- When local Chroma search yields NO usable primary context (the question falls
+  outside the pre-ingested corpus), ``_dynamic_retrieve`` fetches Wikipedia live,
+  chunks + embeds it into the store (tagged ``source="wikipedia_dynamic"``), and
+  re-runs the same vector search so results return as ordinary ``SearchResult``s —
+  no downstream special-casing. This makes ZERO LLM calls (vector search + local
+  embeddings only), so Critical Rule #6 stays trivially satisfied. Controlled by
+  ``settings.ENABLE_DYNAMIC_RETRIEVAL``.
+- "No usable primary context" is NOT the same as an empty pool: a populated Chroma
+  collection ALWAYS returns top-k chunks regardless of relevance, so for an
+  out-of-corpus question the primary pool is full of low-similarity junk, not
+  empty. The fallback therefore triggers when the best primary hit scores below
+  ``settings.DYNAMIC_MIN_SIMILARITY`` (an empty pool trivially clears that bar
+  too). See ``_local_primary_is_weak``.
+- Tavily web-search augmentation is intentionally NOT implemented; the dynamic
+  Wikipedia fallback above occupies that seam instead.
 """
 
 from __future__ import annotations
@@ -39,6 +52,7 @@ from pydantic import BaseModel, Field
 
 from agents.query_understanding import QueryAnalysis
 from config import settings
+from vectorstore import chroma_client
 from vectorstore.chroma_client import SearchResult, search
 
 logger = logging.getLogger(__name__)
@@ -95,6 +109,111 @@ def _dedup_and_rank(hits: list[SearchResult]) -> list[SearchResult]:
     return sorted(best.values(), key=lambda r: r.similarity_score, reverse=True)
 
 
+def _local_primary_is_weak(primary_chunks: list[SearchResult]) -> bool:
+    """True if local search produced no genuinely relevant primary context.
+
+    A populated collection always returns top-k results, so an empty check is not
+    enough: an out-of-corpus question yields a full pool of low-similarity chunks.
+    Treat the pool as weak when it is empty OR its best hit scores below
+    ``settings.DYNAMIC_MIN_SIMILARITY`` — the signal to fall back to live fetch.
+    """
+    return (
+        not primary_chunks
+        or primary_chunks[0].similarity_score < settings.DYNAMIC_MIN_SIMILARITY
+    )
+
+
+def _candidate_titles(wiki, analysis: QueryAnalysis) -> list[str]:
+    """Collect up to ``DYNAMIC_SEARCH_LIMIT`` unique Wikipedia page titles.
+
+    Runs each search/analogy query through Wikipedia's full-text search (the same
+    ``wiki.search`` the loader uses) and gathers the relevance-ordered page titles,
+    deduped and capped. A failing query is logged and skipped — never fatal.
+    """
+    seen: list[str] = []
+    for query in (*analysis.search_queries, *analysis.analogy_queries):
+        if len(seen) >= settings.DYNAMIC_SEARCH_LIMIT:
+            break
+        try:
+            results = wiki.search(query, limit=settings.DYNAMIC_SEARCH_LIMIT)
+        except Exception as exc:  # noqa: BLE001 — search must not crash retrieval
+            logger.warning("dynamic: wiki.search(%r) failed: %s", query, exc)
+            continue
+        # ``results.pages`` is a relevance-ordered {title: page} mapping.
+        for title in results.pages:
+            if title not in seen:
+                seen.append(title)
+                if len(seen) >= settings.DYNAMIC_SEARCH_LIMIT:
+                    break
+    return seen
+
+
+def _dynamic_retrieve(analysis: QueryAnalysis) -> list[SearchResult]:
+    """Live Wikipedia fallback — fires when local search found no relevant primary.
+
+    Pipeline: search Wikipedia for candidate pages, fetch them (reusing
+    ``wikipedia_loader`` for page-fetch + disambiguation handling + raw-file
+    caching), chunk them (``chunker``), persist the processed chunks, then embed +
+    upsert into ChromaDB via ``chroma_client.store`` tagged
+    ``source="wikipedia_dynamic"`` (embeddings are local — Critical Rule #7). After
+    the store is populated, RE-RUN the normal primary vector search and return the
+    deduped/ranked ``SearchResult``s — so the result is indistinguishable from a
+    local hit and needs no downstream special-casing.
+
+    Makes ZERO LLM calls. Returns ``[]`` (never raises) when dynamic retrieval is
+    disabled, search yields no pages, or nothing usable is produced — leaving the
+    existing ``no_context`` route to handle the empty case gracefully.
+    """
+    if not settings.ENABLE_DYNAMIC_RETRIEVAL:
+        return []
+
+    # Imported lazily so the ingestion modules (and their heavy deps) are only
+    # pulled in when the fallback actually fires, not on every import of this agent.
+    from ingestion.chunker import chunk_documents, save_chunks
+    from ingestion.wikipedia_loader import _build_client, load_topics
+
+    wiki = _build_client()
+    titles = _candidate_titles(wiki, analysis)
+    if not titles:
+        logger.warning("dynamic: Wikipedia search returned no candidate pages")
+        return []
+
+    # Fetch + cache raw articles (disambiguation pages / failures are skipped,
+    # never crash — reused from the loader exactly).
+    docs = load_topics(titles)
+    if not docs:
+        logger.warning(
+            "dynamic: no usable pages fetched from %d candidate(s)", len(titles)
+        )
+        return []
+
+    chunks = chunk_documents(docs)
+    if len(chunks) > settings.DYNAMIC_CHUNK_CAP:
+        logger.info(
+            "dynamic: capping %d chunk(s) -> %d (DYNAMIC_CHUNK_CAP)",
+            len(chunks),
+            settings.DYNAMIC_CHUNK_CAP,
+        )
+        chunks = chunks[: settings.DYNAMIC_CHUNK_CAP]
+    if not chunks:
+        logger.warning("dynamic: fetched pages produced no chunks after cleaning")
+        return []
+
+    # Persist processed chunks (corpus stays recoverable) and embed into Chroma,
+    # tagged so dynamic vs. curated content is auditable.
+    save_chunks(chunks)
+    chroma_client.store(chunks, extra_metadata={"source": "wikipedia_dynamic"})
+    logger.info(
+        "dynamic: fetched %d page(s), added %d chunk(s) to ChromaDB (tagged "
+        "wikipedia_dynamic)",
+        len(docs),
+        len(chunks),
+    )
+
+    # Re-run the SAME primary search now that the store is populated.
+    return _dedup_and_rank(_run_queries(analysis.search_queries, label="primary(dynamic)"))
+
+
 def retrieve_context(analysis: QueryAnalysis) -> RetrievalContext:
     """Retrieve verified context from ChromaDB for a structured query.
 
@@ -126,10 +245,36 @@ def retrieve_context(analysis: QueryAnalysis) -> RetrievalContext:
         :MAX_ANALOGY_CHUNKS
     ]
 
-    # --- Tavily web-search seam (not implemented) ----------------------------
-    # If primary_chunks is empty/sparse and settings.TAVILY_API_KEY is set, a web
-    # fallback would augment the pool here before returning. Out of scope for now;
-    # see module docstring.
+    # --- Dynamic Wikipedia fallback ------------------------------------------
+    # The local corpus is finite; when it has no genuinely relevant primary context
+    # (best hit below DYNAMIC_MIN_SIMILARITY, or no hits at all), fetch Wikipedia on
+    # demand, embed it, and retry — so out-of-corpus questions still get grounded
+    # instead of being reasoned from irrelevant low-similarity chunks. Zero LLM
+    # calls; on failure it returns nothing and the original (weak/empty) pools stand
+    # — including the no_context route when both are empty.
+    if settings.ENABLE_DYNAMIC_RETRIEVAL and _local_primary_is_weak(primary_chunks):
+        best = primary_chunks[0].similarity_score if primary_chunks else None
+        logger.info(
+            "No usable local context for %r (best primary similarity %s < %.2f) — "
+            "triggering dynamic Wikipedia fetch",
+            analysis.proposed_change,
+            f"{best:.3f}" if best is not None else "n/a",
+            settings.DYNAMIC_MIN_SIMILARITY,
+        )
+        dynamic_primary = _dynamic_retrieve(analysis)
+        # A fresh search over the now-augmented store is a superset of the old one,
+        # so its ranking is always >= the prior pool; adopt it when non-empty.
+        if dynamic_primary:
+            primary_chunks = dynamic_primary[:MAX_PRIMARY_CHUNKS]
+            primary_ids = {chunk.chunk_id for chunk in primary_chunks}
+            # Re-run analogy queries too: the fetched pages may also supply analogies.
+            analogy_hits = _run_queries(analysis.analogy_queries, label="analogy")
+            total_searched += len(dynamic_primary) + len(analogy_hits)
+            analogy_chunks = [
+                c
+                for c in _dedup_and_rank(analogy_hits)
+                if c.chunk_id not in primary_ids
+            ][:MAX_ANALOGY_CHUNKS]
 
     if not primary_chunks and not analogy_chunks:
         logger.warning(

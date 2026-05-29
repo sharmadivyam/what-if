@@ -49,6 +49,14 @@ def _get_float(name: str, default: float) -> float:
         return default
 
 
+def _get_bool(name: str, default: bool) -> bool:
+    """Read a boolean env var. Truthy: 1/true/yes/on (case-insensitive)."""
+    raw = _get(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in ("1", "true", "yes", "on")
+
+
 class Settings:
     """All HistoryOS configuration in one place."""
 
@@ -89,6 +97,21 @@ class Settings:
 
     # --- Retrieval -----------------------------------------------------------
     TOP_K: int = _get_int("TOP_K", 5)
+
+    # --- Dynamic retrieval fallback (live Wikipedia) -------------------------
+    # When local Chroma search finds nothing, fetch Wikipedia on demand, embed it
+    # into the store, and retry — so out-of-corpus questions still get grounded.
+    # Makes ZERO LLM calls (vector search + local embeddings only), so Rule #6
+    # stays trivially satisfied. See agents/retrieval_engine._dynamic_retrieve.
+    ENABLE_DYNAMIC_RETRIEVAL: bool = _get_bool("ENABLE_DYNAMIC_RETRIEVAL", True)
+    DYNAMIC_SEARCH_LIMIT: int = _get_int("DYNAMIC_SEARCH_LIMIT", 5)  # pages/run
+    DYNAMIC_CHUNK_CAP: int = _get_int("DYNAMIC_CHUNK_CAP", 200)  # max chunks added/run
+    # Cosine-similarity floor (1 - distance) below which the BEST local primary hit
+    # is treated as "no real match" — the trigger for the dynamic fallback. A
+    # populated Chroma collection ALWAYS returns top-k regardless of relevance, so
+    # an empty-pool check alone never fires for out-of-corpus questions. Calibrated
+    # from observed scores: in-corpus tops ~0.72-0.84, out-of-corpus ~0.36-0.53.
+    DYNAMIC_MIN_SIMILARITY: float = _get_float("DYNAMIC_MIN_SIMILARITY", 0.6)
 
     # --- Reasoning guardrails ------------------------------------------------
     # Critical Rule #3: max 4 causal reasoning steps (hallucination guard).

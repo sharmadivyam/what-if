@@ -30,7 +30,7 @@ those apart. Seven concrete differences:
 
 | # | WHAT IF? | A raw chatbot |
 |---|----------|----------------|
-| 1 | **Grounded in a cited corpus (RAG)** — facts come from retrieved Wikipedia chunks, not parametric memory. | Facts from memory; no provenance. |
+| 1 | **Grounded in a cited corpus (RAG)** — facts come from retrieved Wikipedia chunks, not parametric memory; out-of-corpus questions trigger a **live Wikipedia fetch** instead of returning "no verified sources". | Facts from memory; no provenance. |
 | 2 | **VERIFIED ≠ SIMULATED** — verified facts and model speculation live in two visually separate sections; never blended. | Fact and guess in the same sentence. |
 | 3 | **Per-claim confidence** — every reasoning step is scored HIGH / MEDIUM / LOW / SPECULATIVE from how much evidence backs it. | One confident tone throughout. |
 | 4 | **Hallucination guards** — max 4 causal steps; fabricated or ungrounded citations are detected and flagged. | Unbounded, unverifiable chains. |
@@ -58,15 +58,18 @@ those apart. Seven concrete differences:
    ① understand_query  ─►  ② retrieve  ─►  ③ ground  ─►  ④ reason  ─►  ⑤ score
       QueryAnalysis        RetrievalCtx     GroundedCtx   Counterfactual ScoredReasoning
       LLM (T=0.1)          no LLM           LLM ×2 (T=0)  LLM (T=0.3)    no LLM (logic)
-        │
-        ▼
+        │                     │
+        │                     └─ dynamic fallback: if best local similarity < 0.6
+        ▼                        → fetch Wikipedia live → chunk → embed → re-search
    report_generator ─► Streamlit UI   (any node error → graceful halt, never crashes)
 ```
 
-`① understand` parses the question → `② retrieve` pulls 8 primary + 3 analogy chunks →
-`③ ground` extracts & classifies cited facts (VERIFIED/DEBATED/BACKGROUND) → `④ reason`
-builds a ≤4-step `[SIMULATED]` causal chain citing `[EVIDENCE: chunk_id]` → `⑤ score`
-rates each step by evidence. Full technical writeup: **[`docs/PROJECT_DOCUMENTATION.md`](docs/PROJECT_DOCUMENTATION.md)**.
+`① understand` parses the question → `② retrieve` pulls 8 primary + 3 analogy chunks
+(and, when the local corpus has no relevant match, **fetches Wikipedia live**, embeds
+it, and re-searches — no LLM call) → `③ ground` extracts & classifies cited facts
+(VERIFIED/DEBATED/BACKGROUND) → `④ reason` builds a ≤4-step `[SIMULATED]` causal chain
+citing `[EVIDENCE: chunk_id]` → `⑤ score` rates each step by evidence. Full technical
+writeup: **[`docs/PROJECT_DOCUMENTATION.md`](docs/PROJECT_DOCUMENTATION.md)**.
 
 ---
 
@@ -156,9 +159,12 @@ accepted. See the docs for the per-case breakdown.
 - **Latency:** ~1–3 min per question on the free Cerebras tier (rate-limit back-off).
 - **Citation grounding (C2)** is the weakest check — fabricated/ungrounded citations are
   flagged but not yet prevented.
-- **Small corpus** — 18 Wikipedia articles; out-of-corpus questions return an honest
-  "no verified sources found".
-- **Web fallback** (Tavily) is stubbed, not implemented.
+- **Small curated corpus** — 18 Wikipedia articles. Out-of-corpus questions now trigger
+  a **live Wikipedia fallback** (fetch → chunk → embed → re-search) that grows the store
+  on demand, rather than returning "no verified sources". This adds latency for the first
+  ask of a new topic, and its relevance trigger (`DYNAMIC_MIN_SIMILARITY=0.6`) may need
+  recalibration as the corpus grows.
+- **Web search fallback** (Tavily) is still stubbed — the live fallback uses Wikipedia only.
 - **Model drift** — the Cerebras free model list changes; update `.env`/`config.py` if a
   model 404s.
 

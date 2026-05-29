@@ -67,8 +67,8 @@ pipeline** (run per question).
    └────────┬─────────┘          │
             ▼                    │
    ┌──────────────────┐   error ─┤
-   │     retrieve     │──────────┤   Agent 2  retrieve_context()     no LLM (vector search)
-   │ → RetrievalCtx   │          │
+   │     retrieve     │──────────┤   Agent 2  retrieve_context()     no LLM (vector +
+   │ → RetrievalCtx   │          │              (+ dynamic fallback)   local embeddings)
    └────────┬─────────┘          │
       ok│   └ no_context ────────┤   (empty corpus / no hits → END, Rule #5)
         ▼                        │
@@ -91,11 +91,39 @@ pipeline** (run per question).
                                                   (HistoriosReport: markdown + struct)   (Streamlit UI)
 ```
 
+**Inside the `retrieve` node — dynamic Wikipedia fallback** (graph topology unchanged):
+
+```
+   retrieve_context(analysis)
+        │
+        ▼
+   local Chroma search (search + analogy queries)
+        │
+        ▼
+   best primary similarity ≥ DYNAMIC_MIN_SIMILARITY (0.6) ? ──yes──► use local chunks ─► continue
+        │ no  (out-of-corpus: store always returns top-k junk, never empty)
+        ▼
+   _dynamic_retrieve():  Wikipedia search (top DYNAMIC_SEARCH_LIMIT pages)
+        ─► fetch (reuses wikipedia_loader: disambiguation-safe, cached, skips failures)
+        ─► chunk (chunker)  ─► save raw + processed files
+        ─► embed + upsert into ChromaDB (tagged source="wikipedia_dynamic"; local embeddings)
+        ─► RE-RUN the same vector search  ─► normal SearchResults ─► continue
+        │
+        └─ nothing usable found → return [] → empty pools → no_context → END (Rule #5)
+```
+
 - **Edges** are conditional via one shared `_route`: a node that fails records the error
   and the run halts gracefully at `END` (never crashes). Empty retrieval short-circuits
   to `END`.
+- **Why a similarity floor, not an empty check:** a populated ChromaDB collection always
+  returns top-k results regardless of relevance, so an out-of-corpus question yields a
+  *full* primary pool of low-similarity junk, never an empty one. The fallback therefore
+  triggers when the best primary hit scores below `DYNAMIC_MIN_SIMILARITY` (0.6 —
+  calibrated: in-corpus tops ~0.72–0.84, out-of-corpus ~0.36–0.53; revisit as the corpus
+  grows). The fallback makes **zero LLM calls** (vector search + local embeddings only),
+  so Critical Rule #6 stays trivially satisfied.
 - **LLM-call budget per question:** ~4 (1 understand + 2 ground + 1 reason). Agents 2
-  and 5 make **zero** LLM calls.
+  and 5 make **zero** LLM calls — including Agent 2's dynamic Wikipedia fallback.
 
 ---
 
@@ -118,13 +146,13 @@ pipeline** (run per question).
 ### Vector store (`vectorstore/`)
 | File | Responsibility |
 |------|----------------|
-| `chroma_client.py` | Owns the persistent ChromaDB client + the `historios` collection (**cosine** distance, local embedding function bound on both write and read paths). `store()` upserts (idempotent). `search()` returns `SearchResult`s (`similarity_score = 1 − cosine_distance`) and **returns `[]` on an empty collection** (Rule #5). `get_collection_stats()` reports totals + per-source counts. |
+| `chroma_client.py` | Owns the persistent ChromaDB client + the `historios` collection (**cosine** distance, local embedding function bound on both write and read paths). `store()` upserts (idempotent) and accepts an optional **`extra_metadata`** dict merged into every chunk's metadata — used by the dynamic fallback to tag fetches with `source="wikipedia_dynamic"` (curated ingestion passes nothing, so its metadata is unchanged). `search()` returns `SearchResult`s (`similarity_score = 1 − cosine_distance`) and **returns `[]` on an empty collection** (Rule #5). **`get_metadata(chunk_ids)`** returns `{chunk_id: metadata}` for provenance lookups without a similarity search. `get_collection_stats()` reports totals + per-source counts. |
 
 ### Agents (`agents/`)
 | File | Agent | Responsibility |
 |------|-------|----------------|
 | `query_understanding.py` | **1** | `analyze_query()` → `QueryAnalysis` (time period, geography, actors, type, proposed change, search + analogy queries). JSON mode, T=0.1, one corrective retry. (Runs before retrieval — the only legitimate Rule #6 exemption: it parses the question, asserts no facts.) |
-| `retrieval_engine.py` | **2** | `retrieve_context()` → `RetrievalContext`. **No LLM.** Runs each search/analogy query against ChromaDB, dedups by `chunk_id` (keeping best cosine score), keeps top 8 primary + top 3 analogy chunks (disjoint). Tavily web-search seam marked but not implemented. |
+| `retrieval_engine.py` | **2** | `retrieve_context()` → `RetrievalContext`. **No LLM.** Runs each search/analogy query against ChromaDB, dedups by `chunk_id` (keeping best cosine score), keeps top 8 primary + top 3 analogy chunks (disjoint). **Dynamic Wikipedia fallback:** `_local_primary_is_weak()` flags a pool with no hit ≥ `DYNAMIC_MIN_SIMILARITY` (empty or all-junk); when weak, `_dynamic_retrieve()` fires — `_candidate_titles()` gathers up to `DYNAMIC_SEARCH_LIMIT` page titles via `wiki.search` over the search+analogy queries, `wikipedia_loader.load_topics` fetches them (disambiguation-safe, cached), `chunker` chunks them (capped at `DYNAMIC_CHUNK_CAP`, processed files saved), `chroma_client.store(..., extra_metadata={"source": "wikipedia_dynamic"})` embeds + upserts them, then it **re-runs the same `_run_queries` + `_dedup_and_rank`** so results come back as ordinary `SearchResult`s. Zero LLM calls; returns `[]` on no usable result, leaving the `no_context` route to handle it. (Tavily seam retired in favour of this.) |
 | `grounding_layer.py` | **3** | `ground_context()` → `GroundedContext`. **Batched: one LLM call per pool** (primary + analogy = 2 calls). Extracts claims ONLY from chunk text, classifies VERIFIED / DEBATED / BACKGROUND, validates each cited `chunk_id` against the retrieved set (drops unknowns), and re-attaches the **trusted** citation (title/url) from the matched `SearchResult` — so citations can't be fabricated. T=0.0, JSON mode + one corrective retry. |
 | `reasoning_agent.py` | **4** | `reason_about_counterfactual()` → `CounterfactualReasoning`. **One LLM call**, T=0.3, structured **prose** (not JSON) with `[SIMULATED]` / `[EVIDENCE: id]` markers, ≤4 steps, plus tail sections (Unknowable / Reconnection / Historian's Note). Regex-parsed; ungrounded steps flagged (`is_grounded=False`), cited-but-unknown ids recorded (`unknown_evidence_ids`). Empty-context ⇒ no LLM call (Rule #6). |
 | `confidence_scorer.py` | **5** | `score_reasoning()` → `ScoredReasoning`. **No LLM — pure logic.** Scores each step by evidence count: HIGH (≥2 verified facts), MEDIUM (1 verified fact OR an analogy), LOW (only debated/background), SPECULATIVE (ungrounded or only fabricated citations). Adds per-step `confidence_level` + `confidence_explanation`, a `confidence_distribution`, and `overall_confidence` (weakest-link). |
@@ -133,7 +161,7 @@ pipeline** (run per question).
 | File | Responsibility |
 |------|----------------|
 | `pipeline/historios_pipeline.py` | Wires Agents 1→5 into a LangGraph `StateGraph` over the `HistoriosState` TypedDict. `_run_node` times each node and **captures any exception** (records `error`/`failed_node`, never re-raises). `run(question, progress_callback=None)` validates config, invokes the graph, derives `status` (`ok`/`no_context`/`error`), and **never raises**. The optional `progress_callback` fires as each node finishes (used by the UI). |
-| `output/report_generator.py` | `generate_report(scored, grounded, …)` → `HistoriosReport` (structured fields **+** display-ready markdown), plus `report_from_state(state)`. Enforces the VERIFIED-vs-SIMULATED split in presentation; renders honest notices for error / empty states. No LLM, no network. |
+| `output/report_generator.py` | `generate_report(scored, grounded, …)` → `HistoriosReport` (structured fields **+** display-ready markdown), plus `report_from_state(state)`. Enforces the VERIFIED-vs-SIMULATED split in presentation; renders honest notices for error / empty states. **Provenance:** `_used_dynamic_sources(grounded)` looks up the grounded chunk_ids' Chroma metadata (via `chroma_client.get_metadata`); if any is tagged `wikipedia_dynamic`, the report sets the structured field **`augmented_with_dynamic=True`** and renders a "🌐 *Augmented with a live Wikipedia fetch*" note under the banner. The lookup is best-effort (any failure is swallowed → treated as curated), so it never breaks report generation. No LLM, no network beyond the local Chroma read. |
 | `frontend/app.py` | The **WHAT IF?** Streamlit UI (museum/editorial aesthetic; dark default + light toggle; battle-painting page background behind a centred "paper" panel). Landing → 5-stage loading → simulation-first results timeline with confidence-coloured cards + collapsed evidence. The pipeline runs in a **session-state background job polled by an `st.fragment`**, so a theme toggle / rerun never discards an in-flight question. |
 | `evaluation/evaluator.py` | Runs the full A1→A5 chain over `test_cases.json` and applies four spot-checks (C1–C4, see §7), printing each case + a pass/fail matrix with an OVERALL-confidence column. Records-and-continues on per-case failure; never crashes. |
 | `evaluation/test_cases.json` | 8 curated counterfactual questions targeting the ingested corpus. |
@@ -258,9 +286,17 @@ The evaluator now also reports each case's Agent-5 `overall_confidence`.
   can yield 0 steps (seen once), which cascades to C1/C2/C4 failure. There is no
   corrective re-parse retry (kept to 1 LLM call to respect the rate limit).
 - **Intra-batch misattribution** in grounding (accepted trade-off for batching).
-- **Corpus is small** — 18 Wikipedia articles (1,466 chunks). Questions outside these
-  topics return "no verified sources" (by design, not a crash).
-- **No web fallback yet** — the Tavily seam in the retrieval engine is unimplemented.
+- **Curated corpus is small** — 18 Wikipedia articles (1,466 chunks). Questions outside
+  these topics now trigger the **dynamic Wikipedia fallback** (fetch → chunk → embed →
+  re-search) rather than returning "no verified sources"; only a question that even
+  Wikipedia search can't serve falls back to the honest no-context result.
+- **Dynamic-fallback cost & calibration** — fetching/embedding live pages adds latency
+  the *first* time a new topic is asked (subsequent asks hit the now-persisted chunks).
+  The trigger is a fixed cosine floor `DYNAMIC_MIN_SIMILARITY=0.6`, calibrated for the
+  current corpus (in-corpus ~0.72–0.84 vs out-of-corpus ~0.36–0.53); it is
+  corpus-dependent and should be recalibrated as the corpus grows.
+- **Web search fallback (Tavily) still unimplemented** — the live fallback uses Wikipedia
+  only; the Tavily seam was retired in favour of it.
 - **Model availability drifts** — the Cerebras free model list changes; if a model 404s,
   re-list and update `.env` / `.env.example` / `config.py` together.
 - **Windows console encoding** — scripts that print article text must use UTF-8.
@@ -271,8 +307,13 @@ The evaluator now also reports each case's Agent-5 `overall_confidence`.
 
 - Enforce citation grounding harder (constrained decoding, or a reparse/repair retry
   when a step is ungrounded) to lift the C2 score.
-- Implement the Tavily web-search fallback for out-of-corpus questions.
-- Grow and diversify the corpus; add per-source quality weighting.
+- Recalibrate the dynamic-fallback trigger (`DYNAMIC_MIN_SIMILARITY`) as the corpus
+  grows — ideally make it adaptive (e.g. relative to the score distribution) rather than
+  a fixed 0.6, so it stays in the in- vs out-of-corpus gap automatically.
+- Add **Tavily web search as a secondary fallback** behind the Wikipedia fetch, for
+  questions Wikipedia search itself can't serve.
+- Grow and diversify the corpus; add per-source quality weighting (and weight
+  dynamically-fetched `wikipedia_dynamic` chunks distinctly if needed).
 - Cache pipeline results by question to make demos instant.
 - Stream tokens / per-step rendering instead of staged polling.
 - Add response/result caching and a proper test harness around the agents (not just the
