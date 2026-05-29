@@ -90,7 +90,7 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [ ] retrieval_engine.py
 [x] grounding_layer.py
 [x] reasoning_agent.py
-[ ] confidence_scorer.py
+[x] confidence_scorer.py
 [ ] historios_pipeline.py
 [ ] report_generator.py
 [ ] app.py
@@ -135,6 +135,12 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
   429s; (2) the grounding layer BATCHES per pool — one LLM call for all primary
   chunks + one for all analogy chunks (2 calls/run), not one call per chunk. Keep
   per-run LLM call counts low; prefer batching over per-item loops.
+- OpenRouter fallback active — triggers on Cerebras 429/quota errors automatically.
+  Agents call `core.llm_client.call_with_fallback(...)` (not `get_llm_client()` /
+  `chat.completions.create` directly), which catches `openai.RateLimitError` from
+  the Cerebras call and retries on OpenRouter with `settings.OPENROUTER_MODEL`. A
+  WARNING is logged on fallback ("Cerebras quota exceeded — falling back to
+  OpenRouter"). Requires `OPENROUTER_API_KEY` in `.env`.
 - WINDOWS CONSOLE ENCODING: Python stdout defaults to cp1252 here, so PRINTING
   article text containing non-cp1252 chars (e.g. `ā` U+0101, en-dash) raises
   `UnicodeEncodeError` and aborts the script — not just garbled display. Any script

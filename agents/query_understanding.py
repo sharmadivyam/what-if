@@ -15,9 +15,10 @@ This agent does NOT call the LLM to invent history — it only
 structures the user's request so retrieval can ground it.
 
 Implementation notes:
-- LLM access goes through ``core.llm_client.get_llm_client()`` with
+- LLM access goes through ``core.llm_client.call_with_fallback()`` with
   ``model=settings.CEREBRAS_MODEL`` (Critical Rule #7). No provider client is
-  instantiated here.
+  instantiated here; the wrapper handles automatic OpenRouter fallback on
+  Cerebras 429/quota errors.
 - RULE #6 EXEMPTION: Critical Rule #6 ("never call the LLM without retrieved
   context") guards against generating ungrounded *historical facts*. This agent
   necessarily runs BEFORE retrieval, so it has no context yet — and it produces
@@ -42,7 +43,7 @@ from typing import Literal, get_args
 from pydantic import BaseModel, Field, field_validator
 
 from config import settings
-from core.llm_client import get_llm_client
+from core.llm_client import call_with_fallback
 
 logger = logging.getLogger(__name__)
 
@@ -147,9 +148,9 @@ def _build_messages(user_question: str, *, error_feedback: str | None = None) ->
 def analyze_query(user_question: str) -> QueryAnalysis:
     """Decompose a user's "what if" question into a validated ``QueryAnalysis``.
 
-    Calls the Cerebras LLM (via ``get_llm_client``) in JSON mode at low
-    temperature, validates the result with Pydantic, and retries once with the
-    validation error fed back if the first response is malformed.
+    Calls the LLM (via ``call_with_fallback``) in JSON mode at low temperature,
+    validates the result with Pydantic, and retries once with the validation
+    error fed back if the first response is malformed.
 
     Args:
         user_question: The raw natural-language counterfactual question.
@@ -161,22 +162,22 @@ def analyze_query(user_question: str) -> QueryAnalysis:
         ValueError: if ``user_question`` is empty/blank, or if the model fails to
             produce a valid analysis after one corrective retry.
         RuntimeError: if ``CEREBRAS_API_KEY`` is not configured (from
-            ``get_llm_client``).
+            ``call_with_fallback``'s primary path), or if the fallback path is
+            reached and ``OPENROUTER_API_KEY`` is also missing.
     """
     if not user_question or not user_question.strip():
         raise ValueError("user_question must be a non-empty string")
 
-    client = get_llm_client()
     error_feedback: str | None = None
     last_error: Exception | None = None
 
     # First attempt + one corrective retry.
     for attempt in range(2):
-        response = client.chat.completions.create(
+        response = call_with_fallback(
+            messages=_build_messages(user_question, error_feedback=error_feedback),
             model=settings.CEREBRAS_MODEL,
             temperature=TEMPERATURE,
             response_format={"type": "json_object"},
-            messages=_build_messages(user_question, error_feedback=error_feedback),
         )
         content = (response.choices[0].message.content or "").strip()
 

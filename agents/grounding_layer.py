@@ -15,10 +15,11 @@ Responsibilities:
   existing source text; it never narrates what *would* have happened.
 
 Implementation notes:
-- LLM access goes through ``core.llm_client.get_llm_client()`` with
+- LLM access goes through ``core.llm_client.call_with_fallback()`` with
   ``model=settings.CEREBRAS_MODEL`` (Critical Rule #7). No provider client is
-  instantiated here. Temperature is pinned at ``settings.LLM_TEMPERATURE`` (0.0) —
-  the deterministic temperature for the grounded/generative agents.
+  instantiated here; the wrapper handles automatic OpenRouter fallback on
+  Cerebras 429/quota errors. Temperature is pinned at ``settings.LLM_TEMPERATURE``
+  (0.0) — the deterministic temperature for the grounded/generative agents.
 - RULE #5 + #6: on an empty ``RetrievalContext`` (no primary AND no analogy
   chunks) we short-circuit to an empty-but-valid ``GroundedContext`` and make NO
   LLM call — Rule #6 forbids calling the LLM without retrieved context, and there
@@ -60,7 +61,7 @@ from pydantic import BaseModel, Field
 
 from agents.retrieval_engine import RetrievalContext
 from config import settings
-from core.llm_client import get_llm_client
+from core.llm_client import call_with_fallback
 from vectorstore.chroma_client import SearchResult
 
 logger = logging.getLogger(__name__)
@@ -264,18 +265,17 @@ def _extract_pool(
     system_prompt = _ANALOGY_SYSTEM_PROMPT if is_analogy else _PRIMARY_SYSTEM_PROMPT
     model_cls = _AnalogyExtraction if is_analogy else _PrimaryExtraction
 
-    client = get_llm_client()
     error_feedback: str | None = None
     last_error: Exception | None = None
 
     for attempt in range(2):
-        response = client.chat.completions.create(
-            model=settings.CEREBRAS_MODEL,
-            temperature=settings.LLM_TEMPERATURE,
-            response_format={"type": "json_object"},
+        response = call_with_fallback(
             messages=_build_messages(
                 system_prompt, chunks, user_question, error_feedback=error_feedback
             ),
+            model=settings.CEREBRAS_MODEL,
+            temperature=settings.LLM_TEMPERATURE,
+            response_format={"type": "json_object"},
         )
         content = (response.choices[0].message.content or "").strip()
         try:
@@ -325,7 +325,9 @@ def ground_context(context: RetrievalContext, user_question: str) -> GroundedCon
     Raises:
         ValueError: if ``user_question`` is empty/blank.
         RuntimeError: if ``CEREBRAS_API_KEY`` is not configured (from
-            ``get_llm_client``) — only reachable when there is context to ground.
+            ``call_with_fallback``'s primary path), or if the fallback path is
+            reached and ``OPENROUTER_API_KEY`` is also missing — only reachable
+            when there is context to ground.
     """
     if not user_question or not user_question.strip():
         raise ValueError("user_question must be a non-empty string")

@@ -18,9 +18,10 @@ Responsibilities:
   a raw string.
 
 Implementation notes:
-- LLM access goes through ``core.llm_client.get_llm_client()`` with
+- LLM access goes through ``core.llm_client.call_with_fallback()`` with
   ``model=settings.CEREBRAS_MODEL`` (Critical Rule #7). No provider client is
-  instantiated here.
+  instantiated here; the wrapper handles automatic OpenRouter fallback on
+  Cerebras 429/quota errors.
 - TEMPERATURE: pinned at ``TEMPERATURE`` (0.3) — slightly creative but grounded.
   Distinct from ``settings.LLM_TEMPERATURE`` (0.0, used by the grounding layer
   where determinism matters) and from Agent 1's 0.1 (pure parsing). 0.0 would
@@ -58,7 +59,7 @@ from pydantic import BaseModel, Field
 from agents.grounding_layer import GroundedContext, GroundedFact
 from agents.query_understanding import QueryAnalysis
 from config import settings
-from core.llm_client import get_llm_client
+from core.llm_client import call_with_fallback
 
 logger = logging.getLogger(__name__)
 
@@ -550,8 +551,10 @@ def reason_about_counterfactual(
 
     Raises:
         RuntimeError: if ``CEREBRAS_API_KEY`` is not configured (from
-            ``get_llm_client``) — only reachable when there is context to
-            reason on (the empty-context path makes no LLM call).
+            ``call_with_fallback``'s primary path), or if the fallback path is
+            reached and ``OPENROUTER_API_KEY`` is also missing — only reachable
+            when there is context to reason on (the empty-context path makes
+            no LLM call).
     """
     divergence_point = f"{analysis.time_period} — {analysis.geography}"
 
@@ -569,10 +572,7 @@ def reason_about_counterfactual(
         )
 
     prompt = _render_prompt(analysis, grounded)
-    client = get_llm_client()
-    response = client.chat.completions.create(
-        model=settings.CEREBRAS_MODEL,
-        temperature=TEMPERATURE,
+    response = call_with_fallback(
         messages=[
             {"role": "system", "content": prompt},
             {
@@ -584,6 +584,8 @@ def reason_about_counterfactual(
                 ),
             },
         ],
+        model=settings.CEREBRAS_MODEL,
+        temperature=TEMPERATURE,
     )
     raw_response = (response.choices[0].message.content or "").strip()
 

@@ -54,14 +54,21 @@ class Settings:
 
     # --- Secret API keys (set these in .env) ---------------------------------
     # Cerebras powers all LLM calls via its OpenAI-compatible API (free tier).
-    # Embeddings are local (sentence-transformers), so no OpenAI key is needed.
+    # OpenRouter is the fallback provider when Cerebras hits its daily token
+    # quota. Embeddings are local (sentence-transformers), so no OpenAI key is
+    # needed.
     CEREBRAS_API_KEY: str | None = _get("CEREBRAS_API_KEY")
+    OPENROUTER_API_KEY: str | None = _get("OPENROUTER_API_KEY")
     TAVILY_API_KEY: str | None = _get("TAVILY_API_KEY")
 
     # --- LLM: Cerebras (OpenAI-compatible endpoint) --------------------------
     CEREBRAS_BASE_URL: str = _get("CEREBRAS_BASE_URL", "https://api.cerebras.ai/v1")
     CEREBRAS_MODEL: str = _get("CEREBRAS_MODEL", "gpt-oss-120b")
     LLM_TEMPERATURE: float = _get_float("LLM_TEMPERATURE", 0.0)
+
+    # --- LLM: OpenRouter fallback (OpenAI-compatible endpoint) ---------------
+    OPENROUTER_BASE_URL: str = _get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+    OPENROUTER_MODEL: str = _get("OPENROUTER_MODEL", "meta-llama/llama-3.3-70b-instruct:free")
 
     # --- Embeddings: local sentence-transformers (no API key, runs on torch) -
     EMBEDDING_MODEL: str = _get("EMBEDDING_MODEL", "all-mpnet-base-v2")
