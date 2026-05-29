@@ -1,4 +1,9 @@
-# HistoryOS — Claude Code Instructions
+# WHAT IF? — Claude Code Instructions
+
+> Product name: **WHAT IF?** (the user-facing brand, shown in the Streamlit UI).
+> Internal package/folder names stay `historios` / `agents` / `pipeline` / `core` —
+> renaming directories would break every import. "HistoryOS" persists only as the
+> internal codename below.
 
 ## What This Project Is
 A counterfactual historical reasoning engine.
@@ -93,7 +98,7 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] confidence_scorer.py
 [x] historios_pipeline.py
 [x] report_generator.py
-[ ] app.py
+[x] app.py
 [ ] evaluation/test_cases.json
 [ ] evaluation/evaluator.py
 

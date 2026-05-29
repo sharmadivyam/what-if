@@ -1,0 +1,6 @@
+[logger]
+# INFO so pipeline progress is visible in the terminal (node timings, scoring
+# summary). The noisy transformers `__path__` advisory and the Streamlit
+# torch.classes watcher warning are silenced specifically in frontend/app.py
+# (warnings filters + a targeted logger level), not by hiding everything here.
+level = "info"

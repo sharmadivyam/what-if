@@ -24,11 +24,14 @@ Responsibilities:
 
 The evaluator never raises on a per-case failure — it logs the exception, marks
 all four checks as failed for that case, and continues. Confidence Scorer
-(Agent 5) is intentionally NOT invoked yet: it is not implemented, and the four
-checks above don't need it.
+(Agent 5) IS now invoked to complete the full A1→A5 chain: it makes NO LLM call
+(pure logic over the grounded-context evidence counts), so it adds nothing to the
+call budget. Its calibrated per-step confidence levels + chain ``overall_confidence``
+are printed per case and summarised in the matrix; the four checks above run on the
+``ScoredReasoning`` (a ``CounterfactualReasoning`` subclass, so they are unaffected).
 
 LLM-call budget: ~4 calls per case (1 query understanding + 2 grounding + 1
-reasoning) × 8 cases = ~32 calls. The free Cerebras tier throttles bursts —
+reasoning; Agent 5 adds 0) × 8 cases = ~32 calls. The free Cerebras tier throttles bursts —
 the shared OpenAI client has ``max_retries=6`` (see ``core/llm_client.py``)
 which makes individual 429s self-heal with ~60s waits; total wall time can
 therefore range from minutes to tens of minutes.
@@ -45,6 +48,7 @@ import traceback
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from agents.confidence_scorer import ScoredReasoning, score_reasoning
 from agents.grounding_layer import ground_context
 from agents.query_understanding import analyze_query
 from agents.reasoning_agent import CounterfactualReasoning, reason_about_counterfactual
@@ -77,6 +81,7 @@ class CaseResult:
     question: str
     error: str | None = None
     reasoning: CounterfactualReasoning | None = None
+    scored: ScoredReasoning | None = None
     checks: dict[str, bool] = field(default_factory=dict)
     notes: dict[str, str] = field(default_factory=dict)
 
@@ -193,7 +198,16 @@ def _print_reasoning(reasoning: CounterfactualReasoning) -> None:
             print(f"   analogy:  {', '.join(step.analogy_chunk_ids)}")
         if step.unknown_evidence_ids:
             print(f"   UNKNOWN cited ids: {', '.join(step.unknown_evidence_ids)}")
-        print(f"   confidence: {step.confidence} — {step.confidence_reason}")
+        print(f"   confidence (model): {step.confidence} — {step.confidence_reason}")
+        # Agent 5's calibrated level + explanation (present when scored steps).
+        level = getattr(step, "confidence_level", None)
+        if level is not None:
+            print(f"   confidence (scored): {level} — {step.confidence_explanation}")
+    if isinstance(reasoning, ScoredReasoning):
+        print(
+            f"\nSCORED — overall={reasoning.overall_confidence or '(n/a)'}  "
+            f"distribution={reasoning.confidence_distribution}"
+        )
     print(f"\nWHAT REMAINS UNKNOWABLE:\n{reasoning.what_remains_unknowable or '(missing)'}")
     print(f"\nRECONNECTION POINT:\n{reasoning.reconnection_point or '(missing)'}")
     print(f"\nHISTORIAN'S NOTE:\n{reasoning.historians_note or '(missing)'}")
@@ -204,10 +218,12 @@ def _print_reasoning(reasoning: CounterfactualReasoning) -> None:
 
 
 def evaluate_case(case: dict) -> CaseResult:
-    """Run one case through A1→A2→A3→A4 and apply the four checks.
+    """Run one case through the full A1→A2→A3→A4→A5 chain and apply the four checks.
 
     A failure at any agent stage records the traceback on ``CaseResult.error``,
-    marks every check False, and returns — never raises.
+    marks every check False, and returns — never raises. Agent 5 (Confidence
+    Scorer) makes no LLM call; its ``ScoredReasoning`` is what the checks run on
+    (it subclasses ``CounterfactualReasoning``, so the four checks are unaffected).
     """
     result = CaseResult(case_id=case["id"], question=case["question"])
     try:
@@ -215,9 +231,11 @@ def evaluate_case(case: dict) -> CaseResult:
         context = retrieve_context(analysis)
         grounded = ground_context(context, case["question"])
         reasoning = reason_about_counterfactual(analysis, grounded)
+        scored = score_reasoning(reasoning, grounded)
         result.reasoning = reasoning
+        result.scored = scored
         for key, fn in CHECK_FUNCS.items():
-            passed, note = fn(reasoning)
+            passed, note = fn(scored)
             result.checks[key] = passed
             result.notes[key] = note
     except Exception as exc:  # noqa: BLE001 — record-and-continue is the policy
@@ -234,7 +252,7 @@ def print_summary(results: list[CaseResult]) -> None:
     print("\n" + "=" * 78)
     print("SUMMARY — PASS/FAIL MATRIX")
     print("=" * 78)
-    header = f"{'case_id':<28} {'C1':>4} {'C2':>4} {'C3':>4} {'C4':>4}   notes"
+    header = f"{'case_id':<28} {'C1':>4} {'C2':>4} {'C3':>4} {'C4':>4}  {'OVERALL':>12}"
     print(header)
     print("-" * 78)
     totals = {key: 0 for key in CHECK_FUNCS}
@@ -245,7 +263,11 @@ def print_summary(results: list[CaseResult]) -> None:
             cells.append("PASS" if passed else "FAIL")
             if passed:
                 totals[key] += 1
-        line = f"{r.case_id:<28} {cells[0]:>4} {cells[1]:>4} {cells[2]:>4} {cells[3]:>4}"
+        overall = (r.scored.overall_confidence if r.scored else None) or "—"
+        line = (
+            f"{r.case_id:<28} {cells[0]:>4} {cells[1]:>4} {cells[2]:>4} {cells[3]:>4}"
+            f"  {overall:>12}"
+        )
         suffix = f"   ERROR: {r.error}" if r.error else ""
         print(line + suffix)
     print("-" * 78)
@@ -262,6 +284,7 @@ def print_summary(results: list[CaseResult]) -> None:
     print("  C2 — every step cites a chunk_id present in GroundedContext")
     print(f"  C3 — no more than {settings.MAX_CAUSAL_STEPS} steps anywhere")
     print("  C4 — no simulation presented as fact (steps labelled + tail hedges)")
+    print("  OVERALL — Agent 5's chain confidence (weakest-link step level)")
 
 
 def main() -> int:
@@ -289,8 +312,8 @@ def main() -> int:
 
         if result.error:
             print(f"\nERROR: {result.error}")
-        elif result.reasoning is not None:
-            _print_reasoning(result.reasoning)
+        elif result.scored is not None or result.reasoning is not None:
+            _print_reasoning(result.scored or result.reasoning)
 
         print(f"\n-- CHECKS ({elapsed:.1f}s) --")
         for key in CHECK_FUNCS:

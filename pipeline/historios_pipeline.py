@@ -63,6 +63,13 @@ from config import settings
 
 logger = logging.getLogger(__name__)
 
+# Optional progress sink, set by ``run`` for the duration of one invocation.
+# A process-global (rather than a thread-local / ContextVar) so it fires no matter
+# which thread LangGraph executes a node on; the single Streamlit worker is the only
+# caller that sets it. ``run`` always resets it to None in a ``finally``. Signature:
+# ``cb(node_name: str, elapsed_seconds: float, errored: bool) -> None``.
+_progress_cb = None
+
 
 class HistoriosState(TypedDict, total=False):
     """Shared graph state threaded between the five nodes.
@@ -110,16 +117,32 @@ def _run_node(
         elapsed = time.monotonic() - t0
         timings[name] = elapsed
         logger.info("node %-16s ok in %6.2fs", name, elapsed)
+        _emit_progress(name, elapsed, errored=False)
         return {**update, "timings": timings}
     except Exception as exc:  # noqa: BLE001 — record-and-halt is the policy
         elapsed = time.monotonic() - t0
         timings[name] = elapsed
         logger.exception("node %-16s FAILED after %6.2fs", name, elapsed)
+        _emit_progress(name, elapsed, errored=True)
         return {
             "error": f"{type(exc).__name__}: {exc}",
             "failed_node": name,
             "timings": timings,
         }
+
+
+def _emit_progress(name: str, elapsed: float, *, errored: bool) -> None:
+    """Notify the optional progress sink that a node finished. Never raises.
+
+    A UI progress callback must not be able to break the pipeline, so any error
+    from it is swallowed (and logged at debug level).
+    """
+    if _progress_cb is None:
+        return
+    try:
+        _progress_cb(name, elapsed, errored)
+    except Exception:  # noqa: BLE001 — a misbehaving UI hook must not crash a run
+        logger.debug("progress callback raised; ignoring", exc_info=True)
 
 
 def _understand_query(state: HistoriosState) -> dict:
@@ -225,7 +248,7 @@ def _derive_status(state: HistoriosState) -> str:
     return "ok"
 
 
-def run(question: str) -> HistoriosState:
+def run(question: str, progress_callback=None) -> HistoriosState:
     """Execute the full pipeline for one counterfactual question.
 
     Validates configuration, runs the compiled graph, and returns the final
@@ -236,12 +259,19 @@ def run(question: str) -> HistoriosState:
 
     Args:
         question: The raw natural-language "what if" question.
+        progress_callback: Optional ``cb(node_name, elapsed_seconds, errored)``
+            invoked as each node finishes — used by the frontend to light up
+            pipeline stages live. It is installed only for the duration of this
+            call and any exception it raises is swallowed (it can never break the
+            run). Default ``None`` ⇒ no behavioural change for other callers.
 
     Returns:
         The final ``HistoriosState``. On success ``status == "ok"`` and ``scored``
         holds a ``ScoredReasoning``; on an empty corpus ``status == "no_context"``;
         on any failure ``status == "error"`` and ``error`` describes it.
     """
+    global _progress_cb
+
     initial: HistoriosState = {
         "question": (question or "").strip(),
         "timings": {},
@@ -253,6 +283,7 @@ def run(question: str) -> HistoriosState:
         return {**initial, "status": "error", "error": "ValueError: question is empty"}
 
     t0 = time.monotonic()
+    _progress_cb = progress_callback
     try:
         settings.validate()  # loud-but-caught: missing key -> graceful error state
         app = build_graph()
@@ -266,6 +297,8 @@ def run(question: str) -> HistoriosState:
             "status": "error",
             "error": f"{type(exc).__name__}: {exc}",
         }
+    finally:
+        _progress_cb = None
 
     elapsed = time.monotonic() - t0
     final["timings"] = {**final.get("timings", {}), "_total": elapsed}
