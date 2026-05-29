@@ -91,8 +91,8 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] grounding_layer.py
 [x] reasoning_agent.py
 [x] confidence_scorer.py
-[ ] historios_pipeline.py
-[ ] report_generator.py
+[x] historios_pipeline.py
+[x] report_generator.py
 [ ] app.py
 [ ] evaluation/test_cases.json
 [ ] evaluation/evaluator.py
