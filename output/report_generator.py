@@ -186,6 +186,7 @@ def generate_report(
     error: str | None = None,
     status: str = "ok",
     timings: dict[str, float] | None = None,
+    augmented_with_dynamic: bool | None = None,
 ) -> HistoriosReport:
     """Build a ``HistoriosReport`` (structured fields + Markdown) from agent output.
 
@@ -197,6 +198,11 @@ def generate_report(
         error: An error message if the run failed; renders an error notice.
         status: Pipeline status — "ok" / "no_context" / "error".
         timings: Optional per-node timings; appended as a small footer when present.
+        augmented_with_dynamic: Precomputed provenance flag. When ``None`` (default)
+            it is derived via a ChromaDB metadata lookup (``_used_dynamic_sources``).
+            Pass an explicit ``bool`` to SKIP that lookup — used by cached renders,
+            where the lookup would otherwise eagerly load the embedding model and
+            stall the "instant" cache hit.
 
     Returns:
         A ``HistoriosReport`` whose ``markdown`` field is ready to display.
@@ -212,7 +218,11 @@ def generate_report(
         what_remains_unknowable=scored.what_remains_unknowable if scored else "",
         reconnection_point=scored.reconnection_point if scored else "",
         historians_note=scored.historians_note if scored else "",
-        augmented_with_dynamic=_used_dynamic_sources(grounded),
+        augmented_with_dynamic=(
+            augmented_with_dynamic
+            if augmented_with_dynamic is not None
+            else _used_dynamic_sources(grounded)
+        ),
     )
 
     # --- Error state: honest notice, no fabricated content (Rules #5/#6) ---------

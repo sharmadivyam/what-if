@@ -7,12 +7,12 @@
     "error": null,
     "failed_node": null,
     "timings": {
-      "understand_query": 1.7969999999995707,
-      "retrieve": 0.5320000000001528,
-      "ground": 3.342999999999847,
-      "reason": 61.14099999999962,
+      "understand_query": 0.8600000000005821,
+      "retrieve": 0.5460000000002765,
+      "ground": 3.813000000000102,
+      "reason": 33.0619999999999,
       "score": 0.0,
-      "_total": 66.82799999999952
+      "_total": 38.28100000000086
     },
     "grounded": {
       "verified_facts": [
@@ -20,154 +20,299 @@
           "claim": "By 476 the Western Roman Emperor had negligible military, political, and financial power and no effective control over scattered Western domains.",
           "source_chunk_id": "fall_of_the_western_roman_empire_2",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk states this as fact without qualification"
+          "confidence_basis": "Text states this as fact without qualifiers."
+        },
+        {
+          "claim": "Barbarian kingdoms had established their own power in much of the area of the Western Empire.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_2",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Direct statement of the situation in 476."
         },
         {
           "claim": "In 476 the Germanic king Odoacer deposed the last Western Roman emperor, Romulus Augustulus, in Italy.",
           "source_chunk_id": "fall_of_the_western_roman_empire_2",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Explicit statement of the event"
+          "confidence_basis": "Explicit historical event described."
         },
         {
-          "claim": "The Roman Senate sent the imperial insignia to the Eastern Roman emperor Zeno in 476.",
+          "claim": "The Roman Senate sent the imperial insignia to the Eastern Roman emperor Zeno after Odoacer's deposition.",
           "source_chunk_id": "fall_of_the_western_roman_empire_2",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Directly asserted in the text"
+          "confidence_basis": "Stated as a factual action."
         },
         {
-          "claim": "The Eastern Roman (Byzantine) Empire survived for centuries as an effective power in the Eastern Mediterranean.",
+          "claim": "The Western Empire never regained sufficient strength to rise again.",
           "source_chunk_id": "fall_of_the_western_roman_empire_2",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk describes continued survival as fact"
+          "confidence_basis": "Presented as a concluding fact in the passage."
         },
         {
-          "claim": "Diocletian and Constantine's 4th‑century reforms reorganised the empire into dioceses and praetorian prefectures, separating the army from civil administration.",
+          "claim": "The Eastern (Byzantine) Empire survived for centuries as an effective power in the Eastern Mediterranean, though its strength later lessened.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_2",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Direct description of Byzantine continuity."
+        },
+        {
+          "claim": "Diocletian and Constantine's 4th‑century reforms reorganised the empire into dioceses and praetorian prefectures, separating army from civil administration.",
           "source_chunk_id": "byzantine_empire_29",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Historical description of reforms"
+          "confidence_basis": "Explicit description of reforms."
         },
         {
-          "claim": "After the 7th century the prefectures were abandoned and in the 9th century provinces were divided into themes governed by military commanders (strategoi).",
+          "claim": "The central government, led by the emperor from the pax romana era to the late Palaiologan era, focused on military, foreign relations, law, and tax collection.",
           "source_chunk_id": "byzantine_empire_29",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Chronological administrative changes stated as fact"
+          "confidence_basis": "Stated as a characteristic of imperial governance."
         },
         {
-          "claim": "The Roman Senate evolved into a ceremonial body within the imperial court.",
+          "claim": "The Roman senate evolved into a ceremonial body within the imperial court.",
           "source_chunk_id": "byzantine_empire_29",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Direct statement of institutional evolution"
+          "confidence_basis": "Direct statement of institutional change."
         },
         {
-          "claim": "In 376 a large migration of Goths and other non‑Roman peoples entered the Empire fleeing the Huns.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_1",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Explicit historical event described"
+          "claim": "From the 5th century, cities were collections of self‑governing communities with central government and church representatives.",
+          "source_chunk_id": "byzantine_empire_29",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Descriptive claim about urban organization."
         },
         {
-          "claim": "Roman forces were unable to exterminate, expel, or subjugate the migrating Goths.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_1",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk states the military failure as fact"
+          "claim": "After the 7th century the prefectures were abandoned, and in the 9th century provinces were divided into themes governed by military commanders (strategoi).",
+          "source_chunk_id": "byzantine_empire_29",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Chronological administrative change described."
         },
         {
-          "claim": "Theodosius I died in 395 after winning two destructive civil wars.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_1",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chronological claim presented without doubt"
-        },
-        {
-          "claim": "After Theodosius' death the empire was divided between the ministers of his two incapable sons.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_1",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk attributes division to his sons' ministers as fact"
-        },
-        {
-          "claim": "The Western Empire's armed forces became few and ineffective, and central rule was never again effectively consolidated.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_1",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Stated as factual assessment of military and political condition"
-        },
-        {
-          "claim": "By convention the Western Roman Empire ended on 4 September 476 when Odoacer deposed Romulus Augustulus and proclaimed himself ruler of Italy.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_103",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Explicit conventional dating stated as fact"
-        },
-        {
-          "claim": "Julius Nepos claimed the Western imperial title and controlled Dalmatia until his murder in 480.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_103",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Specific historical claim presented as fact"
-        },
-        {
-          "claim": "Syagrius ruled the Domain of Soissons until his murder in 486, effectively ending the empire's remnants.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_103",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chronological claim about Syagrius' rule"
-        },
-        {
-          "claim": "Excessive military expenditure and civil wars due to unstable succession increased taxes to the detriment of industry.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_17",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk asserts economic impact as fact"
-        },
-        {
-          "claim": "Under Gallienus (253–268) the senatorial aristocracy ceased joining the ranks of senior military commanders.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_17",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Specific policy change described as fact"
-        },
-        {
-          "claim": "Under Constantine cities lost revenue from local taxes, and under Constantius II they lost property endowments.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_17",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chronological fiscal changes presented as factual"
-        }
-      ],
-      "debated_points": [],
-      "background_context": [
-        {
-          "claim": "The fall of the Western Roman Empire involved loss of central political control and division of its territory among successor polities.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_0",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Descriptive definition of the event"
-        },
-        {
-          "claim": "Modern historians cite army effectiveness, population health, economic strength, imperial competence, internal power struggles, religious changes, and administrative efficiency as factors in the collapse.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_0",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk lists scholarly factors without asserting controversy"
-        },
-        {
-          "claim": "Climatic changes and endemic and epidemic diseases contributed to the empire's immediate decline.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_0",
-          "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk attributes environmental and health factors as contributors"
-        },
-        {
-          "claim": "The Eastern half of the empire had a geographic advantage, being less vulnerable than the West.",
+          "claim": "Christianity was more prevalent in the Eastern Roman Empire than in the West.",
           "source_chunk_id": "fall_of_the_western_roman_empire_23",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk reports scholarly observation about geography"
+          "confidence_basis": "Text asserts this prevalence as fact."
         },
         {
-          "claim": "Barbarian devastations impoverished and depopulated the Western frontier provinces, overstraining administrative and economic resources.",
+          "claim": "Religious disputes were bitter, bureaucracy was corrupt and extortionate, and both halves of the empire had a caste system and land fallow.",
           "source_chunk_id": "fall_of_the_western_roman_empire_23",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk attributes impact of barbarians as a major part of the West's fall"
+          "confidence_basis": "Direct description of systemic weaknesses."
         },
         {
-          "claim": "Indigenous inhabitants of Mauretania formed kingdoms with strong Roman traits and later resisted the Muslim conquest of the Maghreb.",
-          "source_chunk_id": "fall_of_the_western_roman_empire_103",
+          "claim": "The Eastern Empire stood its ground in the 5th century, fought back in the 6th, and recovered some territory in the 7th.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_23",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Chunk provides contextual description of post‑imperial developments"
+          "confidence_basis": "Chronological claim about Eastern resilience."
         },
         {
-          "claim": "Edward Gibbon placed the western empire's end with the removal of Romulus Augustulus in 476.",
+          "claim": "Geography gave the East a strategic advantage, making it less vulnerable than the West.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_23",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Explicit comparative statement."
+        },
+        {
+          "claim": "Barbarian devastations impoverished and depopulated the Western frontier provinces, overstraining the empire's administrative and economic resources, and played a major part in the fall of the West.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_23",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Quoted passage attributing cause."
+        },
+        {
+          "claim": "In 376 a large migration of Goths and other non‑Roman peoples fleeing the Huns entered the Roman Empire.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Stated as a historical event."
+        },
+        {
+          "claim": "Roman forces were unable to exterminate, expel, or subjugate the migrating Goths as was their normal practice.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Explicit claim about military failure."
+        },
+        {
+          "claim": "Theodosius I died in 395 after two destructive civil wars, leaving a collapsing field army and an empire divided between the ministers of his two sons.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Chronological statement of succession crisis."
+        },
+        {
+          "claim": "Goths and other non‑Romans became a force capable of challenging either half of the empire.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Direct assessment of barbarian power."
+        },
+        {
+          "claim": "Further barbarian groups crossed the Rhine and other frontiers.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Statement of continued migrations."
+        },
+        {
+          "claim": "The armed forces of the Western Empire became few and ineffective, and central rule was never again effectively consolidated.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_1",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Summative claim about military decline."
+        },
+        {
+          "claim": "Edward Gibbon was uncertain about when the decline of the Roman Empire began.",
           "source_chunk_id": "fall_of_the_western_roman_empire_8",
           "source_title": "Fall of the Western Roman Empire",
-          "confidence_basis": "Historiographical note about Gibbon's dating"
+          "confidence_basis": "Text reports Gibbon's own uncertainty."
+        },
+        {
+          "claim": "Gibbon placed the end of the Western Empire with the removal of Romulus Augustulus in 476.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_8",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Explicit statement of Gibbon's dating."
+        },
+        {
+          "claim": "Arnold J. Toynbee and James Burke argue that the entire Imperial era was a steady decay of institutions founded in republican times.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_8",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Statement of scholars' argument."
+        },
+        {
+          "claim": "Theodor Mommsen excluded the imperial period from his History of Rome (1854–1856).",
+          "source_chunk_id": "fall_of_the_western_roman_empire_8",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Factual description of Mommsen's work."
+        },
+        {
+          "claim": "Key dates used as markers for the fall of the Western Roman Empire include the Crisis of the Third Century, the Crossing of the Rhine in 406/405, the sack of Rome in 410, and the death of Julius Nepos in 480.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_8",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "List of historically cited markers."
+        },
+        {
+          "claim": "Alaric moved south intending to sail to Africa, but his ships were wrecked in a storm and he died of fever shortly thereafter.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Narrative of Alaric's fate."
+        },
+        {
+          "claim": "Athaulf, regarded as an usurper, moved north into Gaul after Alaric's death.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Statement of Athaulf's movements."
+        },
+        {
+          "claim": "The crossing of the Rhine in 405/6 brought roughly 30,000 warriors and 100,000 people into Gaul.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Quantitative estimate presented as fact."
+        },
+        {
+          "claim": "For several years the barbarian tribes wandered in search of food and employment while Roman forces fought each other in the name of Honorius and competing claimants.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Descriptive claim about the period's turmoil."
+        },
+        {
+          "claim": "In 410 the Roman civitates of Britannia rebelled against Constantine and expelled his officials.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Specific event described."
+        },
+        {
+          "claim": "Honorius replied to Britannia's request for help by telling them to defend themselves.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Direct statement of Honorius's response."
+        },
+        {
+          "claim": "No central Roman government is known to have appointed officials in Britannia after 410.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Historical observation about administrative absence."
+        },
+        {
+          "claim": "Coinage supply to the Diocese of Britannia ceased with Honorius.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Statement about monetary cessation."
+        },
+        {
+          "claim": "In 411 Jovinus rebelled and seized Constantine's remaining troops on the Rhine.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Chronological claim of rebellion."
+        },
+        {
+          "claim": "Jovinus relied on Burgundians and Alans, offering them supplies and land.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Description of Jovinus's alliances."
+        },
+        {
+          "claim": "In 413 Jovinus recruited the commander Sarus.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Specific recruitment event."
+        },
+        {
+          "claim": "Athaulf destroyed Jovinus's regime in the name of Honorius, after which Jovinus and Sarus were executed.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Outcome of Athaulf's action."
+        },
+        {
+          "claim": "The Burgundians were settled on the left bank of the Rhine.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Settlement detail."
+        },
+        {
+          "claim": "Athaulf operated in southern Gaul with occasional short‑term Roman supplies.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Operational description."
+        },
+        {
+          "claim": "All usurpers had been defeated, but large barbarian groups remained unsubdued in Gaul and Hispania.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Summary of military situation."
+        },
+        {
+          "claim": "The imperial government quickly restored the Rhine frontier.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Statement of rapid frontier restoration."
+        },
+        {
+          "claim": "Invading tribes of 407 moved into Hispania at the end of 409; the Visigoths left Italy in early 412 and settled around Narbo.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_69",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Chronological migration details."
+        },
+        {
+          "claim": "Cassius Dio regarded the accession of Emperor Commodus in 180 CE as the start of decline, describing it as a shift from a kingdom of gold to rust and iron.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_7",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Direct citation of Dio's view."
+        }
+      ],
+      "debated_points": [
+        {
+          "claim": "The barbarian groups later called Visigoths may have been developing their own sense of identity at that time.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Uses \"may have\" indicating uncertainty."
+        },
+        {
+          "claim": "These barbarians may have been fleeing the Huns, who were advancing to occupy the Great Hungarian Plain at that time.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_67",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Phrase \"may have been\" signals speculation."
+        }
+      ],
+      "background_context": [
+        {
+          "claim": "The loss of centralized political control over the West and the lessened power of the East are universally agreed.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_7",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Describes scholarly consensus rather than a specific event."
+        },
+        {
+          "claim": "Since the age of humanism, historians have proposed various starting points for the fall, including Constantine the Great, the soldier emperors (235‑284), Commodus, or even Augustus.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_7",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Summarizes historiographical debates without asserting a single fact."
         }
       ],
       "analogies": [
@@ -175,131 +320,218 @@
           "claim": "The Byzantine Empire was the continuation of the Roman Empire centred on Constantinople during late antiquity and the Middle Ages.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Provides a direct example of the Eastern Roman polity persisting after the Western Empire's collapse"
+          "confidence_basis": "Provides a direct example of a Roman polity persisting after the Western Empire's fall."
         },
         {
-          "claim": "It survived the events that caused the fall of the Western Roman Empire in the 5th century AD and endured until the fall of Constantinople in 1453.",
+          "claim": "The Byzantine Empire survived the events that caused the fall of the Western Roman Empire in the 5th century AD and endured until 1453.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Demonstrates long-term survival of a Roman successor state despite the West's demise"
+          "confidence_basis": "Shows a long‑term survival of a Roman successor state beyond the Western collapse."
         },
         {
-          "claim": "Its citizens used the term \"Roman Empire\" and called themselves \"Romans\".",
+          "claim": "Its citizens used the term 'Roman Empire' and called themselves 'Romans'.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Shows continuity of Roman identity in the East, relevant to a hypothetical undivided empire"
+          "confidence_basis": "Illustrates continuity of Roman identity in the Eastern realm."
         },
         {
-          "claim": "During the early centuries of the Roman Empire, the western provinces were Latinised, but the eastern parts kept their Hellenistic culture.",
+          "claim": "During the early centuries of the Roman Empire the western provinces were Latinised, while the eastern parts kept their Hellenistic culture.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Highlights cultural divergence that persisted after a hypothetical Western survival"
+          "confidence_basis": "Highlights cultural divergence that shaped the Eastern continuation."
         },
         {
-          "claim": "Constantine I (r. 324–337) legalised Christianity and moved the capital to Constantinople.",
+          "claim": "Constantine I (r. 324–337) legalised Christianity and moved the capital to Constantinople.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Illustrates a major institutional and geographic shift that shaped the Eastern empire"
+          "confidence_basis": "Key institutional change affecting the Eastern empire’s development."
         },
         {
-          "claim": "Theodosius I (r. 379–395) made Christianity the state religion and Greek gradually replaced Latin for official use.",
+          "claim": "Theodosius I (r. 379–395) made Christianity the state religion and Greek gradually replaced Latin for official use.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Shows religious and linguistic changes that affected the empire’s later development"
+          "confidence_basis": "Shows linguistic and religious shifts that distinguished the Eastern empire."
         },
         {
-          "claim": "The empire adopted a defensive strategy and, throughout its remaining history, experienced recurring cycles of decline and recovery.",
+          "claim": "The empire adopted a defensive strategy and experienced recurring cycles of decline and recovery.",
           "source_chunk_id": "byzantine_empire_0",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Provides a pattern of resilience and fluctuation useful for comparing alternate outcomes"
+          "confidence_basis": "Provides a pattern of resilience and fluctuation relevant to counterfactual analysis."
         },
         {
-          "claim": "There is no consensus on a foundation date for the Byzantine Empire.",
-          "source_chunk_id": "byzantine_empire_4",
+          "claim": "The empire was severely fragmented in 1204 after the sack of Constantinople during the Fourth Crusade, with its former territories divided into competing Greek rump states and Latin realms.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Indicates historiographical ambiguity that may affect interpretations of a continuous empire"
+          "confidence_basis": "Demonstrates how external shock can fragment a Roman successor state."
         },
         {
-          "claim": "Diocletian (r. 284–305) instituted the Tetrarchy, a system which divided the empire into eastern and western halves.",
-          "source_chunk_id": "byzantine_empire_4",
+          "claim": "Constantinople was recovered in 1261, but the reconstituted empire wielded only regional power during its final two centuries.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Shows an early administrative division that later became a lasting concept"
+          "confidence_basis": "Shows limited resurgence after a major disruption."
         },
         {
-          "claim": "The Tetrarchy quickly failed, but the division of the empire proved an enduring concept.",
-          "source_chunk_id": "byzantine_empire_4",
+          "claim": "Remaining Byzantine territories were progressively annexed by the Ottomans in a series of wars fought in the 14th and 15th centuries.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Demonstrates that a split structure persisted even after the formal system collapsed"
+          "confidence_basis": "Illustrates gradual territorial loss leading to eventual collapse."
         },
         {
-          "claim": "The Byzantine Empire reached its greatest extent under Justinian I (r. 527–565), who briefly reconquered much of Italy and the western Mediterranean coast.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "The fall of Constantinople to the Ottomans in 1453 brought the empire to an end.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Shows a successful attempt to restore western territories, relevant to a scenario where the West never fell"
+          "confidence_basis": "Marks the definitive termination point of the Eastern Roman polity."
         },
         {
-          "claim": "A plague began around 541, and prolonged warfare with Persia placed fiscal and military strain on the empire.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "The empire's inhabitants regarded themselves as Romans, and Islamic contemporaries called their empire the 'land of the Romans'.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Illustrates external shocks that challenged the empire’s stability"
+          "confidence_basis": "Reinforces the self‑identification as Roman despite geographic shift."
         },
         {
-          "claim": "In the 630s and 640s the Arab conquests defeated Byzantine field armies in Syria and Egypt, resulting in the permanent loss of those provinces to the Rashidun Caliphate.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "After 800 AD, Western Europe called the Byzantines 'Greeks', as the Papacy and medieval German emperors regarded themselves as the true inheritors of Roman identity.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Provides an example of territorial loss due to external conquest"
+          "confidence_basis": "Shows competing claims to Roman legacy, relevant to alternate histories."
         },
         {
-          "claim": "In 698 Africa was lost to the Umayyad Caliphate, but the empire stabilised under the Isaurian dynasty.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "The adjective 'Byzantine' was derived from Byzantion and originally described the city's inhabitants, not the empire, which its citizens called Rhomanía.",
+          "source_chunk_id": "byzantine_empire_2",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Shows recovery after major setbacks, a pattern useful for counterfactual comparison"
+          "confidence_basis": "Clarifies nomenclature that affects how the Eastern empire is referenced."
         },
         {
-          "claim": "The empire expanded once more under the Macedonian dynasty, experiencing a two‑century‑long renaissance.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "Since the 15th century, Byzantine history has been politicised in nationalist, colonialist, and imperialist narratives across multiple modern nations.",
+          "source_chunk_id": "byzantine_empire_57",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Demonstrates a period of cultural and territorial revival after earlier crises"
+          "confidence_basis": "Indicates the lasting political relevance of the empire’s legacy."
         },
         {
-          "claim": "Constantinople remained the largest and wealthiest city in Europe until the 13th century, when it was overtaken by Paris.",
-          "source_chunk_id": "byzantine_empire_1",
+          "claim": "The Byzantine Empire blended Roman political traditions, Greek literary heritage, and Christianity, creating a civilisational framework that laid the foundation for medieval Europe.",
+          "source_chunk_id": "byzantine_empire_57",
           "source_title": "Byzantine Empire",
-          "confidence_basis": "Highlights the economic prominence of the Eastern capital over a long span"
+          "confidence_basis": "Shows the cultural and institutional influence of a surviving Roman entity."
+        },
+        {
+          "claim": "The empire acted as a shield protecting European civilisation from Eurasian Steppe peoples such as the Avars, Bulgars, Cumans, Huns, Pechenegs, and Turks.",
+          "source_chunk_id": "byzantine_empire_57",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Demonstrates a defensive role that contributed to the stability of Europe."
+        },
+        {
+          "claim": "Byzantine legal codes significantly influenced the civil law traditions of continental Europe, Russia, Latin America, Ethiopia, and possibly English‑speaking common law countries, and may have influenced Islamic legal traditions.",
+          "source_chunk_id": "byzantine_empire_57",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Provides evidence of legal continuity and diffusion from a Roman successor."
+        },
+        {
+          "claim": "The empire preserved and transmitted classical learning and manuscripts, making important contributions to the intellectual revival that fueled Italian humanism.",
+          "source_chunk_id": "byzantine_empire_57",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Highlights the role of the Eastern empire in preserving Roman cultural heritage."
         }
       ],
       "source_map": {
         "fall_of_the_western_roman_empire_2": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
         "byzantine_empire_29": "https://en.wikipedia.org/wiki/Byzantine_Empire",
-        "fall_of_the_western_roman_empire_1": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
-        "fall_of_the_western_roman_empire_0": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
         "fall_of_the_western_roman_empire_23": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
-        "fall_of_the_western_roman_empire_103": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "fall_of_the_western_roman_empire_1": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
         "fall_of_the_western_roman_empire_8": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
-        "fall_of_the_western_roman_empire_17": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "fall_of_the_western_roman_empire_67": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "fall_of_the_western_roman_empire_69": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "fall_of_the_western_roman_empire_7": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
         "byzantine_empire_0": "https://en.wikipedia.org/wiki/Byzantine_Empire",
-        "byzantine_empire_4": "https://en.wikipedia.org/wiki/Byzantine_Empire",
-        "byzantine_empire_1": "https://en.wikipedia.org/wiki/Byzantine_Empire"
+        "byzantine_empire_2": "https://en.wikipedia.org/wiki/Byzantine_Empire",
+        "byzantine_empire_57": "https://en.wikipedia.org/wiki/Byzantine_Empire"
       }
     },
     "scored": {
-      "proposed_change": "The Western Roman Empire never collapses and continues to exist beyond 476 CE.",
-      "divergence_point": "27 BCE-476 CE — Western Europe and Mediterranean",
-      "steps": [],
-      "what_remains_unknowable": "1. The precise nature of imperial succession in the West (whether dynastic, elective, or military) after 476 CE, because succession practices were already in flux and our scenario offers no direct source.  \n2. How the Western Empire would have responded to the 7th‑century Arab conquests; the Eastern Empire’s experience is documented, but the West’s military capacity and strategic priorities remain unknowable.  \n3. Cultural‑linguistic shifts (e.g., the pace of Latin‑to‑Greek transition or the spread of Christianity) in a surviving West, as these depend on complex local interactions not captured by the available evidence.  \n\n─────────────────────────────────────────",
-      "reconnection_point": "─────────────────────────────────────────  \nThe alternate timeline likely diverges permanently at 476 CE when Odoacer’s decision is altered; however, it may reconverge in the 7th century if both Roman halves face similar Arab pressures that force comparable fiscal and military crises, as the Eastern Empire did.  \n\n─────────────────────────────────────────",
-      "historians_note": "─────────────────────────────────────────  \nHistorians debate the relative weight of military over‑extension, fiscal strain, and internal political instability in the actual fall of the Western Roman Empire — evidenced by the documented excesses in military expenditure and civil wars that raised taxes and harmed industry ([EVIDENCE: fall_of_the_western_roman_empire_17]) and the loss of effective central control after Theodosius I’s death ([EVIDENCE: fall_of_the_western_roman_empire_1]). These debates inform the counterfactual by highlighting which institutional weaknesses would need to be remedied for the West to survive.",
-      "raw_response": "PROPOSED CHANGE: The Western Roman Empire never collapses and continues to exist beyond 476 CE.  \n\nDIVERGENCE POINT: 27 BCE‑476 CE — Western Europe and Mediterranean  \n\n─────────────────────────────────────────  \nStep 1 — Immediate Consequences (0‑10 years after change)  \n─────────────────────────────────────────  \n[SIMULATED]  Within a few years of 476 CE the Germanic commander Odoacer accepts the authority of the Western emperor instead of deposing him, becoming a *magister militum* who governs Italy as a client‑king while retaining the imperial insignia and tax system.  \n\nEvidence basis: [EVIDENCE: fall_of_the_western_roman_empire_2] — the historical record shows Odoacer actually deposed Romulus Augustulus and proclaimed himself ruler of Italy; the counterfactual assumes a different decision at that same juncture.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_0] — the Byzantine Empire continued the Roman state after the loss of the West, preserving imperial symbols and administration; similarly a surviving Western empire could keep its symbols and bureaucracy alive.  \n\nConfidence: Medium  \nReason for confidence: The factual pivot (Odoacer’s choice) is documented, but we lack direct evidence on how a client‑king arrangement would have functioned; the analogy to Byzantium provides a plausible institutional precedent.  \n\n─────────────────────────────────────────  \nStep 2 — Short‑term Ripple (10‑30 years)  \n─────────────────────────────────────────  \n[SIMULATED]  With Italy securely under imperial control, the Western court initiates a series of *Diocletian‑style* fiscal and military reforms (e.g., separating civil and military authority, creating dioceses) to reinforce frontier defenses against the Visigoths in Gaul and the Suebi in Hispania.  \n\nEvidence basis: [EVIDENCE: byzantine_empire_29] — Diocletian and Constantine’s 4th‑century reforms reorganised the empire into dioceses and praetorian prefectures, separating the army from civil administration; applying similar reforms to the West would be a logical response to external pressure.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_1] — Just as Justinian I later reconquered Italy by mobilising a re‑organised imperial army, a re‑formed Western army could stabilize the western provinces.  \n\nConfidence: Medium  \nReason for confidence: The historical reforms are well‑documented, and the need to counter barbarian incursions is clear; however, the exact speed and effectiveness of reform implementation in a weakened West remain uncertain.  \n\n─────────────────────────────────────────  \nStep 3 — Medium‑term Transformation (30‑100 years)  \n─────────────────────────────────────────  \n[SIMULATED]  By the early 6th century the Western Empire, now administratively mirrored on the Eastern model, enjoys a period of relative prosperity: urban trade in Gaul and Hispania revives, tax revenues rise, and a *theme‑like* military settlement system (land grants to foederati soldiers) secures the frontiers, mirroring the later Byzantine “theme” system.  \n\nEvidence basis: [EVIDENCE: byzantine_empire_29] — After the 7th century the Byzantine Empire adopted the theme system, dividing provinces into military districts governed by strategoi; the Western Empire could adopt a comparable system earlier to address its frontier problems.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_1] — The Macedonian dynasty’s two‑century renaissance shows how a Roman‑styled state could experience economic and cultural revival when military structures are stable; a similar revival is plausible for the West under comparable conditions.  \n\nConfidence: Medium  \nReason for confidence: The analogy demonstrates that Roman institutions can generate a renaissance when security improves; however, the Western economy in the 5th‑6th centuries was more fragmented, so the scale of revival is less certain.  \n\n─────────────────────────────────────────  \nStep 4 — Long‑term Legacy (100+ years)  \n─────────────────────────────────────────  \n[SIMULATED]  By the late 6th century a *dual‑Roman* world emerges: the Western Empire, centred on Ravenna (or a re‑established Rome), coexists with the Eastern Empire in Constantinople. Their rivalry shapes Mediterranean politics, delaying the rise of independent Germanic kingdoms (e.g., Lombards, Franks) and altering the early medieval balance of power; the later Crusades are organised under a single Roman banner rather than fragmented Latin principalities.  \n\nEvidence basis: [EVIDENCE: byzantine_empire_0] — The Byzantine Empire’s survival demonstrates that a Roman identity could persist for a millennium; extending that identity westward suggests a comparable long‑term institutional continuity.  \n\nConfidence: Low — long‑term consequences are inherently speculative, BUT the persistence of Roman institutions in the East provides a concrete precedent for institutional durability.  \n\nWHAT REMAINS UNKNOWABLE:  \n1. The precise nature of imperial succession in the West (whether dynastic, elective, or military) after 476 CE, because succession practices were already in flux and our scenario offers no direct source.  \n2. How the Western Empire would have responded to the 7th‑century Arab conquests; the Eastern Empire’s experience is documented, but the West’s military capacity and strategic priorities remain unknowable.  \n3. Cultural‑linguistic shifts (e.g., the pace of Latin‑to‑Greek transition or the spread of Christianity) in a surviving West, as these depend on complex local interactions not captured by the available evidence.  \n\n─────────────────────────────────────────  \nRECONNECTION POINT  \n─────────────────────────────────────────  \nThe alternate timeline likely diverges permanently at 476 CE when Odoacer’s decision is altered; however, it may reconverge in the 7th century if both Roman halves face similar Arab pressures that force comparable fiscal and military crises, as the Eastern Empire did.  \n\n─────────────────────────────────────────  \nHISTORIAN'S NOTE  \n─────────────────────────────────────────  \nHistorians debate the relative weight of military over‑extension, fiscal strain, and internal political instability in the actual fall of the Western Roman Empire — evidenced by the documented excesses in military expenditure and civil wars that raised taxes and harmed industry ([EVIDENCE: fall_of_the_western_roman_empire_17]) and the loss of effective central control after Theodosius I’s death ([EVIDENCE: fall_of_the_western_roman_empire_1]). These debates inform the counterfactual by highlighting which institutional weaknesses would need to be remedied for the West to survive.",
-      "parse_warnings": [
-        "no reasoning steps parsed — see raw_response"
+      "proposed_change": "The Western Roman Empire does not collapse in 476 CE and continues as a unified state.",
+      "divergence_point": "27 BCE-476 CE — Western Europe",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "The Germanic king Odoacer remains a federated commander (magister militum) under the nominal rule of the Western emperor, rather than deposing Romulus Augustulus. This preserves a central imperial authority in Italy and averts the rapid fragmentation of the Western provinces.",
+          "evidence_chunk_ids": [
+            "fall_of_the_western_roman_empire_2",
+            "byzantine_empire_0"
+          ],
+          "analogy_chunk_ids": [
+            "byzantine_empire_0"
+          ],
+          "confidence": "Medium",
+          "confidence_reason": "The factual record shows the empire’s weakness, but the Eastern model demonstrates a plausible path for integration; however, the exact willingness of Odoacer to accept a subordinate role is not documented.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 6 verified fact(s) drawn from chunk(s) fall_of_the_western_roman_empire_2; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) byzantine_empire_0. (model self-reported: Medium)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "The imperial court settles the Visigoths, Burgundians, and Alans as *foederati* within the Western provinces, granting them land in Gaul and Hispania in exchange for regular military service. This curtails the independent barbarian kingdoms that historically emerged (e.g., Visigothic Kingdom in Toulouse) and maintains a unified tax base for the empire.",
+          "evidence_chunk_ids": [
+            "fall_of_the_western_roman_empire_69",
+            "byzantine_empire_29"
+          ],
+          "analogy_chunk_ids": [
+            "byzantine_empire_29"
+          ],
+          "confidence": "Medium",
+          "confidence_reason": "The historical record confirms the practice of settling barbarians as *foederati*; extending it empire‑wide is plausible but depends on the political will of a still‑fragile Western administration.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 18 verified fact(s) drawn from chunk(s) byzantine_empire_29, fall_of_the_western_roman_empire_69; multiple verified sources corroborate this consequence. (model self-reported: Medium)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "A unified Roman Empire (East + West) leverages its combined fiscal and military resources to repel the Lombard invasion of 568 CE and later the Slavic incursions of the 7th century, preserving a continuous Roman administration across the Italian peninsula, Gaul, and the Balkans. The empire’s legal code (Codex Justinianus) is promulgated throughout the West, fostering a common Roman law tradition that delays the emergence of feudal tenure.",
+          "evidence_chunk_ids": [
+            "byzantine_empire_57",
+            "byzantine_empire_0"
+          ],
+          "analogy_chunk_ids": [
+            "byzantine_empire_0"
+          ],
+          "confidence": "Low",
+          "confidence_reason": "While the Eastern Empire’s defensive successes are documented, projecting them onto a larger, still‑recovering West involves many contingent factors (e.g., leadership quality, economic recovery) that are not directly evidenced.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "MEDIUM",
+          "confidence_explanation": "MEDIUM — no verified fact is cited, but the step is grounded in 12 historical analog(y/ies) from chunk(s) byzantine_empire_57, byzantine_empire_0; reasoning by comparison rather than direct evidence. (model self-reported: Low)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "By the 9th century, the continued Roman administration sustains a network of urban centers and a relatively uniform Christian liturgy across Western Europe, limiting the fragmentation into separate Germanic kingdoms. Consequently, the Papacy remains a subordinate ecclesiastical office within a strong imperial hierarchy, and the later Carolingian Renaissance emerges as an imperial, not a papal, cultural revival.",
+          "evidence_chunk_ids": [
+            "byzantine_empire_57"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Low",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "MEDIUM",
+          "confidence_explanation": "MEDIUM — no verified fact is cited, but the step is grounded in 5 historical analog(y/ies) from chunk(s) byzantine_empire_57; reasoning by comparison rather than direct evidence. (model self-reported: Low)"
+        }
       ],
+      "what_remains_unknowable": "1. The exact personality and competence of the Western emperors who would have reigned after 476 CE, and whether they could have enacted effective reforms.  \n2. How the complex ethnic identities of the settled barbarian groups would have evolved under prolonged Roman rule versus the independent kingdoms that historically formed.  \n3. The precise impact on later medieval power structures (e.g., the rise of the Holy Roman Empire) because these depend on countless contingent events beyond the scope of available sources.\n\n─────────────────────────────────────────",
+      "reconnection_point": "─────────────────────────────────────────\nThe alternate timeline likely diverges permanently at the 476 CE deposition of Romulus Augustulus; it may converge again only when external forces such as the Arab conquests of the 7th century pressure both Eastern and Western halves similarly, forcing comparable defensive reforms.\n\n─────────────────────────────────────────",
+      "historians_note": "─────────────────────────────────────────\nHistorians still debate why the Western Empire’s institutions collapsed so rapidly—whether the decisive factor was the loss of a professional field army, the economic strain of barbarian migrations, or internal political decay (see Gibbon’s analysis and Toynbee’s decay argument in [EVIDENCE: fall_of_the_western_roman_empire_8]). These debates are directly relevant, because the counter‑factual hinges on the possibility that stronger imperial leadership could have mitigated those same stresses.",
+      "raw_response": "PROPOSED CHANGE: The Western Roman Empire does not collapse in 476 CE and continues as a unified state.\n\nDIVERGENCE POINT: 27 BCE‑476 CE — Western Europe\n\n─────────────────────────────────────────\nStep 1 — Immediate Consequences (0‑10 years after change)\n─────────────────────────────────────────\n[SIMULATED] The Germanic king Odoacer remains a federated commander (magister militum) under the nominal rule of the Western emperor, rather than deposing Romulus Augustulus. This preserves a central imperial authority in Italy and averts the rapid fragmentation of the Western provinces.  \n\nEvidence basis: [EVIDENCE: fall_of_the_western_roman_empire_2] – the source records that Odoacer *did* depose the last Western emperor; the counter‑factual assumes the opposite, keeping the imperial insignia in the West.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_0] – the Eastern Empire continued to employ barbarian generals (e.g., Belisarius, Narses) as loyal commanders, showing that a Roman state could integrate Germanic leaders without losing its core authority.  \n\nConfidence: Medium  \nReason for confidence: The factual record shows the empire’s weakness, but the Eastern model demonstrates a plausible path for integration; however, the exact willingness of Odoacer to accept a subordinate role is not documented.\n\n─────────────────────────────────────────\nStep 2 — Short‑term Ripple (10‑30 years)\n─────────────────────────────────────────\n[SIMULATED] The imperial court settles the Visigoths, Burgundians, and Alans as *foederati* within the Western provinces, granting them land in Gaul and Hispania in exchange for regular military service. This curtails the independent barbarian kingdoms that historically emerged (e.g., Visigothic Kingdom in Toulouse) and maintains a unified tax base for the empire.  \n\nEvidence basis: [EVIDENCE: fall_of_the_western_roman_empire_69] – the source describes how barbarian groups were already being settled (e.g., Burgundians on the left bank of the Rhine) and relied on Roman supplies; the simulation extends this settlement into a formal imperial policy.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_29] – Diocletian and Constantine’s 4th‑century reforms reorganised the empire into dioceses and prefectures, separating army from civil administration; a similar restructuring could be applied West to manage the new *foederati* territories.  \n\nConfidence: Medium  \nReason for confidence: The historical record confirms the practice of settling barbarians as *foederati*; extending it empire‑wide is plausible but depends on the political will of a still‑fragile Western administration.\n\n─────────────────────────────────────────\nStep 3 — Medium‑term Transformation (30‑100 years)\n─────────────────────────────────────────\n[SIMULATED] A unified Roman Empire (East + West) leverages its combined fiscal and military resources to repel the Lombard invasion of 568 CE and later the Slavic incursions of the 7th century, preserving a continuous Roman administration across the Italian peninsula, Gaul, and the Balkans. The empire’s legal code (Codex Justinianus) is promulgated throughout the West, fostering a common Roman law tradition that delays the emergence of feudal tenure.  \n\nEvidence basis: [EVIDENCE: byzantine_empire_57] – the Byzantine Empire’s legal codes significantly influenced continental civil law traditions, showing that a Roman legal framework can spread beyond the East when political conditions allow.  \n\nAnalogy (if applicable): [EVIDENCE: byzantine_empire_0] – the Byzantine state survived the loss of the West by acting as a shield against steppe peoples; a combined empire would possess a larger “shield” capacity, making similar defensive successes plausible.  \n\nConfidence: Low‑Medium  \nReason for confidence: While the Eastern Empire’s defensive successes are documented, projecting them onto a larger, still‑recovering West involves many contingent factors (e.g., leadership quality, economic recovery) that are not directly evidenced.\n\n─────────────────────────────────────────\nStep 4 — Long‑term Legacy (100+ years)\n─────────────────────────────────────────\n[SIMULATED] By the 9th century, the continued Roman administration sustains a network of urban centers and a relatively uniform Christian liturgy across Western Europe, limiting the fragmentation into separate Germanic kingdoms. Consequently, the Papacy remains a subordinate ecclesiastical office within a strong imperial hierarchy, and the later Carolingian Renaissance emerges as an imperial, not a papal, cultural revival.  \n\nEvidence basis: [EVIDENCE: byzantine_empire_57] – the Byzantine Empire preserved and transmitted classical learning, contributing to later intellectual revivals; a unified Roman state could have performed a similar role in the West.  \n\nConfidence: Low — long‑term consequences are inherently speculative, BUT [EVIDENCE: byzantine_empire_57] is still required.  \n\nWHAT REMAINS UNKNOWABLE:\n1. The exact personality and competence of the Western emperors who would have reigned after 476 CE, and whether they could have enacted effective reforms.  \n2. How the complex ethnic identities of the settled barbarian groups would have evolved under prolonged Roman rule versus the independent kingdoms that historically formed.  \n3. The precise impact on later medieval power structures (e.g., the rise of the Holy Roman Empire) because these depend on countless contingent events beyond the scope of available sources.\n\n─────────────────────────────────────────\nRECONNECTION POINT\n─────────────────────────────────────────\nThe alternate timeline likely diverges permanently at the 476 CE deposition of Romulus Augustulus; it may converge again only when external forces such as the Arab conquests of the 7th century pressure both Eastern and Western halves similarly, forcing comparable defensive reforms.\n\n─────────────────────────────────────────\nHISTORIAN'S NOTE\n─────────────────────────────────────────\nHistorians still debate why the Western Empire’s institutions collapsed so rapidly—whether the decisive factor was the loss of a professional field army, the economic strain of barbarian migrations, or internal political decay (see Gibbon’s analysis and Toynbee’s decay argument in [EVIDENCE: fall_of_the_western_roman_empire_8]). These debates are directly relevant, because the counter‑factual hinges on the possibility that stronger imperial leadership could have mitigated those same stresses.",
+      "parse_warnings": [],
       "confidence_distribution": {
         "SPECULATIVE": 0,
         "LOW": 0,
-        "MEDIUM": 0,
-        "HIGH": 0
+        "MEDIUM": 2,
+        "HIGH": 2
       },
-      "overall_confidence": null
-    }
+      "overall_confidence": "MEDIUM"
+    },
+    "augmented_with_dynamic": false
   }
 }

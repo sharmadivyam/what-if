@@ -90,6 +90,12 @@ def _serialize_state(question: str, state: dict[str, Any]) -> dict[str, Any]:
             "timings": state.get("timings") or {},
             "grounded": grounded.model_dump() if grounded is not None else None,
             "scored": scored.model_dump() if scored is not None else None,
+            # Precomputed provenance flag (the 🌐 "live-fetched" note). Stored so a
+            # cache HIT can render it WITHOUT a ChromaDB metadata lookup — that
+            # lookup eagerly loads the 420 MB embedding model, which would make
+            # the first "instant" cache hit hang. Computed by the caller while the
+            # model is already loaded (just after a live run).
+            "augmented_with_dynamic": bool(state.get("augmented_with_dynamic", False)),
         },
     }
 
@@ -113,6 +119,7 @@ def _deserialize_state(payload: dict[str, Any]) -> dict[str, Any]:
         "scored": (
             ScoredReasoning.model_validate(scored_raw) if scored_raw is not None else None
         ),
+        "augmented_with_dynamic": raw.get("augmented_with_dynamic", False),
         "from_cache": True,
     }
 

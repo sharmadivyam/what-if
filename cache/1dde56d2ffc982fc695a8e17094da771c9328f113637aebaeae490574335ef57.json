@@ -284,6 +284,7 @@
         "HIGH": 3
       },
       "overall_confidence": "MEDIUM"
-    }
+    },
+    "augmented_with_dynamic": false
   }
 }

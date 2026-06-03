@@ -7,140 +7,145 @@
     "error": null,
     "failed_node": null,
     "timings": {
-      "understand_query": 2.686999999999898,
-      "retrieve": 22.686999999999898,
-      "ground": 34.9380000000001,
-      "reason": 2.375,
-      "score": 0.0,
-      "_total": 62.70299999999952
+      "understand_query": 0.7970000000004802,
+      "retrieve": 0.5470000000004802,
+      "ground": 3.5930000000007567,
+      "reason": 32.64099999999962,
+      "score": 0.030999999999039574,
+      "_total": 37.625
     },
     "grounded": {
       "verified_facts": [
         {
-          "claim": "The Indian independence movement aimed to end British colonial rule and lasted from the mid-1880s to 1947.",
+          "claim": "The Indian independence movement was a series of political efforts from the mid-1880s to 1947 aiming to end British colonial rule.",
           "source_chunk_id": "indian_independence_movement_0",
           "source_title": "Indian independence movement",
-          "confidence_basis": "Text explicitly states the movement's aim and time span."
+          "confidence_basis": "Chunk explicitly states the movement's time span and goal."
         },
         {
-          "claim": "The Indian National Congress was formed in 1885.",
+          "claim": "The Indian National Congress was formed in 1885, marking the first nationalistic movement.",
           "source_chunk_id": "indian_independence_movement_0",
           "source_title": "Indian independence movement",
-          "confidence_basis": "Direct statement of the INC's founding year."
+          "confidence_basis": "Chunk directly mentions the INC formation year and its role as the first nationalistic movement."
         },
         {
-          "claim": "The Quit India Movement in 1942 demanded the end of British colonial presence in India.",
+          "claim": "The independence movement ultimately resulted in the transfer of power in 1947.",
           "source_chunk_id": "indian_independence_movement_0",
           "source_title": "Indian independence movement",
-          "confidence_basis": "Text describes the Quit India Movement's categorical demand."
+          "confidence_basis": "Chunk concludes with the result of the movement being the 1947 transfer of power."
         },
         {
-          "claim": "India exported large quantities of wheat to Britain despite a famine in the late 1870s that killed 6–10 million people.",
-          "source_chunk_id": "british_raj_74",
-          "source_title": "British Raj",
-          "confidence_basis": "Chunk links wheat exports to the famine and casualty figures."
-        },
-        {
-          "claim": "British laissez‑faire policy refused to intervene in wheat exports or provide famine relief.",
-          "source_chunk_id": "british_raj_74",
-          "source_title": "British Raj",
-          "confidence_basis": "Chunk states the colonial government refused to interfere or provide relief."
-        },
-        {
-          "claim": "Import of British manufactured cotton cloth into India rose from about 1 million yards in 1814 to 2,050 million yards by 1890.",
-          "source_chunk_id": "british_raj_74",
-          "source_title": "British Raj",
-          "confidence_basis": "Statistical progression given in the text."
-        },
-        {
-          "claim": "By 1870–1880 Indian textile producers supplied only 25%–45% of local consumption.",
-          "source_chunk_id": "british_raj_74",
-          "source_title": "British Raj",
-          "confidence_basis": "Chunk attributes the shrinkage of textile production to that percentage range."
-        },
-        {
-          "claim": "The East India Company inherited a taxation system that took one‑third of the produce of Indian cultivators.",
+          "claim": "The East India Company inherited a taxation system that took one-third of the produce of Indian cultivators.",
           "source_chunk_id": "british_raj_85",
           "source_title": "British Raj",
-          "confidence_basis": "Explicit factual statement in the chunk."
+          "confidence_basis": "Chunk states this as a factual description of the Company's tax system."
         },
         {
-          "claim": "The population of the territory that became the British Raj was about 100 million by 1600 and reached 255 million by the 1881 census.",
+          "claim": "The population of the territory that became the British Raj was about 100 million by 1600 and reached 255 million according to the first census in 1881.",
           "source_chunk_id": "british_raj_85",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk provides specific population figures."
+          "confidence_basis": "Chunk provides specific demographic figures and census reference."
         },
         {
-          "claim": "In August 1917 Edwin Montagu announced a British policy of increasing Indian participation in administration.",
-          "source_chunk_id": "indian_independence_movement_50",
-          "source_title": "Indian independence movement",
-          "confidence_basis": "Direct quote of Montagu's parliamentary announcement."
+          "claim": "After the East India Company's monopoly ended in 1813, imports of British manufactured cotton cloth into India rose from about 1 million yards in 1814 to 2,050 million yards by 1890.",
+          "source_chunk_id": "british_raj_74",
+          "source_title": "British Raj",
+          "confidence_basis": "Chunk lists specific import figures over time."
         },
         {
-          "claim": "The Government of India Act 1919 introduced diarchy, sharing power between elected Indian legislators and appointed British officials.",
-          "source_chunk_id": "indian_independence_movement_50",
-          "source_title": "Indian independence movement",
-          "confidence_basis": "Chunk describes the act's principle of dual administration."
+          "claim": "By 1870–1880 Indian textile producers were manufacturing only 25%–45% of local consumption due to cheaper British imports.",
+          "source_chunk_id": "british_raj_74",
+          "source_title": "British Raj",
+          "confidence_basis": "Chunk provides the percentage range and causal link to British imports."
         },
         {
-          "claim": "India's share of global GDP fell from above 20% to less than 5% during the colonial period.",
+          "claim": "India's global share of GDP fell drastically from above 20% to less than 5% during the colonial period.",
           "source_chunk_id": "british_raj_73",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk states the drastic decline in GDP share."
+          "confidence_basis": "Chunk states this change as a factual economic statistic."
         },
         {
-          "claim": "The Interpretation Act 1889 defined 'British India' as territories governed by the Governor‑General of India.",
-          "source_chunk_id": "british_raj_58",
+          "claim": "In 1780 Edmund Burke attacked the East India Company, claiming Warren Hastings and other officials had ruined the Indian economy and society.",
+          "source_chunk_id": "british_raj_84",
           "source_title": "British Raj",
-          "confidence_basis": "Legal definition quoted verbatim."
+          "confidence_basis": "Chunk records Burke's historical criticism as a factual event."
         },
         {
           "claim": "Vasco da Gama reached Calicut in 1498, becoming the first European to reach India via the Atlantic Ocean.",
           "source_chunk_id": "indian_independence_movement_4",
           "source_title": "Indian independence movement",
-          "confidence_basis": "Chunk explicitly states this historical event."
+          "confidence_basis": "Chunk directly states this historical fact."
         },
         {
-          "claim": "The Battle of Plassey (1757) resulted in the East India Company's army defeating the Nawab of Bengal and becoming a major player in Indian affairs.",
+          "claim": "The East India Company's army defeated Siraj ud‑Daulah at the Battle of Plassey, establishing the company as a major player in Indian affairs.",
           "source_chunk_id": "indian_independence_movement_4",
           "source_title": "Indian independence movement",
-          "confidence_basis": "Chunk describes the battle outcome and its significance."
+          "confidence_basis": "Chunk describes the battle outcome and its political consequence."
         },
         {
-          "claim": "Thomas Baring was Viceroy of India from 1872 to 1876.",
-          "source_chunk_id": "british_raj_11",
-          "source_title": "British Raj",
-          "confidence_basis": "Chunk provides Baring's tenure dates."
+          "claim": "Much of Punjab was annexed in 1849 after the defeat of Sikh armies in the First and Second Anglo‑Sikh Wars.",
+          "source_chunk_id": "indian_independence_movement_4",
+          "source_title": "Indian independence movement",
+          "confidence_basis": "Chunk provides the annexation year and the wars leading to it."
         },
         {
-          "claim": "Baring initiated large‑scale famine relief, reduced taxes, and worked to lessen starvation and social unrest.",
+          "claim": "Thomas Baring served as Viceroy of India from 1872 to 1876.",
           "source_chunk_id": "british_raj_11",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk lists Baring's major accomplishments."
+          "confidence_basis": "Chunk gives Baring's tenure dates."
+        },
+        {
+          "claim": "Baring began large‑scale famine relief, reduced taxes, and worked to reduce starvation and social unrest.",
+          "source_chunk_id": "british_raj_11",
+          "source_title": "British Raj",
+          "confidence_basis": "Chunk lists these specific policy actions as Baring's accomplishments."
+        },
+        {
+          "claim": "The Quit India Movement in 1942 categorically demanded the end of British colonial presence in India.",
+          "source_chunk_id": "indian_independence_movement_1",
+          "source_title": "Indian independence movement",
+          "confidence_basis": "Chunk explicitly states the movement's demand."
+        },
+        {
+          "claim": "Mahatma Gandhi's leadership and Congress's adoption of non‑violence and civil disobedience characterised the independence struggle in the 1920s.",
+          "source_chunk_id": "indian_independence_movement_1",
+          "source_title": "Indian independence movement",
+          "confidence_basis": "Chunk describes Gandhi's role and Congress's policy in that decade."
+        },
+        {
+          "claim": "Female leaders such as Sarojini Naidu and Kasturba Gandhi promoted the emancipation of Indian women and their participation in the freedom struggle.",
+          "source_chunk_id": "indian_independence_movement_1",
+          "source_title": "Indian independence movement",
+          "confidence_basis": "Chunk lists these women and their advocacy as factual statements."
         }
       ],
       "debated_points": [
         {
-          "claim": "Marshall argues that the British takeover did not create a sharp break with the Mughal period and that British rule depended on cooperation with Indian elites.",
+          "claim": "P. J. Marshall argues that the British takeover did not make a sharp break with the past and that his interpretation is still highly controversial among many historians.",
           "source_chunk_id": "british_raj_85",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk presents Marshall's interpretation, noted as controversial among historians."
+          "confidence_basis": "Chunk reports Marshall's argument and notes it is controversial, indicating scholarly debate."
         },
         {
-          "claim": "Historians are sharply divided over whether British rule impoverished India, with the Nationalist school arguing it did.",
+          "claim": "Mike Davis writes that much of the economic activity in British India was for the benefit of the British economy and was carried out through repressive policies with negative repercussions for the Indian population.",
+          "source_chunk_id": "british_raj_74",
+          "source_title": "British Raj",
+          "confidence_basis": "Chunk attributes this assessment to Mike Davis, indicating it is a scholarly claim subject to debate."
+        },
+        {
+          "claim": "Historians are bitterly divided on economic history, with the Nationalist school arguing that India was poorer at the end of British rule than at the beginning because of British policies.",
           "source_chunk_id": "british_raj_73",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk notes bitter division among historians on economic impact."
-        }
-      ],
-      "background_context": [
+          "confidence_basis": "Chunk describes the scholarly division and presents the Nationalist school's argument as contested."
+        },
         {
-          "claim": "Early Congress debates created an Indian outlook that blamed Britain for draining India's wealth through unfair trade and high civil‑servant salaries.",
-          "source_chunk_id": "british_raj_11",
+          "claim": "Historians continue to debate whether the long‑term intention of British rule was to accelerate India's economic development or to distort and delay it.",
+          "source_chunk_id": "british_raj_84",
           "source_title": "British Raj",
-          "confidence_basis": "Chunk describes the perspective that emerged, not a specific factual claim."
+          "confidence_basis": "Chunk explicitly says historians continue to debate this intention."
         }
       ],
+      "background_context": [],
       "analogies": [
         {
           "claim": "Japan lacked strategic mineral resources, possessing only a few coal and iron deposits and a small oil field on Sakhalin Island.",
@@ -199,36 +204,111 @@
       ],
       "source_map": {
         "indian_independence_movement_0": "https://en.wikipedia.org/wiki/Indian_independence_movement",
-        "british_raj_74": "https://en.wikipedia.org/wiki/British_Raj",
         "british_raj_85": "https://en.wikipedia.org/wiki/British_Raj",
-        "indian_independence_movement_50": "https://en.wikipedia.org/wiki/Indian_independence_movement",
+        "british_raj_74": "https://en.wikipedia.org/wiki/British_Raj",
         "british_raj_73": "https://en.wikipedia.org/wiki/British_Raj",
-        "british_raj_58": "https://en.wikipedia.org/wiki/British_Raj",
+        "british_raj_84": "https://en.wikipedia.org/wiki/British_Raj",
         "indian_independence_movement_4": "https://en.wikipedia.org/wiki/Indian_independence_movement",
         "british_raj_11": "https://en.wikipedia.org/wiki/British_Raj",
+        "indian_independence_movement_1": "https://en.wikipedia.org/wiki/Indian_independence_movement",
         "causes_of_world_war_ii_18": "https://en.wikipedia.org/wiki/Causes_of_World_War_II",
         "meiji_restoration_20": "https://en.wikipedia.org/wiki/Meiji_Restoration",
         "meiji_restoration_13": "https://en.wikipedia.org/wiki/Meiji_Restoration"
       }
     },
     "scored": {
-      "proposed_change": "Britain never establishes colonial rule over India",
-      "divergence_point": "1750-1947 — South Asia",
-      "steps": [],
-      "what_remains_unknowable": "1. The precise constitutional form (e.g., federal monarchy, parliamentary republic) that a British‑free Indian polity would have adopted.  \n2. The scale and timing of industrialization in the absence of British capital flows, technology transfers, and imperial market access.  \n3. How regional rivalries (e.g., between the Marathas, Sikhs, and princely states) would have been resolved without the unifying—or divisive—force of colonial administration.  \n\n─────────────────────────────────────────",
-      "reconnection_point": "The alternate timeline would most likely reconverge with actual history in the post‑World II era, when global decolonization pressures and the Cold War compel India to engage with the United Nations and major powers as a sovereign nation, but it would permanently diverge in the economic sphere because India would retain a much larger share of world GDP than in the real 20th century.  \n\n─────────────────────────────────────────",
-      "historians_note": "Historians debate the depth of British impact on India: Marshall argues that “the British takeover did not create a sharp break with the Mughal period and that British rule depended on cooperation with Indian elites” [EVIDENCE: british_raj_85]; meanwhile, scholars are sharply divided over whether “British rule impoverished India,” with the Nationalist school asserting it did and other historians contesting the magnitude of that impoverishment [EVIDENCE: british_raj_73]. These debates shape how we assess the plausibility of the counterfactual economic and political trajectories outlined above.",
-      "raw_response": "**PROPOSED CHANGE:** Britain never establishes colonial rule over India  \n**DIVERGENCE POINT:** 1750‑1947 — South Asia  \n\n─────────────────────────────────────────  \n**Step 1 — Immediate Consequences (0‑10 years after change)**  \n─────────────────────────────────────────  \n[SIMULATED] The East India Company never secures political control after the 1757 Battle of Plassey; the Nawab of Bengal and other regional rulers retain sovereign authority, and British activity remains limited to coastal trading posts.  \n\nEvidence basis: [EVIDENCE: indian_independence_movement_4] — the source records that the Battle of Plassey “resulted in the East India Company's army defeating the Nawab of Bengal and becoming a major player in Indian affairs,” implying that without that victory the Company would lack the foothold that later expanded into colonial rule.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_20] — Japan’s early‑19th‑century opening to limited foreign trade (e.g., the Nagasaki Naval Training Centre) shows how a state can maintain political independence while foreign merchants operate in constrained zones, paralleling a Britain‑free India where trade persists without territorial control.  \n\nConfidence: **Medium**  \nReason for confidence: The battle’s outcome is a clear historical hinge, but the exact political configuration of Indian polities without British annexation is not documented, requiring inference.  \n\n─────────────────────────────────────────  \n**Step 2 — Short‑term Ripple (10‑30 years)**  \n─────────────────────────────────────────  \n[SIMULATED] Without British‑imposed tax burdens and export‑oriented policies, Indian agrarian economies avoid the large‑scale wheat exports that exacerbated the 1870s famine; local rulers maintain traditional tax rates, leading to a markedly lower mortality rate from famine.  \n\nEvidence basis: [EVIDENCE: british_raj_74] — the source notes that “British laissez‑faire policy refused to intervene in wheat exports or provide famine relief,” directly linking British policy to famine severity; removing that policy suggests reduced famine impact.  \n\nAnalogy (if applicable): [EVIDENCE: british_raj_85] — the East India Company’s taxation “took one‑third of the produce of Indian cultivators,” showing how colonial fiscal extraction intensified food insecurity; its absence would plausibly lessen hardship.  \n\nConfidence: **Medium**  \nReason for confidence: The causal link between British fiscal/extractive policies and famine outcomes is well‑documented, but the counterfactual response of indigenous administrations is less certain.  \n\n─────────────────────────────────────────  \n**Step 3 — Medium‑term Transformation (30‑100 years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the early‑20th century, Indian elites convene a pan‑subcontinental assembly that adopts a constitutional framework modeled on existing Mughal‑era bureaucratic structures and selectively incorporates Western technology, mirroring Japan’s Meiji Restoration approach.  \n\nEvidence basis: [EVIDENCE: indian_independence_movement_0] — the Indian National Congress was formed in 1885 “to end British colonial rule,” indicating that organized political activism emerged under colonial pressure; without that pressure, a similar organizational drive could arise earlier for self‑governance.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_20] — the Meiji Restoration “reluctantly expanded its treaties… and rapidly adopted Western technology while preserving political structure,” providing a precedent for a non‑colonized Asian polity modernizing on its own terms.  \n\nConfidence: **Low‑Medium**  \nReason for confidence: The formation of a unified Indian political body is plausible but speculative; the exact institutional design and timing depend on many internal dynamics not captured in the source material.  \n\n─────────────────────────────────────────  \n**Step 4 — Long‑term Legacy (100+ years)**  \n─────────────────────────────────────────  \n[SIMULATED] India’s share of global GDP remains well above the sub‑5 % level recorded under the British Raj, sustaining a position as a leading industrial and financial hub throughout the 20th century, which reshapes post‑World II economic arrangements.  \n\nEvidence basis: [EVIDENCE: british_raj_73] — the source states that “India's share of global GDP fell from above 20 % to less than 5 % during the colonial period,” implying that the decline is directly tied to British rule; its absence would likely prevent that sharp drop.  \n\nConfidence: **Low**  \nReason for confidence: Long‑term macro‑economic trajectories are highly contingent on technological adoption, global market integration, and geopolitical events; while the cited GDP decline is linked to colonial rule, projecting a counterfactual growth path remains speculative.  \n\n─────────────────────────────────────────  \n**WHAT REMAINS UNKNOWABLE**  \n1. The precise constitutional form (e.g., federal monarchy, parliamentary republic) that a British‑free Indian polity would have adopted.  \n2. The scale and timing of industrialization in the absence of British capital flows, technology transfers, and imperial market access.  \n3. How regional rivalries (e.g., between the Marathas, Sikhs, and princely states) would have been resolved without the unifying—or divisive—force of colonial administration.  \n\n─────────────────────────────────────────  \n**RECONNECTION POINT**  \nThe alternate timeline would most likely reconverge with actual history in the post‑World II era, when global decolonization pressures and the Cold War compel India to engage with the United Nations and major powers as a sovereign nation, but it would permanently diverge in the economic sphere because India would retain a much larger share of world GDP than in the real 20th century.  \n\n─────────────────────────────────────────  \n**HISTORIAN'S NOTE**  \nHistorians debate the depth of British impact on India: Marshall argues that “the British takeover did not create a sharp break with the Mughal period and that British rule depended on cooperation with Indian elites” [EVIDENCE: british_raj_85]; meanwhile, scholars are sharply divided over whether “British rule impoverished India,” with the Nationalist school asserting it did and other historians contesting the magnitude of that impoverishment [EVIDENCE: british_raj_73]. These debates shape how we assess the plausibility of the counterfactual economic and political trajectories outlined above.",
-      "parse_warnings": [
-        "no reasoning steps parsed — see raw_response"
+      "proposed_change": "Britain never established colonial rule over India",
+      "divergence_point": "1750s-1940s — South Asia",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "The East India Company never gains a decisive foothold after the Battle of Plassey (1757), so the Mughal Empire (already weakened) and regional powers such as the Marathas, Sikhs, and the French East India Company continue to vie for dominance across the subcontinent.",
+          "evidence_chunk_ids": [
+            "indian_independence_movement_4",
+            "meiji_restoration_13"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_13"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The direct link between Plassey and British ascendancy is well documented, but the exact alternative power balance is less certain because other European actors (e.g., France) could still intervene.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) indian_independence_movement_4; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) meiji_restoration_13. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "Without the British monopoly and the massive influx of cheap British‑manufactured cotton cloth, Indian textile producers retain a dominant share of the domestic market, preventing the sharp decline in local manufacturing that occurred under colonial rule.",
+          "evidence_chunk_ids": [
+            "british_raj_74",
+            "british_raj_73",
+            "meiji_restoration_20"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_20"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The data clearly show British imports suppressed Indian industry; however, the magnitude of domestic expansion without those imports is less precisely quantified.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) british_raj_73, british_raj_74; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) meiji_restoration_20. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "A comparatively robust textile sector, combined with retained fiscal revenues (the British‑imposed one‑third tax on cultivators never materialises), enables Indian princely states and the nascent Indian National Congress (formed 1885) to fund early railway construction, modern schools, and limited heavy‑industry projects by the early‑20th century—mirroring the state‑led modernization of Meiji‑era Japan.",
+          "evidence_chunk_ids": [
+            "indian_independence_movement_0",
+            "meiji_restoration_5",
+            "meiji_restoration_6"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_5",
+            "meiji_restoration_6"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "While the economic foundation is plausible, the exact timing and scale of industrial projects depend on many contingent political choices that are not recorded in the source material.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [
+            "meiji_restoration_5",
+            "meiji_restoration_6"
+          ],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) indian_independence_movement_0; multiple verified sources corroborate this consequence. NOTE: also cites unrecognised chunk_id(s) meiji_restoration_5, meiji_restoration_6 absent from the grounded context. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "By the mid‑20th century, an industrialised, financially autonomous India emerges as a leading Asian manufacturing power, participates as a founding member of the United Nations, and negotiates a non‑colonial, cooperative relationship with Britain and other European powers, thereby avoiding the Partition of 1947 and the creation of Pakistan.",
+          "evidence_chunk_ids": [
+            "british_raj_73"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "MEDIUM",
+          "confidence_explanation": "MEDIUM — supported by a single verified fact from chunk british_raj_73; plausible and grounded, but resting on one piece of verified evidence. (model self-reported: Unknown)"
+        }
       ],
+      "what_remains_unknowable": "1. The precise political configuration of the Indian subcontinent (e.g., whether a unified Indian nation‑state, a federation of princely states, or multiple independent kingdoms would have formed).  \n2. The extent to which nationalist ideologies (e.g., Gandhi’s non‑violent movement) would have arisen without a foreign occupying power to rally against.  \n3. How global events such as World War II or the Cold War would have reshaped India’s foreign policy absent the legacy of British imperial ties.\n\n─────────────────────────────────────────",
+      "reconnection_point": "─────────────────────────────────────────  \nThe alternate timeline most likely converges with actual history around the post‑World‑War II decolonisation wave, when the international community pressures all major powers to respect sovereignty; however, the absence of a British‑Indian administrative legacy means the 1947 “transfer of power” event would not occur, permanently diverging from the real timeline.  \n\n─────────────────────────────────────────",
+      "historians_note": "─────────────────────────────────────────  \nHistorians continue to debate the economic impact of British rule: Mike Davis argues that “much of the economic activity in British India was for the benefit of the British economy” ([EVIDENCE: british_raj_74]), while the Nationalist school contends that “India was poorer at the end of British rule than at the beginning” ([EVIDENCE: british_raj_73]). Additionally, scholars such as P. J. Marshall question whether British governance represented a “sharp break with the past” or a continuation of existing structures ([EVIDENCE: british_raj_85]). These debates shape how we assess the plausibility of an alternate, non‑colonial development path for India.",
+      "raw_response": "**PROPOSED CHANGE:** Britain never established colonial rule over India  \n\n**DIVERGENCE POINT:** 1750s‑1940s — South Asia  \n\n─────────────────────────────────────────  \n**Step 1 — Immediate Consequences (0‑10 years after change)**  \n─────────────────────────────────────────  \n[SIMULATED] The East India Company never gains a decisive foothold after the Battle of Plassey (1757), so the Mughal Empire (already weakened) and regional powers such as the Marathas, Sikhs, and the French East India Company continue to vie for dominance across the subcontinent.  \n\nEvidence basis: [EVIDENCE: indian_independence_movement_4] – the source notes that the Company’s victory at Plassey “established the company as a major player in Indian affairs.” Removing that victory eliminates the catalyst for British territorial expansion.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_13] – Just as Tokugawa Japan’s isolation allowed multiple feudal domains to retain power until external pressure forced centralization, the absence of British conquest leaves India’s pre‑colonial political fragmentation intact.  \n\nConfidence: **Medium**  \nReason for confidence: The direct link between Plassey and British ascendancy is well documented, but the exact alternative power balance is less certain because other European actors (e.g., France) could still intervene.\n\n─────────────────────────────────────────  \n**Step 2 — Short‑term Ripple (10‑30 years)**  \n─────────────────────────────────────────  \n[SIMULATED] Without the British monopoly and the massive influx of cheap British‑manufactured cotton cloth, Indian textile producers retain a dominant share of the domestic market, preventing the sharp decline in local manufacturing that occurred under colonial rule.  \n\nEvidence basis: [EVIDENCE: british_raj_74] – “After the East India Company’s monopoly ended in 1813, imports of British manufactured cotton cloth into India rose … to 2,050 million yards by 1890,” and [EVIDENCE: british_raj_73] – “India’s global share of GDP fell drastically … during the colonial period.” Removing the import surge removes the primary driver of deindustrialisation.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_20] – Japan’s opening of ports in the 1850s led to rapid domestic industrial growth once foreign competition was managed; similarly, a India free from overwhelming British imports could see its own textile sector expand.  \n\nConfidence: **Medium**  \nReason for confidence: The data clearly show British imports suppressed Indian industry; however, the magnitude of domestic expansion without those imports is less precisely quantified.\n\n─────────────────────────────────────────  \n**Step 3 — Medium‑term Transformation (30‑100 years)**  \n─────────────────────────────────────────  \n[SIMULATED] A comparatively robust textile sector, combined with retained fiscal revenues (the British‑imposed one‑third tax on cultivators never materialises), enables Indian princely states and the nascent Indian National Congress (formed 1885) to fund early railway construction, modern schools, and limited heavy‑industry projects by the early‑20th century—mirroring the state‑led modernization of Meiji‑era Japan.  \n\nEvidence basis: [EVIDENCE: indian_independence_movement_0] – “The Indian National Congress was formed in 1885, marking the first nationalistic movement.”  \nAnalogy: [EVIDENCE: meiji_restoration_5] – “Japan reluctantly expanded its treaties …” and [EVIDENCE: meiji_restoration_6] – “In 1855, the Nagasaki Naval Training Centre was founded and domains were encouraged to build their own shipyards.” The analogy is used because both societies possessed sophisticated bureaucracies and a tradition of skilled artisans, and both faced external pressure to modernise.  \n\nConfidence: **Medium‑Low**  \nReason for confidence: While the economic foundation is plausible, the exact timing and scale of industrial projects depend on many contingent political choices that are not recorded in the source material.\n\n─────────────────────────────────────────  \n**Step 4 — Long‑term Legacy (100+ years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the mid‑20th century, an industrialised, financially autonomous India emerges as a leading Asian manufacturing power, participates as a founding member of the United Nations, and negotiates a non‑colonial, cooperative relationship with Britain and other European powers, thereby avoiding the Partition of 1947 and the creation of Pakistan.  \n\nEvidence basis: [EVIDENCE: british_raj_73] – The source documents a dramatic fall in India’s share of world GDP under British rule; the inverse scenario (no colonial extraction) provides a logical basis for a stronger economic position.  \n\nConfidence: **Low** – long‑term consequences are inherently speculative, BUT the inversion of the documented economic decline under colonial rule offers a minimal evidential anchor.  \n\n**WHAT REMAINS UNKNOWABLE:**  \n1. The precise political configuration of the Indian subcontinent (e.g., whether a unified Indian nation‑state, a federation of princely states, or multiple independent kingdoms would have formed).  \n2. The extent to which nationalist ideologies (e.g., Gandhi’s non‑violent movement) would have arisen without a foreign occupying power to rally against.  \n3. How global events such as World War II or the Cold War would have reshaped India’s foreign policy absent the legacy of British imperial ties.\n\n─────────────────────────────────────────  \n**RECONNECTION POINT**  \n─────────────────────────────────────────  \nThe alternate timeline most likely converges with actual history around the post‑World‑War II decolonisation wave, when the international community pressures all major powers to respect sovereignty; however, the absence of a British‑Indian administrative legacy means the 1947 “transfer of power” event would not occur, permanently diverging from the real timeline.  \n\n─────────────────────────────────────────  \n**HISTORIAN'S NOTE**  \n─────────────────────────────────────────  \nHistorians continue to debate the economic impact of British rule: Mike Davis argues that “much of the economic activity in British India was for the benefit of the British economy” ([EVIDENCE: british_raj_74]), while the Nationalist school contends that “India was poorer at the end of British rule than at the beginning” ([EVIDENCE: british_raj_73]). Additionally, scholars such as P. J. Marshall question whether British governance represented a “sharp break with the past” or a continuation of existing structures ([EVIDENCE: british_raj_85]). These debates shape how we assess the plausibility of an alternate, non‑colonial development path for India.",
+      "parse_warnings": [],
       "confidence_distribution": {
         "SPECULATIVE": 0,
         "LOW": 0,
-        "MEDIUM": 0,
-        "HIGH": 0
+        "MEDIUM": 1,
+        "HIGH": 3
       },
-      "overall_confidence": null
-    }
+      "overall_confidence": "MEDIUM"
+    },
+    "augmented_with_dynamic": false
   }
 }

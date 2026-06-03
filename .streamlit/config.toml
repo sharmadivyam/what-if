@@ -4,3 +4,9 @@
 # torch.classes watcher warning are silenced specifically in frontend/app.py
 # (warnings filters + a targeted logger level), not by hiding everything here.
 level = "info"
+
+[client]
+# Hide the developer hamburger menu (Rerun / Clear cache / "Made with Streamlit")
+# on the deployed public app. "minimal" keeps the small status indicator; use
+# "viewer" to hide the menu entirely.
+toolbarMode = "minimal"

@@ -223,6 +223,9 @@ _CSS = Template(
              margin-top: 1.1rem; letter-spacing: 0.05em; }
     .note { text-align: center; color: $muted; font-family:'Lora',serif; font-style: italic;
             font-size: 0.82rem; margin-top: 0.3rem; }
+    .modelnote { text-align: center; color: $gold_text; font-family:'Inter',sans-serif;
+                 font-size: 0.8rem; line-height: 1.5; margin: 0.8rem auto 0; max-width: 460px;
+                 border-top: 1px solid $hair; padding-top: 0.7rem; }
 
     /* ---- results ---- */
     .q-title { font-family: 'Playfair Display', serif; font-size: 2.0rem; font-weight: 700;
@@ -369,8 +372,60 @@ def _strip_sim(text: str) -> str:
     return text
 
 
+# A line that STARTS (after optional whitespace / ** bold markers) with one of
+# these LLM-scaffolding labels is dropped wholesale — label + its inline content.
+_SCAFFOLD_LABEL_RE = re.compile(
+    r'^\s*\*{0,2}\s*'
+    r'(?:Evidence\s+basis'
+    r'|Analog(?:y|ies)(?:\s*\(if\s+applicable\))?'
+    r'|Reason\s+for\s+confidence'
+    r'|Confidence)'
+    r'\s*\*{0,2}\s*:',
+    re.IGNORECASE,
+)
+# A markdown horizontal-rule / separator line, e.g. "---".
+_HR_RE = re.compile(r'^\s*-{3,}\s*$')
+# Defensive: any stray "[EVIDENCE: ...]" tag left inline.
+_EVIDENCE_TAG_RE = re.compile(r'\s*\[EVIDENCE:[^\]]*\]', re.IGNORECASE)
+
+
+def _strip_scaffolding(text: str) -> str:
+    """Remove LLM scaffolding meta-lines from a reasoning step for display.
+
+    Drops whole lines that begin with an 'Evidence basis:', 'Analogy …:',
+    'Confidence:' or 'Reason for confidence:' label (with or without ** bold **
+    markers, including any inline [EVIDENCE: …] tag) plus any '---' separators,
+    keeping only the narrative prose. Render-time only — the stored JSON and the
+    pipeline output are untouched. Robust: an absent label is simply not matched,
+    and if stripping would empty the step the original text is returned. Never
+    raises.
+    """
+    if not text:
+        return text
+    kept = [
+        line.rstrip()
+        for line in text.splitlines()
+        if not _SCAFFOLD_LABEL_RE.match(line) and not _HR_RE.match(line)
+    ]
+    cleaned = "\n".join(kept)
+    cleaned = _EVIDENCE_TAG_RE.sub("", cleaned)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned).strip()
+    return cleaned or text.strip()
+
+
 def _go(question: str) -> None:
+    # Rerun immediately so main() picks up `pending` THIS cycle. Without it, the
+    # chips/search/history set `pending` AFTER main() already checked it (they
+    # render below that check), so it took a second click to register.
     st.session_state.pending = question
+    st.rerun()
+
+
+def _go_home() -> None:
+    """Return to the landing page (clears the shown result; keeps history)."""
+    st.session_state.result = None
+    st.session_state.pop("pending", None)
+    st.rerun()
 
 
 # --- Navbar ------------------------------------------------------------------
@@ -403,9 +458,7 @@ def render_navbar(theme: str) -> None:
 def render_sidebar() -> None:
     with st.sidebar:
         if st.button("✦  New question", key="newq", use_container_width=True):
-            st.session_state.result = None
-            st.session_state.pop("pending", None)
-            st.rerun()
+            _go_home()
 
         st.markdown('<div class="sb-label">Recent</div>', unsafe_allow_html=True)
         history = st.session_state.get("history", [])
@@ -477,7 +530,7 @@ def render_landing() -> None:
 # --- Loading (STATE 2) -------------------------------------------------------
 
 
-def _loading_html(done_idx: int, elapsed: float) -> str:
+def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) -> str:
     rows = []
     for i, (_, label) in enumerate(STAGES):
         if i < done_idx:
@@ -489,10 +542,18 @@ def _loading_html(done_idx: int, elapsed: float) -> str:
         check = "  ✓" if i < done_idx else ""
         rows.append(f'<div class="stage {cls}"><span class="ic">{ic}</span>{label}{check}</div>')
     mm, ss = divmod(int(elapsed), 60)
+    # First live run of the session also loads the local embedding model (~420 MB)
+    # during the search stage — surface that so the wait isn't a silent hang.
+    model_note = (
+        '<div class="modelnote">⏳ First question also loads the local search model '
+        '(~30–60s, one-time) — later questions skip this.</div>'
+        if show_model_note
+        else ""
+    )
     return (
         f'<div class="load-wrap">{"".join(rows)}'
         f'<div class="timer">elapsed {mm:02d}:{ss:02d}</div>'
-        f'<div class="note">{LOADING_NOTE}</div></div>'
+        f'<div class="note">{LOADING_NOTE}</div>{model_note}</div>'
     )
 
 
@@ -566,8 +627,11 @@ def render_loading() -> None:
     if not job:
         return
     finished = _drain_events(job)
+    # Show the one-time model-load note until a live run has completed (which
+    # means the embedding model is now loaded in-process for the rest of the run).
+    show_model_note = not st.session_state.get("_model_warmed")
     st.markdown(
-        _loading_html(job["done_idx"], time.monotonic() - job["start"]),
+        _loading_html(job["done_idx"], time.monotonic() - job["start"], show_model_note),
         unsafe_allow_html=True,
     )
     if finished:
@@ -576,6 +640,18 @@ def render_loading() -> None:
             {"question": job["question"], "status": "error", "timings": {},
              "error": "RuntimeError: pipeline returned no state"},
         )
+        st.session_state["_model_warmed"] = True  # a live run ran → model is loaded
+
+        # Precompute the 🌐 provenance flag now, while the embedding model is
+        # already loaded, so neither this live render nor a future cache hit pays
+        # for the ChromaDB lookup (which would re-trigger the model load).
+        try:
+            from output.report_generator import _used_dynamic_sources
+
+            state["augmented_with_dynamic"] = _used_dynamic_sources(state.get("grounded"))
+        except Exception:  # noqa: BLE001 — provenance is best-effort, never fatal
+            state["augmented_with_dynamic"] = False
+
         # Cache only successful runs — a transient 429/error must not be frozen
         # into the cache; the next ask should re-run it live.
         if state.get("status") == "ok":
@@ -595,12 +671,17 @@ def render_results(question: str, state: dict, theme: str) -> None:
     report = generate_report(
         scored=state.get("scored"), grounded=grounded,
         error=state.get("error"), status=status, timings=state.get("timings"),
+        # Pass the precomputed flag (set on cache hits and after a live run) so
+        # report generation skips the ChromaDB provenance lookup that would
+        # otherwise load the embedding model and stall an "instant" cache hit.
+        # None for partial/error states → generate_report derives it as before.
+        augmented_with_dynamic=state.get("augmented_with_dynamic"),
     )
     source_map = dict(getattr(grounded, "source_map", {}) or {}) if grounded else {}
 
     st.markdown(f'<div class="q-title">{_esc(question)}</div>', unsafe_allow_html=True)
     if state.get("from_cache"):
-        st.markdown('<div class="cache-badge">⚡ cached</div>', unsafe_allow_html=True)
+        st.markdown('<div class="cache-badge">cached</div>', unsafe_allow_html=True)
 
     if status == "error":
         st.markdown(
@@ -649,19 +730,16 @@ def _render_timeline(steps) -> None:
     items = []
     for s in steps:
         key = _lvl_key(s.confidence_level)
-        chips = "".join(
-            f'<span class="chip-ev">{_esc(c)}</span>' for c in s.evidence_chunk_ids
-        ) or '<span class="chip-ev">ungrounded</span>'
-        for bad in s.unknown_evidence_ids:
-            chips += f'<span class="chip-ev chip-bad">⚠ {_esc(bad)}</span>'
+        # Clean narrative card: time horizon + a small confidence pill + the
+        # consequence. The per-step evidence chips and the confidence-reason
+        # explanation are intentionally omitted here (citations live in the
+        # Evidence section below).
         items.append(
             f'<div class="tl-item"><span class="tl-dot bg-{key}"></span>'
             f'<div class="tl-card bd-left-{key}">'
             f'<div class="tl-top"><span class="tl-horizon">{_esc(s.time_horizon)}</span>'
             f'{_cbadge(s.confidence_level)}</div>'
-            f'<div class="tl-body">{_esc(_strip_sim(s.consequence))}</div>'
-            f'<div class="tl-foot"><b>Based on:</b> {chips}<br>'
-            f'<span style="opacity:0.9;">{_esc(s.confidence_explanation)}</span></div>'
+            f'<div class="tl-body">{_esc(_strip_scaffolding(_strip_sim(s.consequence)))}</div>'
             f'</div></div>'
         )
     st.markdown('<div class="timeline">' + "".join(items) + "</div>", unsafe_allow_html=True)
@@ -693,10 +771,15 @@ def _render_evidence(facts, source_map: dict) -> None:
     rows = []
     for f in facts:
         url = source_map.get(f.source_chunk_id, "")
-        link = f' · <a href="{_esc(url)}" target="_blank">source ↗</a>' if url else ""
+        cid = _esc(f.source_chunk_id)
+        # The citation itself is the link — click a [chunk_id] to open its source
+        # Wikipedia article. Falls back to plain text when no URL is on record.
+        cite = (
+            f'<a href="{_esc(url)}" target="_blank">[{cid}] ↗</a>' if url else f"[{cid}]"
+        )
         rows.append(
             f'<div class="ev-item"><span class="ev-claim">{_esc(f.claim)}</span><br>'
-            f'<span class="ev-meta">[{_esc(f.source_chunk_id)}] · {_esc(f.source_title)}{link}</span></div>'
+            f'<span class="ev-meta">{cite} · {_esc(f.source_title)}</span></div>'
         )
     st.markdown(
         f'<details class="evidence"><summary>📜 View {n} verified fact{"s" if n != 1 else ""} '
@@ -755,6 +838,10 @@ def main() -> None:
         render_search("q_top", "Ask another counterfactual…")
         render_loading()
     elif st.session_state.get("result") is not None:
+        back, _spacer = st.columns([1, 5], vertical_alignment="center")
+        with back:
+            if st.button("← Home", key="back_home", use_container_width=True):
+                _go_home()
         render_search("q_top", "Ask another counterfactual…")
         q, state = st.session_state["result"]
         render_results(q, state, theme)  # STATE 3 — results

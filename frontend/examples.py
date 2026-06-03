@@ -22,15 +22,15 @@ entry, so the strongest demos always stay on top.
 from __future__ import annotations
 
 EXAMPLES: list[str] = [
-    # --- Strongest pre-warmed answers (full ~4-step reasoning chains) ---------
+    # --- Full ~4-step pre-warmed answers (strongest demos) --------------------
     "What if Constantinople had not fallen to the Ottomans in 1453?",
     "What if the Library of Alexandria had never been destroyed?",
     "What if the Cuban Missile Crisis had escalated into nuclear war?",
     "What if the Industrial Revolution had begun in China instead of Britain?",
     "What if Genghis Khan had died in childhood before unifying the Mongols?",
-    # --- Thinner pre-warmed answers (1-step, then 0-step) — improvable later ---
-    "What if the Mughal Empire had industrialized before the British arrived?",
     "What if Britain had never colonized India?",
     "What if the Western Roman Empire had never fallen?",
     "What if the Ottoman Empire had survived past 1922?",
+    # --- Thinner pre-warmed answer (1-step) — improvable via rewarm_thin ------
+    "What if the Mughal Empire had industrialized before the British arrived?",
 ]

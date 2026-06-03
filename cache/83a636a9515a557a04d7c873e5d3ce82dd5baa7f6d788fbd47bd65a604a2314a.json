@@ -391,6 +391,7 @@
         "HIGH": 4
       },
       "overall_confidence": "HIGH"
-    }
+    },
+    "augmented_with_dynamic": false
   }
 }
