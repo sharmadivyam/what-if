@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "normalized_question": "what if genghis khan had died in childhood before unifying the mongols",
+  "state": {
+    "question": "What if Genghis Khan had died in childhood before unifying the Mongols?",
+    "status": "ok",
+    "error": null,
+    "failed_node": null,
+    "timings": {
+      "understand_query": 0.7179999999998472,
+      "retrieve": 0.5780000000004293,
+      "ground": 3.155999999999949,
+      "reason": 1.8289999999997235,
+      "score": 0.015000000000327418,
+      "_total": 6.311999999999898
+    },
+    "grounded": {
+      "verified_facts": [
+        {
+          "claim": "The predecessors of the Mongol tribe were first recorded in the late tenth century as they migrated from eastern Manchuria to the Mongolian Plateau, settling southeast of Lake Baikal near Burkhan Khaldun.",
+          "source_chunk_id": "mongol_empire_5",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk states this as a recorded historical fact."
+        },
+        {
+          "claim": "Yesugei fathered several children, including Temüjin (the future Genghis Khan), who was born around 1162.",
+          "source_chunk_id": "mongol_empire_5",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk directly provides the birth date and parentage."
+        },
+        {
+          "claim": "A council proclaimed Temüjin, titled Genghis Khan, as ruler of all Mongols in 1206.",
+          "source_chunk_id": "mongol_empire_1",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk explicitly states the council's proclamation and date."
+        },
+        {
+          "claim": "The empire began to split due to succession wars among Genghis Khan's grandchildren over the royal line.",
+          "source_chunk_id": "mongol_empire_1",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk describes succession disputes as cause of fragmentation."
+        },
+        {
+          "claim": "At a kurultai in 1206, shaman Teb Tenggeri proclaimed Temüjin khan of the \"Great Mongol Nation\".",
+          "source_chunk_id": "mongol_empire_8",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk provides the event, date, and proclamation."
+        },
+        {
+          "claim": "Genghis Khan forbade the selling of women, theft, fighting among Mongols, and hunting of animals during the breeding season.",
+          "source_chunk_id": "mongol_empire_8",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk lists these prohibitions as part of his law code."
+        },
+        {
+          "claim": "Kublai Khan died in 1294 after conquering all of China and establishing the Yuan dynasty.",
+          "source_chunk_id": "mongol_empire_41",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk states Kublai's death year and achievements as fact."
+        },
+        {
+          "claim": "After Kaidu's death, Chagatai ruler Duwa persuaded the Ögedeids to submit to Temür Khan, leading to a 1304 peace treaty that accepted Yuan supremacy.",
+          "source_chunk_id": "mongol_empire_41",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk details the peace proposal, submission, and treaty year."
+        },
+        {
+          "claim": "Following Möngke Khan's death in 1259, brothers Ariq Böke and Kublai Khan were elected by rival kurultai councils and fought each other in the Toluid Civil War (1260–1264).",
+          "source_chunk_id": "mongol_empire_2",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk directly reports the succession conflict and war dates."
+        },
+        {
+          "claim": "By Kublai's death in 1294, the empire had fractured into four separate khanates: the Golden Horde, the Chagatai Khanate, the Ilkhanate, and the Yuan dynasty.",
+          "source_chunk_id": "mongol_empire_2",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk lists the four khanates as a factual outcome."
+        },
+        {
+          "claim": "The Mongol Empire was the largest contiguous empire in history.",
+          "source_chunk_id": "mongol_empire_0",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk asserts this as a factual superlative."
+        },
+        {
+          "claim": "At its height, the empire stretched from the Sea of Japan to Eastern Europe, north into Siberia, south into the Indian subcontinent, and west to the Levant and the Carpathian Mountains.",
+          "source_chunk_id": "mongol_empire_0",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk provides a detailed geographic extent as fact."
+        },
+        {
+          "claim": "Mongol military organization was based on a decimal system, grouping soldiers into units of ten, hundred, thousand, and ten‑thousand.",
+          "source_chunk_id": "mongol_empire_54",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk describes the decimal structure as factual."
+        }
+      ],
+      "debated_points": [
+        {
+          "claim": "The population of the Iranian plateau may have lost up to three‑quarters of its people, possibly 10 to 15 million, due to disease and famine during the Mongol invasions.",
+          "source_chunk_id": "mongol_empire_73",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk uses \"possibly\" and indicates uncertainty about the magnitude."
+        },
+        {
+          "claim": "About half of the Russian population may have died during the Mongol invasion.",
+          "source_chunk_id": "mongol_empire_73",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk qualifies the death toll with \"may have\", indicating debate."
+        },
+        {
+          "claim": "The number of Mongol troops mustered in 1206 was at least 105,000, though the exact figure is debated among scholars.",
+          "source_chunk_id": "mongol_empire_54",
+          "source_title": "Mongol Empire",
+          "confidence_basis": "Chunk explicitly mentions scholarly debate over troop numbers."
+        }
+      ],
+      "background_context": [],
+      "analogies": [
+        {
+          "claim": "Attila died in 453 and his empire crumbled as his followers fought for power.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_90",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Leader's death leading to fragmentation mirrors a scenario where Genghis Khan's early death could cause Mongol disintegration."
+        },
+        {
+          "claim": "Attila's people fractured after his death in 453.",
+          "source_chunk_id": "byzantine_empire_7",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Shows immediate splintering of a unified group after the death of its unifying leader."
+        },
+        {
+          "claim": "An outbreak of disease, lack of supplies, and external pressures caused Attila to halt his Italian campaign.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_90",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Demonstrates how logistical and health crises can stop a major invasion, comparable to potential early cessation of Mongol expansion."
+        },
+        {
+          "claim": "In 444 the Huns were united under Attila.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_89",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Illustrates a single strong leader achieving unification of disparate tribes, analogous to Genghis Khan's unification of the Mongols."
+        },
+        {
+          "claim": "Attila's power rested partly on his ability to reward favored followers with precious metals.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_89",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Highlights the role of patronage in maintaining loyalty, relevant to how Genghis Khan secured his followers."
+        },
+        {
+          "claim": "The combined forces of Western barbarians stopped Attila's invasion at the Battle of the Catalaunian Plains.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_89",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Shows a coalition can halt a powerful invader, comparable to potential resistance to Mongol advances."
+        },
+        {
+          "claim": "After Attila's death, Romans faced insecurity and retreat on the Upper Danube.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_90",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Reflects regional instability following the collapse of a dominant power."
+        },
+        {
+          "claim": "Romans were without adequate forces; barbarians inflicted extortion, murder, kidnapping, and plunder on Romans and each other.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_90",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Depicts chaos and lawlessness after central authority weakens, similar to a possible post‑Genghis power vacuum."
+        },
+        {
+          "claim": "When public funding for soldiers ceased, the boundary wall and its garrisons were abandoned together.",
+          "source_chunk_id": "fall_of_the_western_roman_empire_90",
+          "source_title": "Fall of the Western Roman Empire",
+          "confidence_basis": "Illustrates loss of defensive infrastructure after state support ends, relevant to potential decline of Mongol frontier defenses."
+        },
+        {
+          "claim": "Attila's Huns ravaged the Balkans, leading the Eastern empire to pay a large tribute.",
+          "source_chunk_id": "byzantine_empire_7",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Shows a dominant nomadic force extracting tribute, comparable to Mongol tribute demands."
+        },
+        {
+          "claim": "Odoacer deposed Romulus Augustulus in 476 and, after Julius Nepos's assassination in 480, abolished the office of Western emperor.",
+          "source_chunk_id": "byzantine_empire_7",
+          "source_title": "Byzantine Empire",
+          "confidence_basis": "Demonstrates the final collapse of a political structure after a series of leadership disruptions."
+        }
+      ],
+      "source_map": {
+        "mongol_empire_5": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_1": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_8": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_41": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_2": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_73": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_0": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "mongol_empire_54": "https://en.wikipedia.org/wiki/Mongol_Empire",
+        "fall_of_the_western_roman_empire_90": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "fall_of_the_western_roman_empire_89": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+        "byzantine_empire_7": "https://en.wikipedia.org/wiki/Byzantine_Empire"
+      }
+    },
+    "scored": {
+      "proposed_change": "Genghis Khan dies in childhood, preventing the unification of the Mongol tribes",
+      "divergence_point": "1100s-1200s — Central Asia",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "The death of the young Temüjin eliminates the charismatic leader who later rallied the disparate Mongol clans, so no kurultai convenes in 1206 and the Mongol tribes remain politically fragmented.",
+          "evidence_chunk_ids": [
+            "mongol_empire_5",
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "analogy_chunk_ids": [
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The historical record directly ties the 1206 council to Temüjin’s survival; the Attila analogy is a well‑documented parallel.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) mongol_empire_5; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) fall_of_the_western_roman_empire_90. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "Without a unified Mongol polity, large‑scale campaigns against the Jin dynasty, Western Xia, and the Khwarezmian Empire never occur; these states continue to develop internally, and trade routes across the steppe remain insecure but locally managed by smaller clan networks.",
+          "evidence_chunk_ids": [
+            "mongol_empire_54",
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "analogy_chunk_ids": [
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The necessity of central leadership for massive campaigns is logical, but we lack direct sources on what specific alternative leaders might have arisen.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "MEDIUM",
+          "confidence_explanation": "MEDIUM — supported by a single verified fact from chunk mongol_empire_54; plausible and grounded, but resting on one piece of verified evidence. Aided by analogy from chunk(s) fall_of_the_western_roman_empire_90. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "Over the next century the steppe remains a patchwork of competing clans (e.g., Kerait, Naiman, Merkits). No empire comparable to the historical Mongol Empire emerges; consequently the “Pax Mongolica” never materializes, slowing the diffusion of technologies (paper, gunpowder) between East and West and keeping the Silk Road more vulnerable to local warlords.",
+          "evidence_chunk_ids": [
+            "mongol_empire_2",
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "analogy_chunk_ids": [
+            "fall_of_the_western_roman_empire_90"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "While the lack of a Mongol empire plausibly reduces steppe stability, the exact scale of technological slowdown is uncertain.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) mongol_empire_2; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) fall_of_the_western_roman_empire_90. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "By the 14th‑15th centuries, Eurasia follows a markedly different trajectory:  \n* China remains under the Southern Song (or a later native dynasty) rather than the Yuan; the Mongol‑derived bureaucratic innovations never spread to the Chinese court.  \n* The Russian principalities avoid the Mongol “Golden Horde” domination, leading to an earlier consolidation of Muscovy but without the tributary‑tax structures imposed by the Horde.  \n* The Ilkhanate never forms, so Persia experiences a more continuous Islamic political development, possibly strengthening the Timurid Empire’s later rise.  \n* European maritime powers (Venice, Genoa) retain greater reliance on Mediterranean trade, delaying the shift toward overland‑Asian commerce that the Mongol‑secured routes encouraged.",
+          "evidence_chunk_ids": [
+            "mongol_empire_2"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) mongol_empire_2; multiple verified sources corroborate this consequence. (model self-reported: Unknown)"
+        }
+      ],
+      "what_remains_unknowable": "1. Which, if any, individual tribal leader might eventually achieve a unification comparable to Genghis Khan’s—historical records give no clue about alternative charismatic figures.  \n2. The precise demographic impact on the Iranian plateau and Russian heartland without Mongol‑induced warfare and disease (debated figures range widely).  \n3. The exact timing and nature of technological transfers (e.g., gunpowder to Europe) that were accelerated by the Pax Mongolica; without that conduit, the diffusion pattern is indeterminate.  \n\n─────────────────────────────────────────",
+      "reconnection_point": "─────────────────────────────────────────  \nThe alternate timeline likely reconverges with actual history around the rise of Timur (late 14th c.), because Timur’s own campaigns exploited the power vacuum left by the Mongol fragmentation; however, his empire would develop without the legacy of a preceding Mongol state, producing a distinct political and cultural foundation.  \n\n─────────────────────────────────────────",
+      "historians_note": "─────────────────────────────────────────  \nScholars still debate the scale of Mongol‑induced demographic collapse (e.g., up to three‑quarters of the Iranian plateau’s population, see [EVIDENCE: mongol_empire_73]) and the exact size of Genghis’s early army (at least 105,000, see [EVIDENCE: mongol_empire_54]). These debates are relevant because they illustrate how contingent the empire’s expansion was on both leadership and military capacity—factors that become central in assessing the counterfactual where Genghis Khan never lived.",
+      "raw_response": "**PROPOSED CHANGE:** Genghis Khan dies in childhood, preventing the unification of the Mongol tribes  \n\n**DIVERGENCE POINT:** 1100s‑1200s — Central Asia  \n\n─────────────────────────────────────────  \n**Step 1 — Immediate Consequences (0‑10 years after change)**  \n─────────────────────────────────────────  \n[SIMULATED] The death of the young Temüjin eliminates the charismatic leader who later rallied the disparate Mongol clans, so no kurultai convenes in 1206 and the Mongol tribes remain politically fragmented.  \n\nEvidence basis: [EVIDENCE: mongol_empire_5] — Yesugei’s son Temüjin (future Genghis Khan) was born c. 1162; his later election in 1206 is recorded, implying his survival was essential for that event.  \n\nAnalogy (if applicable): [EVIDENCE: fall_of_the_western_roman_empire_90] — After Attila’s death in 453, the Hunnic confederation fractured, showing how the loss of a single unifying figure can cause immediate disintegration of a tribal empire.  \n\nConfidence: **High**  \nReason for confidence: The historical record directly ties the 1206 council to Temüjin’s survival; the Attila analogy is a well‑documented parallel.  \n\n─────────────────────────────────────────  \n**Step 2 — Short‑term Ripple (10‑30 years)**  \n─────────────────────────────────────────  \n[SIMULATED] Without a unified Mongol polity, large‑scale campaigns against the Jin dynasty, Western Xia, and the Khwarezmian Empire never occur; these states continue to develop internally, and trade routes across the steppe remain insecure but locally managed by smaller clan networks.  \n\nEvidence basis: [EVIDENCE: mongol_empire_54] — Mongol military organization (decimal units) required a central command to field forces of >100,000; without such command, coordinated invasions are improbable.  \n\nAnalogy (if applicable): [EVIDENCE: fall_of_the_western_roman_empire_90] — After Attila’s death, the Romans faced no unified Hunnic threat, allowing regional powers to pursue their own agendas.  \n\nConfidence: **Medium**  \nReason for confidence: The necessity of central leadership for massive campaigns is logical, but we lack direct sources on what specific alternative leaders might have arisen.  \n\n─────────────────────────────────────────  \n**Step 3 — Medium‑term Transformation (30‑100 years)**  \n─────────────────────────────────────────  \n[SIMULATED] Over the next century the steppe remains a patchwork of competing clans (e.g., Kerait, Naiman, Merkits). No empire comparable to the historical Mongol Empire emerges; consequently the “Pax Mongolica” never materializes, slowing the diffusion of technologies (paper, gunpowder) between East and West and keeping the Silk Road more vulnerable to local warlords.  \n\nEvidence basis: [EVIDENCE: mongol_empire_2] — The real Mongol Empire later fractured into four khanates; the absence of the original unifying conquest suggests those successor states would not form.  \n\nAnalogy (if applicable): [EVIDENCE: fall_of_the_western_roman_empire_90] — The post‑Attila period saw no single dominant power to secure trade routes, leading to fragmented security and localized disruptions.  \n\nConfidence: **Medium‑Low**  \nReason for confidence: While the lack of a Mongol empire plausibly reduces steppe stability, the exact scale of technological slowdown is uncertain.  \n\n─────────────────────────────────────────  \n**Step 4 — Long‑term Legacy (100+ years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the 14th‑15th centuries, Eurasia follows a markedly different trajectory:  \n* China remains under the Southern Song (or a later native dynasty) rather than the Yuan; the Mongol‑derived bureaucratic innovations never spread to the Chinese court.  \n* The Russian principalities avoid the Mongol “Golden Horde” domination, leading to an earlier consolidation of Muscovy but without the tributary‑tax structures imposed by the Horde.  \n* The Ilkhanate never forms, so Persia experiences a more continuous Islamic political development, possibly strengthening the Timurid Empire’s later rise.  \n* European maritime powers (Venice, Genoa) retain greater reliance on Mediterranean trade, delaying the shift toward overland‑Asian commerce that the Mongol‑secured routes encouraged.  \n\nEvidence basis: [EVIDENCE: mongol_empire_2] — The historical empire’s fragmentation into khanates (Golden Horde, Chagatai, Ilkhanate, Yuan) is a direct result of Genghis’s conquests; removing those conquests eliminates the institutional basis for those states.  \n\nConfidence: **Low** — long‑term consequences are inherently speculative, BUT the cited source shows the structural dependence of later khanates on the original empire.  \n\n**WHAT REMAINS UNKNOWABLE:**  \n1. Which, if any, individual tribal leader might eventually achieve a unification comparable to Genghis Khan’s—historical records give no clue about alternative charismatic figures.  \n2. The precise demographic impact on the Iranian plateau and Russian heartland without Mongol‑induced warfare and disease (debated figures range widely).  \n3. The exact timing and nature of technological transfers (e.g., gunpowder to Europe) that were accelerated by the Pax Mongolica; without that conduit, the diffusion pattern is indeterminate.  \n\n─────────────────────────────────────────  \n**RECONNECTION POINT**  \n─────────────────────────────────────────  \nThe alternate timeline likely reconverges with actual history around the rise of Timur (late 14th c.), because Timur’s own campaigns exploited the power vacuum left by the Mongol fragmentation; however, his empire would develop without the legacy of a preceding Mongol state, producing a distinct political and cultural foundation.  \n\n─────────────────────────────────────────  \n**HISTORIAN'S NOTE**  \n─────────────────────────────────────────  \nScholars still debate the scale of Mongol‑induced demographic collapse (e.g., up to three‑quarters of the Iranian plateau’s population, see [EVIDENCE: mongol_empire_73]) and the exact size of Genghis’s early army (at least 105,000, see [EVIDENCE: mongol_empire_54]). These debates are relevant because they illustrate how contingent the empire’s expansion was on both leadership and military capacity—factors that become central in assessing the counterfactual where Genghis Khan never lived.",
+      "parse_warnings": [],
+      "confidence_distribution": {
+        "SPECULATIVE": 0,
+        "LOW": 0,
+        "MEDIUM": 1,
+        "HIGH": 3
+      },
+      "overall_confidence": "MEDIUM"
+    }
+  }
+}

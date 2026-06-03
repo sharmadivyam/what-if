@@ -60,6 +60,8 @@ if str(_PROJECT_ROOT) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
+import cache  # noqa: E402
+from frontend.examples import EXAMPLES  # noqa: E402
 from output.report_generator import generate_report  # noqa: E402
 from pipeline.historios_pipeline import run as run_pipeline  # noqa: E402
 
@@ -69,6 +71,10 @@ APP_TAGLINE = "Counterfactual History Engine"
 GITHUB_URL = "https://github.com/"  # TODO: point at the real repository
 DISCLAIMER = "Simulated consequences are AI-generated inferences, not historical fact."
 LOADING_NOTE = "This takes ~2 minutes on the free tier — worth the wait."
+CACHE_NOTE = (
+    "Example questions return instantly from cache; new questions run the full "
+    "pipeline live (~2 min, ~4 LLM calls) and may be slow because API budget is limited."
+)
 
 ABOUT_TEXT = (
     "**WHAT IF?** answers historical *what-if* questions. For any counterfactual it "
@@ -77,15 +83,6 @@ ABOUT_TEXT = (
     "every simulated claim — keeping what's verified strictly separate from what's "
     "simulated."
 )
-
-EXAMPLES = [
-    "What if the Mughal Empire had industrialized before the British arrived?",
-    "What if Britain had never colonized India?",
-    "What if the Western Roman Empire had never fallen?",
-    "What if Genghis Khan had died in childhood before unifying the Mongols?",
-    "What if the Cuban Missile Crisis had escalated into nuclear war?",
-    "What if the Ottoman Empire had survived past 1922?",
-]
 
 HOW_IT_WORKS = [
     ("Ⅰ", "Retrieves verified facts", "Searches a cited historical corpus for grounded context."),
@@ -291,6 +288,13 @@ _CSS = Template(
     .notice.err { border-left-color:$spec; }
     .disclaimer { color:$muted; font-family:'Inter',sans-serif; font-size:0.74rem; border-top:1px solid $border;
                   margin-top:2.2rem; padding-top:0.9rem; font-style:italic; }
+
+    /* ---- cache: instant-replay badge + input note ---- */
+    .cache-badge { display:inline-block; font-family:'Inter',sans-serif; font-weight:600;
+                   font-size:0.72rem; letter-spacing:0.06em; color:$gold_text; background:$panel;
+                   border:1px solid $gold; border-radius:999px; padding:0.15rem 0.7rem; margin:0 0 0.7rem; }
+    .cache-note { text-align:center; color:$muted; font-family:'Lora',serif; font-style:italic;
+                  font-size:0.82rem; line-height:1.5; max-width:620px; margin:0.7rem auto 0.2rem; }
     """
 )
 
@@ -450,12 +454,14 @@ def render_landing() -> None:
         unsafe_allow_html=True,
     )
     render_search("q_hero", "What if the Mughal Empire never fell?")
+    st.markdown(f'<div class="cache-note">{_esc(CACHE_NOTE)}</div>', unsafe_allow_html=True)
     st.markdown('<div class="hint">Try an example</div>', unsafe_allow_html=True)
 
-    # 6 example chips, 2 rows of 3 (rectangular, gold-bordered via the button CSS).
-    for row in (EXAMPLES[:3], EXAMPLES[3:6]):
+    # Example chips, 3 per row across the full EXAMPLES list (rectangular,
+    # gold-bordered via the button CSS). 9 examples → 3 rows of 3.
+    for start in range(0, len(EXAMPLES), 3):
         cols = st.columns(3)
-        for col, q in zip(cols, row):
+        for col, q in zip(cols, EXAMPLES[start:start + 3]):
             with col:
                 if st.button(q, key=f"chip_{hash(q)}", use_container_width=True):
                     _go(q)
@@ -570,6 +576,10 @@ def render_loading() -> None:
             {"question": job["question"], "status": "error", "timings": {},
              "error": "RuntimeError: pipeline returned no state"},
         )
+        # Cache only successful runs — a transient 429/error must not be frozen
+        # into the cache; the next ask should re-run it live.
+        if state.get("status") == "ok":
+            cache.put(job["question"], state)
         st.session_state["result"] = (job["question"], state)
         _record_history(job["question"], state)
         del st.session_state["job"]
@@ -589,6 +599,8 @@ def render_results(question: str, state: dict, theme: str) -> None:
     source_map = dict(getattr(grounded, "source_map", {}) or {}) if grounded else {}
 
     st.markdown(f'<div class="q-title">{_esc(question)}</div>', unsafe_allow_html=True)
+    if state.get("from_cache"):
+        st.markdown('<div class="cache-badge">⚡ cached</div>', unsafe_allow_html=True)
 
     if status == "error":
         st.markdown(
@@ -728,7 +740,14 @@ def main() -> None:
     pending = st.session_state.pop("pending", None)
     # Start a new run only if one isn't already in flight (ignore submits while busy).
     if pending and "job" not in st.session_state:
-        _start_job(pending)
+        cached = cache.get(pending)
+        if cached is not None:
+            # Cache hit — serve instantly, no worker thread. Same path whether the
+            # question was pre-warmed or asked live by an earlier visitor.
+            st.session_state["result"] = (pending, cached)
+            _record_history(pending, cached)
+        else:
+            _start_job(pending)
 
     if "job" in st.session_state:
         # STATE 2 — loading. Search stays visible; the fragment polls on its own

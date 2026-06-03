@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "normalized_question": "what if the industrial revolution had begun in china instead of britain",
+  "state": {
+    "question": "What if the Industrial Revolution had begun in China instead of Britain?",
+    "status": "ok",
+    "error": null,
+    "failed_node": null,
+    "timings": {
+      "understand_query": 31.04700000000048,
+      "retrieve": 0.5159999999996217,
+      "ground": 3.515000000001237,
+      "reason": 32.375,
+      "score": 0.0,
+      "_total": 67.45300000000134
+    },
+    "grounded": {
+      "verified_facts": [
+        {
+          "claim": "The Industrial Revolution began in Great Britain around 1760.",
+          "source_chunk_id": "industrial_revolution_0",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk states \"Beginning in Great Britain around 1760\" as fact."
+        },
+        {
+          "claim": "By about 1840 the Industrial Revolution had spread to continental Europe and the United States.",
+          "source_chunk_id": "industrial_revolution_0",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk says it \"had spread to continental Europe and the United States by about 1840\"."
+        },
+        {
+          "claim": "By the mid-18th century Britain was the leading commercial nation with GDP per capita considerably above the world average.",
+          "source_chunk_id": "industrial_revolution_0",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk explicitly notes Britain’s leading commercial status and high GDP per capita."
+        },
+        {
+          "claim": "Britain emerged from the Napoleonic Wars as the only European nation not ravaged by financial plunder and with the only significant merchant fleet.",
+          "source_chunk_id": "industrial_revolution_109",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk directly asserts this as a factual outcome of the wars."
+        },
+        {
+          "claim": "Local supplies of coal, iron, lead, copper, tin, limestone and water power created excellent conditions for industrial development in Britain.",
+          "source_chunk_id": "industrial_revolution_109",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk links the presence of these resources to \"excellent conditions for the development and expansion of industry\"."
+        },
+        {
+          "claim": "The damp, mild weather of north‑west England provided ideal conditions for cotton spinning.",
+          "source_chunk_id": "industrial_revolution_109",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk states the weather \"provided ideal conditions for the spinning of cotton\"."
+        },
+        {
+          "claim": "High agricultural productivity, exemplified by the British Agricultural Revolution, freed labor and ensured food surpluses.",
+          "source_chunk_id": "industrial_revolution_5",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk lists this as a key factor supporting industrialisation."
+        },
+        {
+          "claim": "Rapid adoption of mechanised textile spinning occurred in Britain in the 1780s.",
+          "source_chunk_id": "industrial_revolution_1",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk provides the specific decade for rapid adoption."
+        },
+        {
+          "claim": "Mechanised textile production spread from Britain to continental Europe and the US in the early 19th century.",
+          "source_chunk_id": "industrial_revolution_1",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk states this spread occurred in the early 19th century."
+        },
+        {
+          "claim": "Internal tariffs were abolished by Henry VIII of England, survived in Russia until 1753, in France until 1789, and in Spain until 1839.",
+          "source_chunk_id": "industrial_revolution_101",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk gives these specific dates for tariff abolition."
+        },
+        {
+          "claim": "The Industrial Revolution in continental Europe began in Belgium and France and later spread to the German states by the mid‑19th century.",
+          "source_chunk_id": "industrial_revolution_83",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk directly describes the sequence of spread."
+        },
+        {
+          "claim": "By 1809 part of the Ruhr in Westphalia was nicknamed \"Miniature England\" because of its similarities to British industry.",
+          "source_chunk_id": "industrial_revolution_83",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk mentions the nickname and year."
+        },
+        {
+          "claim": "Belgium was the second country in which the Industrial Revolution took place.",
+          "source_chunk_id": "industrial_revolution_83",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk explicitly states Belgium’s position as second."
+        },
+        {
+          "claim": "Britain had no internal trade barriers, including between England and Scotland, making it the largest coherent market in Europe.",
+          "source_chunk_id": "industrial_revolution_107",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk asserts this as a factual condition."
+        },
+        {
+          "claim": "Britain possessed the highest quality coal in Europe and many sites for water power.",
+          "source_chunk_id": "industrial_revolution_107",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk directly claims this resource advantage."
+        },
+        {
+          "claim": "Geographic factors, including Britain's vast mineral resources and high‑quality coal, were important causes of the Industrial Revolution.",
+          "source_chunk_id": "industrial_revolution_100",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk lists these geographic factors as causes."
+        },
+        {
+          "claim": "The Enclosure movement and the British Agricultural Revolution made food production more efficient, pushing farmers into cottage industry and later factories.",
+          "source_chunk_id": "industrial_revolution_100",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk describes this causal chain as a factual effect."
+        }
+      ],
+      "debated_points": [
+        {
+          "claim": "Economic historians such as Mendels, Pomeranz, and Kridte argue that proto‑industrialisation in Europe, the Islamic world, Mughal India, and China created conditions that led to the Industrial Revolution and the Great Divergence.",
+          "source_chunk_id": "industrial_revolution_5",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk presents this as an argument by specific historians, indicating scholarly debate."
+        },
+        {
+          "claim": "The precise start and end of the Industrial Revolution is debated among historians.",
+          "source_chunk_id": "industrial_revolution_1",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk explicitly says \"The precise start and end ... is debated among historians\"."
+        },
+        {
+          "claim": "A historiographical debate exists over Eric Williams' claim that capital from slavery financed the early Industrial Revolution, with critics such as Seymour Drescher challenging it.",
+          "source_chunk_id": "industrial_revolution_107",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk describes the debate and opposing arguments."
+        },
+        {
+          "claim": "The causes of the Industrial Revolution are complicated and remain debated.",
+          "source_chunk_id": "industrial_revolution_100",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chunk opens with this statement about ongoing debate."
+        }
+      ],
+      "background_context": [],
+      "analogies": [
+        {
+          "claim": "During the Meiji period, European and United States powers helped transform Japan.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Shows foreign influence on industrialisation, comparable to external models for China."
+        },
+        {
+          "claim": "Japanese leaders traveled abroad to acquire knowledge and government writings that shaped a more influential government and production.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Illustrates state-led adoption of foreign technology, relevant to a Chinese industrial start."
+        },
+        {
+          "claim": "Japan's relative lack of resources made it unattractive to Western imperialism.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Highlights resource constraints influencing external pressure, a factor for China."
+        },
+        {
+          "claim": "The Japanese government sent officials such as samurai to monitor industrial work.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Demonstrates direct governmental oversight of industrial development."
+        },
+        {
+          "claim": "Japan's leaders adapted Western techniques, leading it to become one of the world's largest industrial nations.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Shows successful large‑scale industrialisation after adopting foreign methods."
+        },
+        {
+          "claim": "Rapid industrialisation and modernisation in Japan required a massive increase in production and infrastructure.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Links industrial growth to infrastructure expansion, a pattern relevant to China."
+        },
+        {
+          "claim": "Japan built industries such as shipyards, iron smelters, and spinning mills, which were sold to well‑connected entrepreneurs.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Provides an example of state‑initiated heavy industry that spurred private entrepreneurship."
+        },
+        {
+          "claim": "Domestic Japanese companies became consumers of Western technology and produced cheap items for the international market.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Illustrates technology transfer and export‑oriented production."
+        },
+        {
+          "claim": "Industrial zones in Japan grew enormously, accompanied by massive migration from the countryside to industrialising centres.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Shows urbanisation linked to industrialisation, a comparable demographic shift."
+        },
+        {
+          "claim": "Industrialisation in Japan went hand in hand with the development of a national railway system and modern communications.",
+          "source_chunk_id": "meiji_restoration_60",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Highlights transport and communication infrastructure as part of industrial growth."
+        },
+        {
+          "claim": "The Meiji Restoration in 1868 restored imperial rule to Japan and led to the westernisation of the country.",
+          "source_chunk_id": "meiji_restoration_0",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Provides a political catalyst for rapid industrial change."
+        },
+        {
+          "claim": "The Restoration led to enormous changes in Japan's political and social structure.",
+          "source_chunk_id": "meiji_restoration_0",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Shows systemic transformation accompanying industrialisation."
+        },
+        {
+          "claim": "During the late Edo and early Meiji periods, Japan rapidly industrialised and adopted Western ideas, production methods and technology.",
+          "source_chunk_id": "meiji_restoration_0",
+          "source_title": "Meiji Restoration",
+          "confidence_basis": "Direct statement of rapid industrialisation after political reform."
+        },
+        {
+          "claim": "From 1870 to 1913, technological innovation drove industrialisation and urbanisation across the empire.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Demonstrates the role of technology in spurring industrial and urban growth."
+        },
+        {
+          "claim": "Gross national product per capita grew at an average annual rate of 1.8%, surpassing Britain, France, and Germany.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Provides quantitative measure of rapid economic growth."
+        },
+        {
+          "claim": "Austria‑Hungary lagged behind more industrialised powers due to its later start in modernisation.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Shows the impact of a delayed industrial start, relevant to a counterfactual Chinese timeline."
+        },
+        {
+          "claim": "The Industrial Revolution began about 1870 as Meiji period leaders decided to catch up with the West.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Chronology of industrial start linked to deliberate state policy."
+        },
+        {
+          "claim": "The Japanese government built railways, improved roads, and inaugurated a land reform program to prepare for further development.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Infrastructure and land reforms as foundations for industrial growth."
+        },
+        {
+          "claim": "Japan inaugurated a new Western‑based education system, sent thousands of students abroad, and hired more than 3,000 Westerners to teach modern science, mathematics, technology, and foreign languages.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Human capital development through education and foreign expertise."
+        },
+        {
+          "claim": "In 1871, the Iwakura Mission toured Europe and the United States to learn Western ways.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "State‑led fact‑finding mission informing industrial policy."
+        },
+        {
+          "claim": "The result was a deliberate state‑led industrialisation policy to enable Japan to quickly catch up.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Explicit statement of state‑directed industrial strategy."
+        },
+        {
+          "claim": "The Bank of Japan, founded in 1882, used taxes to fund model steel and textile factories.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Financial institution mobilising resources for heavy industry."
+        },
+        {
+          "claim": "Modern industry in Japan first appeared in textiles, including cotton and especially silk, based in home workshops in rural areas.",
+          "source_chunk_id": "industrial_revolution_93",
+          "source_title": "Industrial Revolution",
+          "confidence_basis": "Shows sectoral starting point of industrialisation."
+        }
+      ],
+      "source_map": {
+        "industrial_revolution_0": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_109": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_5": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_1": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_101": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_83": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_107": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "industrial_revolution_100": "https://en.wikipedia.org/wiki/Industrial_Revolution",
+        "meiji_restoration_60": "https://en.wikipedia.org/wiki/Meiji_Restoration",
+        "meiji_restoration_0": "https://en.wikipedia.org/wiki/Meiji_Restoration",
+        "industrial_revolution_93": "https://en.wikipedia.org/wiki/Industrial_Revolution"
+      }
+    },
+    "scored": {
+      "proposed_change": "Industrial Revolution begins in China instead of Britain",
+      "divergence_point": "1760-1840 — China",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "By the mid‑1760s Chinese merchants in Guangzhou and Suzhou begin importing British spinning frames and, with the help of itinerant foreign technicians, set up the first mechanised cotton‑spinning workshops in the empire.",
+          "evidence_chunk_ids": [
+            "industrial_revolution_1",
+            "meiji_restoration_60"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_60"
+          ],
+          "confidence": "Medium",
+          "confidence_reason": "The existence of the technology is documented, but there is no direct record of Chinese acquisition in this period; the analogy to Japan provides a plausible pathway but cultural‑institutional differences add uncertainty.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) industrial_revolution_1; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) meiji_restoration_60. (model self-reported: Medium)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "The new Chinese textile factories double domestic cotton output by the early 1780s, creating a surplus that is exported to Southeast Asia and, increasingly, to Europe. British merchants, who had previously dominated global textile trade, encounter price competition and experience a decline in the profitability of the opium‑for‑cotton exchange that had underpinned the Opium Wars.",
+          "evidence_chunk_ids": [
+            "industrial_revolution_0",
+            "meiji_restoration_60"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_60"
+          ],
+          "confidence": "Medium",
+          "confidence_reason": "The causal link between increased Chinese output and British trade pressure is logical, but the exact magnitude of competition is uncertain without quantitative data.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) industrial_revolution_0; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) meiji_restoration_60. (model self-reported: Medium)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "Encouraged by textile profits, the Qing court launches a state‑led programme (c. 1790‑1820) to develop iron, coal, and rail infrastructure in the Yangtze‑Huai region. Leveraging China’s vast internal market and the absence of internal tariffs (mirroring Britain’s “no internal trade barriers” advantage), the programme creates a network of ironworks and a proto‑rail system that links major manufacturing hubs, accelerating urbanisation and further industrial diversification.",
+          "evidence_chunk_ids": [
+            "industrial_revolution_107",
+            "meiji_restoration_93"
+          ],
+          "analogy_chunk_ids": [
+            "meiji_restoration_93"
+          ],
+          "confidence": "Medium",
+          "confidence_reason": "The analogy to Meiji state‑led industrialisation is strong, and the economic logic of using a large internal market is sound; however, the Qing bureaucracy’s willingness to adopt such reforms is less documented, lowering certainty.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [
+            "meiji_restoration_93"
+          ],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) industrial_revolution_107; multiple verified sources corroborate this consequence. NOTE: also cites unrecognised chunk_id(s) meiji_restoration_93 absent from the grounded context. (model self-reported: Medium)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "By the early 20th century China has become the world’s leading industrial power, with a modern navy, extensive rail network, and dominant textile and steel sectors. The balance of power in East Asia shifts: Britain’s “only significant merchant fleet” is now outmatched, the Opium Wars are either averted or result in a Chinese victory, and European colonial ambitions in the region are curtailed.",
+          "evidence_chunk_ids": [
+            "meiji_restoration_60",
+            "industrial_revolution_109"
+          ],
+          "analogy_chunk_ids": [
+            "industrial_revolution_109"
+          ],
+          "confidence": "Low",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) industrial_revolution_109; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) meiji_restoration_60. (model self-reported: Low)"
+        }
+      ],
+      "what_remains_unknowable": "1. The precise social and political upheavals within Qing society (e.g., whether the reforms would trigger rebellions akin to the Taiping Rebellion).  \n2. The exact timeline and composition of China’s technological diffusion—whether steam power, electricity, and later chemicals would follow the same path as Britain.  \n3. How other global powers (France, the United States, Russia) would adjust their own industrial strategies in response to an early‑industrialising China.  \n\n─────────────────────────────────────────",
+      "reconnection_point": "─────────────────────────────────────────  \nThe alternate timeline likely diverges permanently after the 1840s, when Britain’s real‑world industrial lead began to spread worldwide; an early‑industrial China would have reshaped global trade networks and colonial competition, preventing the historical “Great Divergence” that placed Europe ahead of East Asia.  \n\n─────────────────────────────────────────",
+      "historians_note": "─────────────────────────────────────────  \nHistorians still debate why the Industrial Revolution originated in Britain rather than elsewhere, citing factors such as proto‑industrialisation, resource endowments, and institutional arrangements (see debates among Mendels, Pomeranz, and others) [EVIDENCE: industrial_revolution_5]. The counterfactual hinges on those same contested causes—if China possessed comparable coal, iron, and market conditions, the “Great Divergence” might have unfolded differently.",
+      "raw_response": "PROPOSED CHANGE: Industrial Revolution begins in China instead of Britain  \n\nDIVERGENCE POINT: 1760‑1840 — China  \n\n─────────────────────────────────────────  \nStep 1 — Immediate Consequences (0‑10 years after change)  \n─────────────────────────────────────────  \n[SIMULATED] By the mid‑1760s Chinese merchants in Guangzhou and Suzhou begin importing British spinning frames and, with the help of itinerant foreign technicians, set up the first mechanised cotton‑spinning workshops in the empire.  \n\nEvidence basis: [EVIDENCE: industrial_revolution_1] — Britain’s rapid adoption of mechanised textile spinning in the 1780s shows the technology existed and could be transferred; the Chinese textile sector was already large (silk and cotton) providing a ready market.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_60] — Japan’s early Meiji officials travelled abroad to acquire spinning‑mill technology and quickly established domestic factories, demonstrating how a non‑Western state could import and adapt British textile machinery.  \n\nConfidence: Medium  \nReason for confidence: The existence of the technology is documented, but there is no direct record of Chinese acquisition in this period; the analogy to Japan provides a plausible pathway but cultural‑institutional differences add uncertainty.  \n\n─────────────────────────────────────────  \nStep 2 — Short‑term Ripple (10‑30 years)  \n─────────────────────────────────────────  \n[SIMULATED] The new Chinese textile factories double domestic cotton output by the early 1780s, creating a surplus that is exported to Southeast Asia and, increasingly, to Europe. British merchants, who had previously dominated global textile trade, encounter price competition and experience a decline in the profitability of the opium‑for‑cotton exchange that had underpinned the Opium Wars.  \n\nEvidence basis: [EVIDENCE: industrial_revolution_0] — Britain was the leading commercial nation with a high‑GDP‑per‑capita economy, relying heavily on textile exports; a new competitor would erode that advantage.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_60] — Japan’s export‑led growth in silk and cotton after the Meiji Restoration gave it a foothold in world markets, challenging Western dominance in those sectors.  \n\nConfidence: Medium  \nReason for confidence: The causal link between increased Chinese output and British trade pressure is logical, but the exact magnitude of competition is uncertain without quantitative data.  \n\n─────────────────────────────────────────  \nStep 3 — Medium‑term Transformation (30‑100 years)  \n─────────────────────────────────────────  \n[SIMULATED] Encouraged by textile profits, the Qing court launches a state‑led programme (c. 1790‑1820) to develop iron, coal, and rail infrastructure in the Yangtze‑Huai region. Leveraging China’s vast internal market and the absence of internal tariffs (mirroring Britain’s “no internal trade barriers” advantage), the programme creates a network of ironworks and a proto‑rail system that links major manufacturing hubs, accelerating urbanisation and further industrial diversification.  \n\nEvidence basis: [EVIDENCE: industrial_revolution_107] — Britain’s lack of internal trade barriers created the largest coherent market in Europe, a factor that can be analogously applied to China’s huge domestic market.  \n\nAnalogy (if applicable): [EVIDENCE: meiji_restoration_93] — The Meiji government built railways, iron‑smelting facilities, and a land‑reform program to support rapid industrialisation; China’s similar state‑directed effort would follow the same structural logic.  \n\nConfidence: Medium  \nReason for confidence: The analogy to Meiji state‑led industrialisation is strong, and the economic logic of using a large internal market is sound; however, the Qing bureaucracy’s willingness to adopt such reforms is less documented, lowering certainty.  \n\n─────────────────────────────────────────  \nStep 4 — Long‑term Legacy (100+ years)  \n─────────────────────────────────────────  \n[SIMULATED] By the early 20th century China has become the world’s leading industrial power, with a modern navy, extensive rail network, and dominant textile and steel sectors. The balance of power in East Asia shifts: Britain’s “only significant merchant fleet” is now outmatched, the Opium Wars are either averted or result in a Chinese victory, and European colonial ambitions in the region are curtailed.  \n\nEvidence basis: [EVIDENCE: meiji_restoration_60] — Japan’s rapid modernisation after the Meiji Restoration enabled it to resist Western imperialism (e.g., victory in the Russo‑Japanese War), suggesting that a similarly industrialised China could alter its own imperial encounters.  \n\nAnalogy (if applicable): [EVIDENCE: industrial_revolution_109] — Britain’s post‑Napoleonic advantage stemmed from its merchant fleet; a rival maritime‑industrial power would fundamentally change that advantage.  \n\nConfidence: Low — long‑term consequences are inherently speculative, BUT the cited analogies illustrate plausible mechanisms.  \n\nWHAT REMAINS UNKNOWABLE:  \n1. The precise social and political upheavals within Qing society (e.g., whether the reforms would trigger rebellions akin to the Taiping Rebellion).  \n2. The exact timeline and composition of China’s technological diffusion—whether steam power, electricity, and later chemicals would follow the same path as Britain.  \n3. How other global powers (France, the United States, Russia) would adjust their own industrial strategies in response to an early‑industrialising China.  \n\n─────────────────────────────────────────  \nRECONNECTION POINT  \n─────────────────────────────────────────  \nThe alternate timeline likely diverges permanently after the 1840s, when Britain’s real‑world industrial lead began to spread worldwide; an early‑industrial China would have reshaped global trade networks and colonial competition, preventing the historical “Great Divergence” that placed Europe ahead of East Asia.  \n\n─────────────────────────────────────────  \nHISTORIAN'S NOTE  \n─────────────────────────────────────────  \nHistorians still debate why the Industrial Revolution originated in Britain rather than elsewhere, citing factors such as proto‑industrialisation, resource endowments, and institutional arrangements (see debates among Mendels, Pomeranz, and others) [EVIDENCE: industrial_revolution_5]. The counterfactual hinges on those same contested causes—if China possessed comparable coal, iron, and market conditions, the “Great Divergence” might have unfolded differently.",
+      "parse_warnings": [],
+      "confidence_distribution": {
+        "SPECULATIVE": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "HIGH": 4
+      },
+      "overall_confidence": "HIGH"
+    }
+  }
+}

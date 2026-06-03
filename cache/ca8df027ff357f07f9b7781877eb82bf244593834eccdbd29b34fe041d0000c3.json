@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "normalized_question": "what if the cuban missile crisis had escalated into nuclear war",
+  "state": {
+    "question": "What if the Cuban Missile Crisis had escalated into nuclear war?",
+    "status": "ok",
+    "error": null,
+    "failed_node": null,
+    "timings": {
+      "understand_query": 0.5310000000008586,
+      "retrieve": 0.5619999999998981,
+      "ground": 33.625,
+      "reason": 1.609999999998763,
+      "score": 0.0,
+      "_total": 36.32799999999952
+    },
+    "grounded": {
+      "verified_facts": [
+        {
+          "claim": "Kennedy administration continued seeking ways to oust Castro after the Bay of Pigs invasion",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states the administration continued seeking ways to oust Castro"
+        },
+        {
+          "claim": "Operation Mongoose was devised under the Kennedy administration in 1961",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk explicitly says the program was devised in 1961"
+        },
+        {
+          "claim": "Khrushchev learned of Operation Mongoose in February 1962 and responded by preparing Soviet nuclear missiles in Cuba",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk links Khrushchev's knowledge to missile preparations"
+        },
+        {
+          "claim": "Kennedy responded to the installation of nuclear missiles in Cuba with a naval blockade and an ultimatum",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk describes Kennedy's reaction as blockade and ultimatum"
+        },
+        {
+          "claim": "Khrushchev backed down and the Soviet Union removed the missiles in exchange for a U.S. pledge not to invade Cuba and a covert deal to remove U.S. missiles from Turkey",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk details the Soviet withdrawal and the terms offered"
+        },
+        {
+          "claim": "In 1964 Khrushchev was ousted by his Kremlin colleagues but allowed a peaceful retirement",
+          "source_chunk_id": "cold_war_55",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states the ousting and peaceful retirement"
+        },
+        {
+          "claim": "The Cuban Revolution of 1959 installed the first communist regime in the Western Hemisphere",
+          "source_chunk_id": "cold_war_2",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk explicitly states this as a fact"
+        },
+        {
+          "claim": "The Cuban Missile Crisis began in 1962 after deployments of U.S. missiles in Europe and Soviet missiles in Cuba",
+          "source_chunk_id": "cold_war_2",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk links the crisis to those deployments"
+        },
+        {
+          "claim": "The USSR installed satellite governments in Eastern Europe and North Korea by 1949, creating an \"Iron Curtain\" division of Europe",
+          "source_chunk_id": "cold_war_1",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states these actions and the resulting division"
+        },
+        {
+          "claim": "The USSR tested its first nuclear weapon in 1949, four years after the U.S. used nuclear bombs on Hiroshima and Nagasaki",
+          "source_chunk_id": "cold_war_1",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk provides the dates and sequence"
+        },
+        {
+          "claim": "The United States declared the Truman Doctrine in 1947, launched the Marshall Plan in 1948, and founded NATO in 1949",
+          "source_chunk_id": "cold_war_1",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk lists these policies and dates"
+        },
+        {
+          "claim": "Both the United States and the USSR signed international space treaties in the 1960s that limited the militarization of space",
+          "source_chunk_id": "cold_war_51",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk explicitly mentions the treaties and their purpose"
+        },
+        {
+          "claim": "The Apollo–Soyuz mission was a notable U.S.–Soviet cooperation in space during détente",
+          "source_chunk_id": "cold_war_51",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk cites the orbital rendezvous as an example of cooperation"
+        },
+        {
+          "claim": "Fidel Castro and Che Guevara's 26th of July Movement seized power in Cuba on 1 January 1959",
+          "source_chunk_id": "cold_war_51",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states the date and actors of the revolution"
+        },
+        {
+          "claim": "President Eisenhower deliberately avoided meeting Castro in Washington, leaving Vice President Nixon to conduct the meeting",
+          "source_chunk_id": "cold_war_51",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk describes Eisenhower's deliberate avoidance"
+        },
+        {
+          "claim": "Cuba began negotiating arms purchases from the Eastern Bloc in March 1960",
+          "source_chunk_id": "cold_war_51",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk provides the month and action"
+        },
+        {
+          "claim": "Eisenhower formally severed diplomatic relations with Cuba in January 1961",
+          "source_chunk_id": "cold_war_52",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states the severance date"
+        },
+        {
+          "claim": "The Kennedy administration's CIA-organized ship‑borne invasion at Playa Girón in April 1961 failed and publicly humiliated the United States",
+          "source_chunk_id": "cold_war_52",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk describes the invasion as unsuccessful and humiliating"
+        },
+        {
+          "claim": "After the invasion, Castro publicly embraced Marxism–Leninism and the Soviet Union pledged further support",
+          "source_chunk_id": "cold_war_52",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk links Castro's response to Soviet pledges"
+        },
+        {
+          "claim": "In December 1961 the U.S. government began a violent campaign of terrorist attacks and covert sabotage against civilians in Cuba to overthrow the Cuban government",
+          "source_chunk_id": "cold_war_52",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk explicitly mentions the campaign and its purpose"
+        },
+        {
+          "claim": "John Foster Dulles initiated a \"New Look\" containment strategy that emphasized greater reliance on nuclear weapons",
+          "source_chunk_id": "cold_war_35",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk attributes the policy to Dulles"
+        },
+        {
+          "claim": "Dulles enunciated the doctrine of \"massive retaliation\" threatening a severe U.S. response to any Soviet aggression",
+          "source_chunk_id": "cold_war_35",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk states Dulles's doctrine"
+        },
+        {
+          "claim": "Declassified U.S. plans in the late 1950s called for systematic destruction of 1,200 major urban centers in the Soviet Bloc and China, including Moscow, East Berlin, and Beijing",
+          "source_chunk_id": "cold_war_35",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk provides details of the plans"
+        },
+        {
+          "claim": "Eisenhower was caught lying about the intrusion of American surveillance aircraft into Soviet territory during the U-2 spy plane scandal",
+          "source_chunk_id": "cold_war_35",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk says Eisenhower was caught lying in that incident"
+        },
+        {
+          "claim": "On 18 November 1956 Khrushchev said \"Whether you like it or not, history is on our side. We will bury you\" at a reception in Moscow's Polish embassy",
+          "source_chunk_id": "cold_war_34",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk provides the exact quote and context"
+        },
+        {
+          "claim": "Khrushchev later claimed his statement was not about nuclear war but about the \"historically fated victory of communism over capitalism\"",
+          "source_chunk_id": "cold_war_34",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk records Khrushchev's later clarification"
+        }
+      ],
+      "debated_points": [],
+      "background_context": [
+        {
+          "claim": "The Cuban Missile Crisis (Oct–Nov 1962) brought the world closer to nuclear war than ever before",
+          "source_chunk_id": "cold_war_54",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk presents this as a descriptive assessment of the crisis"
+        },
+        {
+          "claim": "John Lewis Gaddis argues Khrushchev was blamed for ruining Soviet agriculture, bringing the world to the brink of nuclear war, and becoming an \"international embarrassment\" after authorizing the Berlin Wall",
+          "source_chunk_id": "cold_war_55",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk reports Gaddis's argument as a scholarly view"
+        },
+        {
+          "claim": "The Cuban Missile Crisis is widely considered the closest the Cold War came to escalating into nuclear war",
+          "source_chunk_id": "cold_war_2",
+          "source_title": "Cold War",
+          "confidence_basis": "Chunk uses \"widely considered\" to describe the assessment"
+        }
+      ],
+      "analogies": [
+        {
+          "claim": "The United States initially pursued a containment strategy in the Korean War, pushing back North Korean forces across the 38th Parallel and restoring South Korean sovereignty while allowing North Korea to remain as a state.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Shows a limited escalation approach that avoided full war, relevant for comparing restraint versus escalation."
+        },
+        {
+          "claim": "The success of the Inchon landing led US and UN forces to adopt a rollback strategy, attempting to overthrow communist North Korea and hold nationwide elections under UN auspices.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Illustrates how a successful military operation can shift policy from containment to aggressive rollback, a parallel to decisions that could heighten crisis intensity."
+        },
+        {
+          "claim": "China, fearing a possible US invasion, intervened with a large army and forced UN forces back below the 38th Parallel.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Demonstrates a third-party intervention that escalated a regional conflict, comparable to potential Soviet involvement in a nuclear crisis."
+        },
+        {
+          "claim": "The Korean War experience was used to support the wisdom of containment doctrine over rollback.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Highlights strategic debates that can influence decision‑making in high‑stakes confrontations."
+        },
+        {
+          "claim": "The Korean War galvanized NATO to develop a formal military structure.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Shows how a major crisis can prompt alliance militarization, analogous to possible NATO responses in a nuclear escalation."
+        },
+        {
+          "claim": "The Korean Armistice Agreement was approved in July 1953, ending active hostilities while leaving the two Koreas technically at war.",
+          "source_chunk_id": "cold_war_32",
+          "source_title": "Cold War",
+          "confidence_basis": "Provides an example of a cease‑fire that halted fighting without a formal peace treaty, relevant to how a nuclear crisis might be halted."
+        },
+        {
+          "claim": "In June 1950, North Korean forces invaded South Korea, prompting a United Nations US‑led intervention.",
+          "source_chunk_id": "cold_war_31",
+          "source_title": "Cold War",
+          "confidence_basis": "Represents a sudden escalation triggered by an invasion, comparable to the sudden escalation risk in a missile crisis."
+        },
+        {
+          "claim": "Stalin was initially reluctant to support the North Korean invasion but eventually sent advisers.",
+          "source_chunk_id": "cold_war_31",
+          "source_title": "Cold War",
+          "confidence_basis": "Shows how a major power may shift from hesitation to active involvement, mirroring possible Soviet actions during a crisis."
+        },
+        {
+          "claim": "A UN force of sixteen countries, with about 50% of troops supplied by the United States, fought against North Korean forces.",
+          "source_chunk_id": "cold_war_31",
+          "source_title": "Cold War",
+          "confidence_basis": "Illustrates multinational coalition warfare, useful for comparing collective security responses to a nuclear threat."
+        },
+        {
+          "claim": "The invasion of Poland by Nazi Germany on September 1, 1939, was the immediate precipitating event of World War II.",
+          "source_chunk_id": "causes_of_world_war_ii_0",
+          "source_title": "Causes of World War II",
+          "confidence_basis": "Serves as a historical precedent where a single aggressive act triggered a large‑scale war, analogous to a missile deployment sparking nuclear war."
+        },
+        {
+          "claim": "Britain and France declared war on Germany following the invasion of Poland.",
+          "source_chunk_id": "causes_of_world_war_ii_0",
+          "source_title": "Causes of World War II",
+          "confidence_basis": "Demonstrates how alliances can rapidly move from diplomatic protest to full war, comparable to NATO’s potential response in a nuclear crisis."
+        },
+        {
+          "claim": "Treaty of Versailles imposed heavy reparations and severe military limitations on Germany, fostering revanchist sentiment.",
+          "source_chunk_id": "causes_of_world_war_ii_0",
+          "source_title": "Causes of World War II",
+          "confidence_basis": "Shows how punitive policies can create a climate of hostility that escalates into war, relevant to how security dilemmas can lead to nuclear confrontation."
+        }
+      ],
+      "source_map": {
+        "cold_war_54": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_55": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_2": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_1": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_51": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_52": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_35": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_34": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_32": "https://en.wikipedia.org/wiki/Cold_War",
+        "cold_war_31": "https://en.wikipedia.org/wiki/Cold_War",
+        "causes_of_world_war_ii_0": "https://en.wikipedia.org/wiki/Causes_of_World_War_II"
+      }
+    },
+    "scored": {
+      "proposed_change": "Cuban Missile Crisis escalates into nuclear war",
+      "divergence_point": "1962 — Global",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "The United States and the Soviet Union exchange massive nuclear strikes, destroying most major cities in both countries, killing tens of millions, and triggering a severe “nuclear winter” that depresses global temperatures and agricultural output.",
+          "evidence_chunk_ids": [
+            "cold_war_35",
+            "causes_of_world_war_ii_0"
+          ],
+          "analogy_chunk_ids": [
+            "causes_of_world_war_ii_0"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The factual record confirms the existence of massive retaliation doctrines and the presence of nuclear arsenals, but the exact scale of casualties and climatic effects must be inferred from later modeling, not contemporary data.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 4 verified fact(s) drawn from chunk(s) cold_war_35; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) causes_of_world_war_ii_0. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "In the aftermath of the nuclear exchange, the surviving fragments of the United States and the Soviet Union are reduced to regional powers; Europe, East Asia, and Latin America experience severe food shortages, leading to widespread famine, political fragmentation, and the emergence of provisional governments that prioritize reconstruction over ideological competition.",
+          "evidence_chunk_ids": [
+            "cold_war_35",
+            "cold_war_32"
+          ],
+          "analogy_chunk_ids": [
+            "cold_war_32"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "The destruction of command‑and‑control centers makes a breakdown plausible, but the exact political configurations are uncertain without concrete post‑war data.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 4 verified fact(s) drawn from chunk(s) cold_war_35; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) cold_war_32. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "By the mid‑21st century, the surviving powers, together with newly emergent regional blocs, negotiate a comprehensive global arms‑control regime, heavily restricting nuclear weapons and institutionalizing civilian oversight of remaining arsenals; scientific cooperation (e.g., joint space missions) resumes as a symbol of shared survival.",
+          "evidence_chunk_ids": [
+            "cold_war_51"
+          ],
+          "analogy_chunk_ids": [
+            "cold_war_51"
+          ],
+          "confidence": "Unknown",
+          "confidence_reason": "Historical precedent shows that even bitter rivals can agree to limit certain weapons, but the scale of post‑war devastation adds uncertainty to the willingness and capacity to negotiate.",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 5 verified fact(s) drawn from chunk(s) cold_war_51; multiple verified sources corroborate this consequence. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "The 1962 nuclear war becomes the defining cautionary tale of the 20th century, shaping global culture, education, and policy; a permanent United Nations‑led “World Security Council” oversees all remaining nuclear stockpiles, and the memory of the crisis drives a worldwide norm against first‑use nuclear doctrine.",
+          "evidence_chunk_ids": [
+            "cold_war_51"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 5 verified fact(s) drawn from chunk(s) cold_war_51; multiple verified sources corroborate this consequence. (model self-reported: Unknown)"
+        }
+      ],
+      "what_remains_unknowable": "1. The precise demographic toll (exact death counts, survivor distribution) because contemporary modeling cannot capture the chaotic post‑nuclear environment.  \n2. Whether any of the original superpower leadership (e.g., Kennedy, Khrushchev) would survive to influence reconstruction policies.  \n3. The exact configuration of the new global governance structures, as they depend on innumerable contingent political decisions that lack documentary evidence.\n\n─────────────────────────────────────────",
+      "reconnection_point": "The alternate timeline likely diverges permanently at the moment the nuclear exchange begins (1962); any later convergence would require an implausible reversal of the massive destruction that erased the original United States and Soviet Union institutions.\n\n─────────────────────────────────────────",
+      "historians_note": "Historians still debate the extent to which Operation Mongoose and other covert U.S. actions (e.g., the 1961 Bay of Pigs invasion) heightened Soviet willingness to place missiles in Cuba — see the documented link between the CIA‑organized invasion and Khrushchev’s decision to “prepare Soviet nuclear missiles in Cuba” [EVIDENCE: cold_war_54]. This debate is directly relevant to the counterfactual, because a more aggressive U.S. posture may have accelerated the path to nuclear war.",
+      "raw_response": "**PROPOSED CHANGE:** Cuban Missile Crisis escalates into nuclear war  \n**DIVERGENCE POINT:** 1962 — Global  \n\n─────────────────────────────────────────  \n**Step 1 — Immediate Consequences (0‑10 years after change)**  \n─────────────────────────────────────────  \n[SIMULATED] The United States and the Soviet Union exchange massive nuclear strikes, destroying most major cities in both countries, killing tens of millions, and triggering a severe “nuclear winter” that depresses global temperatures and agricultural output.  \n\nEvidence basis: [EVIDENCE: cold_war_35] — Declassified U.S. plans in the late 1950s called for systematic destruction of 1,200 major urban centers in the Soviet bloc, showing that both superpowers possessed the intent and capability to launch all‑out nuclear attacks.  \n\nAnalogy (if applicable): [EVIDENCE: causes_of_world_war_ii_0] — The invasion of Poland precipitated a total war that engulfed Europe; similarly, the Cuban crisis, once escalated, would precipitate a total nuclear war engulfing the two superpowers.  \n\nConfidence: **Medium**  \nReason for confidence: The factual record confirms the existence of massive retaliation doctrines and the presence of nuclear arsenals, but the exact scale of casualties and climatic effects must be inferred from later modeling, not contemporary data.\n\n─────────────────────────────────────────  \n**Step 2 — Short‑term Ripple (10‑30 years)**  \n─────────────────────────────────────────  \n[SIMULATED] In the aftermath of the nuclear exchange, the surviving fragments of the United States and the Soviet Union are reduced to regional powers; Europe, East Asia, and Latin America experience severe food shortages, leading to widespread famine, political fragmentation, and the emergence of provisional governments that prioritize reconstruction over ideological competition.  \n\nEvidence basis: [EVIDENCE: cold_war_35] — The massive retaliation plans indicate that strategic industrial and civilian centers would be targeted, implying a collapse of centralized governance and the need for regional re‑organization.  \n\nAnalogy (if applicable): [EVIDENCE: cold_war_32] — The Korean War experience showed how a major conflict could leave the Korean peninsula divided and politically weakened, prompting the creation of new power structures (e.g., NATO’s formal military organization). The parallel is that a devastated superpower would similarly fragment into smaller, region‑based authorities.  \n\nConfidence: **Medium**  \nReason for confidence: The destruction of command‑and‑control centers makes a breakdown plausible, but the exact political configurations are uncertain without concrete post‑war data.\n\n─────────────────────────────────────────  \n**Step 3 — Medium‑term Transformation (30‑100 years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the mid‑21st century, the surviving powers, together with newly emergent regional blocs, negotiate a comprehensive global arms‑control regime, heavily restricting nuclear weapons and institutionalizing civilian oversight of remaining arsenals; scientific cooperation (e.g., joint space missions) resumes as a symbol of shared survival.  \n\nEvidence basis: [EVIDENCE: cold_war_51] — Both the United States and the USSR signed international space treaties in the 1960s that limited the militarization of space, demonstrating a precedent for superpowers to cooperate on arms‑control measures even amid rivalry.  \n\nAnalogy (if applicable): [EVIDENCE: cold_war_51] — The Apollo–Soyuz mission was a notable U.S.–Soviet cooperation during détente; after a catastrophic war, a similar cooperative spirit could arise, driven by mutual existential risk.  \n\nConfidence: **Medium**  \nReason for confidence: Historical precedent shows that even bitter rivals can agree to limit certain weapons, but the scale of post‑war devastation adds uncertainty to the willingness and capacity to negotiate.\n\n─────────────────────────────────────────  \n**Step 4 — Long‑term Legacy (100+ years)**  \n─────────────────────────────────────────  \n[SIMULATED] The 1962 nuclear war becomes the defining cautionary tale of the 20th century, shaping global culture, education, and policy; a permanent United Nations‑led “World Security Council” oversees all remaining nuclear stockpiles, and the memory of the crisis drives a worldwide norm against first‑use nuclear doctrine.  \n\nEvidence basis: [EVIDENCE: cold_war_51] — The existence of early arms‑control treaties shows that the international community was already capable of establishing normative constraints on strategic weapons; this precedent would likely be amplified after a full‑scale nuclear exchange.  \n\nConfidence: **Low** — long‑term consequences are inherently speculative, BUT the cited treaties illustrate that post‑war institutional reforms are plausible.  \n\n─────────────────────────────────────────  \n**WHAT REMAINS UNKNOWABLE:**  \n1. The precise demographic toll (exact death counts, survivor distribution) because contemporary modeling cannot capture the chaotic post‑nuclear environment.  \n2. Whether any of the original superpower leadership (e.g., Kennedy, Khrushchev) would survive to influence reconstruction policies.  \n3. The exact configuration of the new global governance structures, as they depend on innumerable contingent political decisions that lack documentary evidence.\n\n─────────────────────────────────────────  \n**RECONNECTION POINT**  \nThe alternate timeline likely diverges permanently at the moment the nuclear exchange begins (1962); any later convergence would require an implausible reversal of the massive destruction that erased the original United States and Soviet Union institutions.\n\n─────────────────────────────────────────  \n**HISTORIAN'S NOTE**  \nHistorians still debate the extent to which Operation Mongoose and other covert U.S. actions (e.g., the 1961 Bay of Pigs invasion) heightened Soviet willingness to place missiles in Cuba — see the documented link between the CIA‑organized invasion and Khrushchev’s decision to “prepare Soviet nuclear missiles in Cuba” [EVIDENCE: cold_war_54]. This debate is directly relevant to the counterfactual, because a more aggressive U.S. posture may have accelerated the path to nuclear war.",
+      "parse_warnings": [],
+      "confidence_distribution": {
+        "SPECULATIVE": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "HIGH": 4
+      },
+      "overall_confidence": "HIGH"
+    }
+  }
+}

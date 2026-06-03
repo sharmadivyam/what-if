@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "normalized_question": "what if the ottoman empire had survived past 1922",
+  "state": {
+    "question": "What if the Ottoman Empire had survived past 1922?",
+    "status": "ok",
+    "error": null,
+    "failed_node": null,
+    "timings": {
+      "understand_query": 30.936999999999898,
+      "retrieve": 0.5310000000008586,
+      "ground": 3.8909999999996217,
+      "reason": 2.07799999999952,
+      "score": 0.0,
+      "_total": 37.4369999999999
+    },
+    "grounded": {
+      "verified_facts": [
+        {
+          "claim": "The partition of the Ottoman Empire was finalised under the terms of the 1920 Treaty of Sèvres.",
+          "source_chunk_id": "ottoman_empire_45",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk explicitly states this as a factual outcome."
+        },
+        {
+          "claim": "The Treaty of Sèvres allowed the Sultan to retain his position and title.",
+          "source_chunk_id": "ottoman_empire_45",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Direct statement in the text."
+        },
+        {
+          "claim": "The Turkish national movement won the Turkish War of Independence (1919–1923) under Mustafa Kemal.",
+          "source_chunk_id": "ottoman_empire_45",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Explicitly described as winning the war."
+        },
+        {
+          "claim": "The Ottoman sultanate was abolished on 1 November 1922.",
+          "source_chunk_id": "ottoman_empire_45",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Specific date given in the passage."
+        },
+        {
+          "claim": "The Republic of Turkey was established on 29 October 1923 with Ankara as its capital.",
+          "source_chunk_id": "ottoman_empire_45",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Stated as a factual event."
+        },
+        {
+          "claim": "The defeat and dissolution of the Ottoman Empire (1908–1922) began with the Second Constitutional Era after the Young Turk Revolution.",
+          "source_chunk_id": "ottoman_empire_38",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk links the period's start to the Second Constitutional Era."
+        },
+        {
+          "claim": "The Young Turk Revolution restored the Ottoman Constitution and introduced a two‑stage electoral system.",
+          "source_chunk_id": "ottoman_empire_38",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Explicit description of reforms."
+        },
+        {
+          "claim": "In 1897 the Ottoman population was 19 million, of whom 14 million (74%) were Muslim.",
+          "source_chunk_id": "ottoman_empire_37",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Specific demographic figures provided."
+        },
+        {
+          "claim": "An additional 20 million people lived in provinces under the sultan's nominal suzerainty but outside his actual power.",
+          "source_chunk_id": "ottoman_empire_37",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk gives this quantitative claim."
+        },
+        {
+          "claim": "The Ottoman Empire lost nominal authority over Egypt, Tunisia, Bulgaria, Cyprus, Bosnia‑Herzegovina, and Lebanon.",
+          "source_chunk_id": "ottoman_empire_37",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "List of territories explicitly mentioned as lost."
+        },
+        {
+          "claim": "After the First Balkan War (1912–1913) the Empire lost all Balkan territories except East Thrace.",
+          "source_chunk_id": "ottoman_empire_37",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Direct statement of territorial loss."
+        },
+        {
+          "claim": "Approximately 400,000 Muslims and 400,000 non‑Muslims fled territories during the Balkan losses.",
+          "source_chunk_id": "ottoman_empire_37",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk provides these migration figures."
+        },
+        {
+          "claim": "The 1916 Sykes–Picot Agreement led Britain and France to partition the Middle East into mandate territories.",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Explicit causal link described."
+        },
+        {
+          "claim": "There was no unified Arab state after the partition.",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk states this as a fact."
+        },
+        {
+          "claim": "Palestine, Iraq, Lebanon and Syria became British and French mandates.",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Direct statement of mandate assignments."
+        },
+        {
+          "claim": "The Ottoman Empire signed the Armistice of Mudros on 30 October 1918.",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Specific date and event mentioned."
+        },
+        {
+          "claim": "Istanbul was occupied by British, French, Italian and Greek forces.",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk lists occupying powers."
+        },
+        {
+          "claim": "In May 1919 Greece took control of the area around Smyrna (now İzmir).",
+          "source_chunk_id": "ottoman_empire_44",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Specific month and action described."
+        },
+        {
+          "claim": "Repeated incursions by Russia and France (later Britain) in North African eyalets caused a steady loss of Ottoman territories in the 19th and early 20th centuries.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_2",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Chunk attributes territorial loss to these incursions."
+        },
+        {
+          "claim": "By 1908 the Ottoman military was modernized and professionalized along Western European lines.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_2",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Explicit statement of military reform."
+        },
+        {
+          "claim": "The period 1908–1922 was followed by the defeat and dissolution of the Ottoman Empire.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_2",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Chunk directly links the period to dissolution."
+        },
+        {
+          "claim": "The Congress of Berlin kept Istanbul in Ottoman hands.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_39",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Chunk states this outcome of the Congress."
+        },
+        {
+          "claim": "The Congress of Berlin restored to the Ottoman Empire territories previously given to Bulgaria, notably Macedonia, which later sparked the First Balkan War in 1912.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_39",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Chunk describes the territorial return and its consequence."
+        },
+        {
+          "claim": "Many Balkan Muslims migrated to remaining Ottoman lands in the Balkans or to Anatolia as the empire shrank.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_39",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Chunk explicitly mentions this migration."
+        },
+        {
+          "claim": "By 1923 only Anatolia and Eastern Thrace remained as Ottoman Muslim lands.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_39",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Specific 1923 territorial statement."
+        },
+        {
+          "claim": "The Young Turk Revolution of 1908, led by the Committee of Union and Progress, reestablished a constitutional monarchy.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk directly attributes the revolution to CUP and constitutional change."
+        },
+        {
+          "claim": "The CUP carried out a coup d'état in 1913 that established a dictatorship.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Explicit description of 1913 coup."
+        },
+        {
+          "claim": "The CUP joined World War I on the side of the Central Powers.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk states this alliance."
+        },
+        {
+          "claim": "The Ottoman government engaged in genocide against Armenians, Assyrians and Greeks.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk lists these groups as genocide targets."
+        },
+        {
+          "claim": "Allied Powers occupied and partitioned the Ottoman Empire after World War I, with the United Kingdom and France receiving its southern territories.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk describes post‑war occupation and partition."
+        },
+        {
+          "claim": "The Turkish War of Independence led to the end of the Ottoman sultanate in 1922.",
+          "source_chunk_id": "ottoman_empire_2",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk links the war's success to abolition of the sultanate."
+        },
+        {
+          "claim": "The Ottomans defended the Dardanelles during the Gallipoli campaign (1915–1916).",
+          "source_chunk_id": "ottoman_empire_41",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Explicit military achievement noted."
+        },
+        {
+          "claim": "The Ottoman forces achieved initial victories in the Mesopotamian campaign, including the Siege of Kut (1915–1916).",
+          "source_chunk_id": "ottoman_empire_41",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Specific campaign and battle cited."
+        },
+        {
+          "claim": "The Arab Revolt (1916–1918) turned the tide against the Ottomans in the Middle East.",
+          "source_chunk_id": "ottoman_empire_41",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk attributes strategic shift to the revolt."
+        },
+        {
+          "claim": "Russian forces had the upper hand in the Caucasus campaign after the Battle of Sarikamish (1914–1915).",
+          "source_chunk_id": "ottoman_empire_41",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk states Russian advantage post‑battle."
+        },
+        {
+          "claim": "Russian forces occupied major cities in northeastern Anatolia until retreating after the Treaty of Brest‑Litovsk in 1917.",
+          "source_chunk_id": "ottoman_empire_41",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Chunk links occupation to the treaty and Russian withdrawal."
+        }
+      ],
+      "debated_points": [],
+      "background_context": [
+        {
+          "claim": "The period was intended to free citizens to modernise the state but instead became a twilight struggle of the Empire.",
+          "source_chunk_id": "ottoman_empire_38",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Interpretive language describing expectations versus outcome."
+        }
+      ],
+      "analogies": [
+        {
+          "claim": "Members of the Young Turks movement established political parties such as the Committee of Union and Progress and the Freedom and Accord Party.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Shows internal political reorganization before empire's end."
+        },
+        {
+          "claim": "Ethnic parties like Poale Zion, Al-Fatat, and the Armenian Revolutionary Federation were active in the Ottoman Empire.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Illustrates rise of ethnic nationalist movements within the empire."
+        },
+        {
+          "claim": "Austria-Hungary officially annexed Bosnia and Herzegovina in 1908.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Demonstrates external territorial loss amid internal turmoil."
+        },
+        {
+          "claim": "The last Ottoman census was performed in 1914.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Provides a demographic benchmark before the empire's dissolution."
+        },
+        {
+          "claim": "The Ottoman Modern Army reforms failed to prevent the loss of North African territories and the Dodecanese in the Italo-Turkish War of 1911.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Shows military modernization insufficient to retain overseas holdings."
+        },
+        {
+          "claim": "The Empire lost almost all of its European territories in the Balkan Wars of 1912–1913.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Highlights major territorial contraction in Europe."
+        },
+        {
+          "claim": "The Ottoman Empire experienced continuous unrest before World War I, including the 31 March Incident and coups in 1912 and 1913.",
+          "source_chunk_id": "ottoman_empire_39",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Indicates political instability preceding the empire's collapse."
+        },
+        {
+          "claim": "Bulgaria was established as an independent principality inside the Ottoman Empire but was not allowed to retain all its previous territory.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Shows partial autonomy granted to a Balkan state."
+        },
+        {
+          "claim": "Bulgaria lost Eastern Rumelia, which was restored to the Turks under a special administration, and Macedonia, which was returned outright to the Turks.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Illustrates territorial adjustments affecting Ottoman control."
+        },
+        {
+          "claim": "Romania achieved full independence but had to cede part of Bessarabia to Russia.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Demonstrates the pattern of independence coupled with territorial loss."
+        },
+        {
+          "claim": "Serbia and Montenegro finally gained complete independence, albeit with smaller territories.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Reflects the fragmentation of Ottoman holdings in the Balkans."
+        },
+        {
+          "claim": "In 1878 Austria-Hungary unilaterally occupied the Ottoman provinces of Bosnia-Herzegovina and Novi Pazar, while the Ottoman government contested the move and kept troops there.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Shows external occupation and contested sovereignty."
+        },
+        {
+          "claim": "A stalemate of Austrian and Ottoman forces in Bosnia and Novi Pazar lasted for thirty years until 1908.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Indicates prolonged military coexistence and unresolved territorial dispute."
+        },
+        {
+          "claim": "In 1908 Austria-Hungary annexed Bosnia-Herzegovina, exploiting political turmoil from the Young Turk Revolution, and withdrew troops from Novi Pazar to avoid war.",
+          "source_chunk_id": "decline_and_modernization_of_the_ottoman_empire_36",
+          "source_title": "Decline and modernization of the Ottoman Empire",
+          "confidence_basis": "Links internal political upheaval to external annexation."
+        },
+        {
+          "claim": "Ottoman bashi-bazouks suppressed the Bulgarian uprising of 1876, massacring up to 100,000 people.",
+          "source_chunk_id": "ottoman_empire_34",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Provides an example of violent repression of nationalist movements."
+        },
+        {
+          "claim": "The Russo-Turkish War of 1877–1878 ended with a decisive victory for Russia.",
+          "source_chunk_id": "ottoman_empire_34",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Shows a major military defeat that reshaped Ottoman borders."
+        },
+        {
+          "claim": "Following the war, Ottoman holdings in Europe declined sharply, with Bulgaria becoming an independent principality, Romania gaining full independence, and Serbia and Montenegro achieving complete independence with reduced territories.",
+          "source_chunk_id": "ottoman_empire_34",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Summarizes the territorial losses that weakened the empire."
+        },
+        {
+          "claim": "In 1878 Austria-Hungary unilaterally occupied the Ottoman provinces of Bosnia-Herzegovina and Novi Pazar.",
+          "source_chunk_id": "ottoman_empire_34",
+          "source_title": "Ottoman Empire",
+          "confidence_basis": "Highlights external encroachment on Ottoman lands."
+        }
+      ],
+      "source_map": {
+        "ottoman_empire_45": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "ottoman_empire_38": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "ottoman_empire_37": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "ottoman_empire_44": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "decline_and_modernization_of_the_ottoman_empire_2": "https://en.wikipedia.org/wiki/Decline_and_modernization_of_the_Ottoman_Empire",
+        "decline_and_modernization_of_the_ottoman_empire_39": "https://en.wikipedia.org/wiki/Decline_and_modernization_of_the_Ottoman_Empire",
+        "ottoman_empire_2": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "ottoman_empire_41": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "ottoman_empire_39": "https://en.wikipedia.org/wiki/Ottoman_Empire",
+        "decline_and_modernization_of_the_ottoman_empire_36": "https://en.wikipedia.org/wiki/Decline_and_modernization_of_the_Ottoman_Empire",
+        "ottoman_empire_34": "https://en.wikipedia.org/wiki/Ottoman_Empire"
+      }
+    },
+    "scored": {
+      "proposed_change": "Ottoman Empire does not dissolve in 1922 and continues as a sovereign state",
+      "divergence_point": "1910-1945 — Middle East and Eastern Mediterranean",
+      "steps": [],
+      "what_remains_unknowable": "1. **Exact political constitution** – Whether the sultan would have adopted a fully parliamentary system, a semi‑authoritarian model, or retained substantial executive power cannot be determined from the available sources.  \n2. **Border configuration of Arab territories** – The precise extent to which the empire could retain or influence the former mandates (Iraq, Syria, Lebanon, Palestine) depends on Allied decisions that are not recorded in the provided facts.  \n3. **Economic performance** – The degree to which the empire could industrialize, attract foreign investment, and develop oil infrastructure remains unknowable without data on post‑war economic policies.  \n\n---",
+      "reconnection_point": "The alternate timeline likely **diverges permanently after 1922**, when the real Ottoman sultanate was abolished; from that point onward the empire’s continued existence reshapes the political map of the Middle East, preventing the formation of the Republic of Turkey and altering the mandate‑to‑state transitions that occurred in the 1920s‑1930s.  \n\n---",
+      "historians_note": "Historians debate the extent to which the Ottoman Empire’s collapse was inevitable versus a product of specific wartime choices (e.g., the CUP’s entry into World War I, the Allied partition plans, and Mustafa Kemal’s nationalist movement). This counterfactual hinges on the plausibility of a negotiated settlement that preserves the sultanate—an outcome that some scholars argue was politically unlikely given the empire’s wartime defeats and internal nationalist pressures.",
+      "raw_response": "**PROPOSED CHANGE:** Ottoman Empire does not dissolve in 1922 and continues as a sovereign state  \n\n**DIVERGENCE POINT:** 1910‑1945 — Middle East and Eastern Mediterranean  \n\n─────────────────────────────────────────  \n**Step 1 — Immediate Consequences (0‑10 years after change)**  \n─────────────────────────────────────────  \n[SIMULATED] The 1922 abolition of the sultanate is averted; instead, the Ottoman sultan retains a constitutional‑monarchy role, and the Allied powers negotiate a revised settlement (a “Treaty of Ankara”) that recognises Ottoman sovereignty over Anatolia and Eastern Thrace while confirming British and French mandates over former Arab provinces.  \n\nEvidence basis: [EVIDENCE: ottoman_empire_45] – The Treaty of Sèvres (1920) already allowed the Sultan to retain his title, showing that a legal framework existed for a continued sultanate; the later abolition in 1922 was a political decision that can be plausibly reversed.  \n\nAnalogy (if applicable): [EVIDENCE: decline_and_modernization_of_the_ottoman_empire_36] – Austria‑Hungary’s 1908 annexation of Bosnia‑Herzegovina exploited political turmoil yet kept the empire’s core intact, illustrating how a multi‑ethnic empire can preserve its central institutions while ceding peripheral territories.  \n\nConfidence: **Medium** – The legal precedent exists, but the exact terms of a new treaty are not documented.  \n\n─────────────────────────────────────────  \n**Step 2 — Short‑term Ripple (10‑30 years)**  \n─────────────────────────────────────────  \n[SIMULATED] With the sultanate intact, the Young‑Turk‑inspired Committee of Union and Progress (CUP) reforms the imperial bureaucracy and expands the 1908‑era military modernization program, creating a more centrally‑controlled, Western‑styled army that deters further Allied interference and allows the empire to adopt a policy of cautious neutrality during the early 1930s European crises.  \n\nEvidence basis: [EVIDENCE: decline_and_modernization_of_the_ottoman_empire_2] – By 1908 the Ottoman military had already been modernized along Western European lines, providing a foundation for further development.  \n\nAnalogy (if applicable): [EVIDENCE: ottoman_empire_39] – The Young Turk movement’s establishment of political parties (CUP, Freedom and Accord) shows a capacity for organized, reform‑oriented governance that could be redirected toward state‑building rather than dissolution.  \n\nConfidence: **Medium** – The existence of a modernized army is factual; the direction of its further development under a retained sultanate is inferred.  \n\n─────────────────────────────────────────  \n**Step 3 — Medium‑term Transformation (30‑100 years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the 1950s the Ottoman Empire, now a constitutional monarchy with a bicameral parliament, leverages its strategic position and the still‑existing Arab mandates to become a regional diplomatic hub, mediating the decolonization processes of Iraq, Syria, Lebanon and Palestine. Its continued sovereignty prevents the creation of a separate Turkish Republic, so the empire’s Anatolian heartland evolves into a secular, industrializing core similar to post‑war West Germany.  \n\nEvidence basis: [EVIDENCE: ottoman_empire_44] – The post‑World War I mandates (Palestine, Iraq, Lebanon, Syria) were under British and French control, indicating the territories the empire could influence.  \n\nAnalogy (if applicable): [EVIDENCE: decline_and_modernization_of_the_ottoman_empire_36] – Austria‑Hungary’s long‑standing stalemate in Bosnia and Novi Pazar (30 years) demonstrates how an empire can maintain a diplomatic foothold in contested border regions for extended periods, shaping regional politics.  \n\nConfidence: **Low‑Medium** – The empire’s ability to mediate decolonization is plausible given its geographic position, but the exact political structure and its industrial trajectory are not directly recorded.  \n\n─────────────────────────────────────────  \n**Step 4 — Long‑term Legacy (100+ years)**  \n─────────────────────────────────────────  \n[SIMULATED] By the early 21st century the Ottoman Empire exists as a federal constitutional monarchy comprising Turkey, parts of the Levant, and a semi‑autonomous Arab zone; it is a major energy‑exporting state, a founding member of a Middle‑Eastern economic bloc, and retains cultural influence across the Muslim world, while its sultan serves largely as a symbolic head of state.  \n\nEvidence basis: [EVIDENCE: ottoman_empire_37] – The empire’s pre‑World War I demographic composition (19 million total, 74 % Muslim, plus 20 million under nominal suzerainty) provides a large, diverse population base that could be reorganized into a federal structure.  \n\nConfidence: **Low** – Long‑term outcomes are highly speculative; the cited demographic data only shows potential, not actual political evolution.  \n\n---\n\n### WHAT REMAINS UNKNOWABLE  \n1. **Exact political constitution** – Whether the sultan would have adopted a fully parliamentary system, a semi‑authoritarian model, or retained substantial executive power cannot be determined from the available sources.  \n2. **Border configuration of Arab territories** – The precise extent to which the empire could retain or influence the former mandates (Iraq, Syria, Lebanon, Palestine) depends on Allied decisions that are not recorded in the provided facts.  \n3. **Economic performance** – The degree to which the empire could industrialize, attract foreign investment, and develop oil infrastructure remains unknowable without data on post‑war economic policies.  \n\n---\n\n### RECONNECTION POINT  \nThe alternate timeline likely **diverges permanently after 1922**, when the real Ottoman sultanate was abolished; from that point onward the empire’s continued existence reshapes the political map of the Middle East, preventing the formation of the Republic of Turkey and altering the mandate‑to‑state transitions that occurred in the 1920s‑1930s.  \n\n---\n\n### HISTORIAN'S NOTE  \nHistorians debate the extent to which the Ottoman Empire’s collapse was inevitable versus a product of specific wartime choices (e.g., the CUP’s entry into World War I, the Allied partition plans, and Mustafa Kemal’s nationalist movement). This counterfactual hinges on the plausibility of a negotiated settlement that preserves the sultanate—an outcome that some scholars argue was politically unlikely given the empire’s wartime defeats and internal nationalist pressures.",
+      "parse_warnings": [
+        "no reasoning steps parsed — see raw_response"
+      ],
+      "confidence_distribution": {
+        "SPECULATIVE": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "HIGH": 0
+      },
+      "overall_confidence": null
+    }
+  }
+}

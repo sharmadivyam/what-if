@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "normalized_question": "what if the library of alexandria had never been destroyed",
+  "state": {
+    "question": "What if the Library of Alexandria had never been destroyed?",
+    "status": "ok",
+    "error": null,
+    "failed_node": null,
+    "timings": {
+      "understand_query": 1.0470000000004802,
+      "retrieve": 96.03099999999995,
+      "ground": 5.25,
+      "reason": 61.1869999999999,
+      "score": 0.0,
+      "_total": 163.51500000000033
+    },
+    "grounded": {
+      "verified_facts": [
+        {
+          "claim": "In 272 AD, Emperor Aurelian's forces destroyed the Broucheion quarter of Alexandria.",
+          "source_chunk_id": "library_of_alexandria_36",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk explicitly states Aurelian destroyed the Broucheion quarter in 272 AD."
+        },
+        {
+          "claim": "In 297 AD, Emperor Diocletian's siege destroyed the Broucheion quarter of Alexandria again.",
+          "source_chunk_id": "library_of_alexandria_36",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk says Diocletian's siege in 297 destroyed the Broucheion quarter again."
+        },
+        {
+          "claim": "The Library's membership appears to have ceased by the 260s AD.",
+          "source_chunk_id": "library_of_alexandria_3",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk directly states membership ceased by the 260s AD."
+        },
+        {
+          "claim": "The Serapeum was vandalized and demolished in 391 AD under a decree issued by Bishop Theophilus of Alexandria.",
+          "source_chunk_id": "library_of_alexandria_3",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk explicitly mentions demolition in 391 AD by decree of Theophilus."
+        },
+        {
+          "claim": "Under the Christian rule of Roman Emperor Theodosius I, pagan rituals were outlawed and pagan temples were destroyed.",
+          "source_chunk_id": "library_of_alexandria_40",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk states that under Theodosius I pagan rituals were outlawed and temples destroyed."
+        },
+        {
+          "claim": "In 391 AD, Bishop Theophilus of Alexandria supervised the destruction of an old Mithraeum.",
+          "source_chunk_id": "library_of_alexandria_40",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk directly reports Theophilus supervised the Mithraeum's destruction in 391 AD."
+        },
+        {
+          "claim": "Christians vandalized and demolished the Serapeum, though parts of its colonnade remained standing as late as the twelfth century.",
+          "source_chunk_id": "library_of_alexandria_40",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk notes the demolition and that colonnade parts survived until the 12th century."
+        },
+        {
+          "claim": "Monumental buildings such as the Heptastadion, the Lighthouse of Alexandria, and the Serapeum were erected under Ptolemy I in the third century BC.",
+          "source_chunk_id": "history_of_alexandria_6",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Chunk lists these constructions as occurring under Ptolemy I."
+        },
+        {
+          "claim": "The Museion was built under Ptolemy II.",
+          "source_chunk_id": "history_of_alexandria_6",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Chunk explicitly states the Museion was built under Ptolemy II."
+        },
+        {
+          "claim": "Euclid, Hipparchus, and Eratosthenes were among the luminaries associated with the Musaeum.",
+          "source_chunk_id": "history_of_alexandria_6",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Chunk names these scholars as associated with the Musaeum."
+        },
+        {
+          "claim": "Scholars including Zenodotus, Callimachus, Apollonius of Rhodes, Eratosthenes, Hero of Alexandria, Aristophanes of Byzantium, and Aristarchus of Samothrace worked at the Library during the third and second centuries BC.",
+          "source_chunk_id": "library_of_alexandria_1",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk lists these individuals as having worked at the Library in that period."
+        },
+        {
+          "claim": "A daughter library was established in the Serapeum during the reign of Ptolemy III Euergetes.",
+          "source_chunk_id": "library_of_alexandria_1",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk states that a daughter library was founded in the Serapeum under Ptolemy III."
+        },
+        {
+          "claim": "Eratosthenes believed the setting of the Homeric poems was imaginary and argued poetry's purpose was to capture the soul.",
+          "source_chunk_id": "library_of_alexandria_17",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk records Eratosthenes' belief and argument about poetry."
+        },
+        {
+          "claim": "Herophilus and Erasistratus studied human anatomy, but their work was hindered by protests against dissection of human corpses.",
+          "source_chunk_id": "library_of_alexandria_17",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk describes their anatomical studies and the protests against dissection."
+        }
+      ],
+      "debated_points": [
+        {
+          "claim": "A recent article suggests that the original Ptolemaic library collection was moved to the Serapeum by the end of the second century AD and that a library is attested there until the Serapeum's destruction.",
+          "source_chunk_id": "library_of_alexandria_41",
+          "source_title": "Library of Alexandria",
+          "confidence_basis": "Chunk reports a recent article's suggestion, indicating it is a scholarly proposal rather than established fact."
+        }
+      ],
+      "background_context": [],
+      "analogies": [
+        {
+          "claim": "Libraries have been deliberately or accidentally destroyed or badly damaged.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Provides a general pattern of library loss that can be compared to the Alexandria case."
+        },
+        {
+          "claim": "Sometimes a library is purposely destroyed as a form of culturicide.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Shows intentional destruction as a motive, relevant to the purposeful burning of Alexandria."
+        },
+        {
+          "claim": "Library fires have happened sporadically through the centuries, including the destruction of the Library of Alexandria, the Library of Nalanda, and the accidental burning of the Duchess Anna Amalia Library.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Lists specific historical library fires, directly linking Alexandria to other comparable incidents."
+        },
+        {
+          "claim": "In earlier times mildew was considered a major problem in many libraries, leading designers to increase airflow by leaving openings under shelves.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Illustrates historical library design challenges that affected vulnerability to fire."
+        },
+        {
+          "claim": "In a fire, flames can be drawn from floor to floor by airflow, easily destroying an entire library rather than a small part.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Explains a mechanism of total loss, useful for comparing how Alexandria might have been saved."
+        },
+        {
+          "claim": "Advances in technology have reduced the possibility of a library collection being destroyed by fire, including water sprinklers, fire doors, freezers, alarms, smoke detectors, suppression systems, and emergency generators.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Shows modern mitigation measures that could serve as a counterfactual comparison."
+        },
+        {
+          "claim": "Older libraries are usually altered by closing up airflow openings and installing fire doors, alarms, and sprinklers.",
+          "source_chunk_id": "list_of_destroyed_libraries_0",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Demonstrates retrofitting practices that could be imagined for ancient libraries."
+        },
+        {
+          "claim": "There is no recovery possible if a book is burnt, so it is accepted that it is better to put out the fire with water and then dry out the books.",
+          "source_chunk_id": "list_of_destroyed_libraries_1",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Highlights a preservation strategy relevant to assessing loss prevention for Alexandria."
+        },
+        {
+          "claim": "Freezing burnt books until they can be dried preserves the information even though the book is damaged.",
+          "source_chunk_id": "list_of_destroyed_libraries_1",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Provides a specific recovery technique that could be compared to ancient preservation attempts."
+        },
+        {
+          "claim": "Libraries need a disaster management and recovery plan that includes staff training, disaster kits, and regular review.",
+          "source_chunk_id": "list_of_destroyed_libraries_1",
+          "source_title": "List of destroyed libraries",
+          "confidence_basis": "Shows organizational measures that could be analogized to how Alexandria might have been protected."
+        },
+        {
+          "claim": "The Brucheum and Jewish quarters were desolate in the 5th century, and the central monuments, the Soma and Museum, fell into ruin.",
+          "source_chunk_id": "history_of_alexandria_14",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Describes post‑destruction urban decline in Alexandria, offering a comparative outcome."
+        },
+        {
+          "claim": "Life in Alexandria later centered around the Serapeum and Caesareum, which became Christian churches.",
+          "source_chunk_id": "history_of_alexandria_14",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Shows how surviving structures were repurposed, relevant to alternate development scenarios."
+        },
+        {
+          "claim": "Recent archaeology at Kom El Deka uncovered a Roman quarter beneath a layer of Muslim-era graves, including workshops, storefronts, houses, a theater, a public bath, lecture halls, and Coptic frescoes dated to the 4th–7th centuries AD.",
+          "source_chunk_id": "history_of_alexandria_14",
+          "source_title": "History of Alexandria",
+          "confidence_basis": "Provides evidence of urban renewal after earlier destructions, useful for imagining a different trajectory for Alexandria."
+        }
+      ],
+      "source_map": {
+        "library_of_alexandria_36": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "library_of_alexandria_3": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "library_of_alexandria_40": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "an_enquiry_into_the_destruction_of_the_ancient_alexandrian_library_0": "https://en.wikipedia.org/wiki/An_Enquiry_Into_the_Destruction_of_the_Ancient_Alexandrian_Library",
+        "library_of_alexandria_41": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "history_of_alexandria_6": "https://en.wikipedia.org/wiki/History_of_Alexandria",
+        "library_of_alexandria_1": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "library_of_alexandria_17": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+        "list_of_destroyed_libraries_0": "https://en.wikipedia.org/wiki/List_of_destroyed_libraries",
+        "list_of_destroyed_libraries_1": "https://en.wikipedia.org/wiki/List_of_destroyed_libraries",
+        "history_of_alexandria_14": "https://en.wikipedia.org/wiki/History_of_Alexandria"
+      }
+    },
+    "scored": {
+      "proposed_change": "The Library of Alexandria is never destroyed and continues to function as a center of learning.",
+      "divergence_point": "300 BCE-200 CE — Egypt (Eastern Mediterranean)",
+      "steps": [
+        {
+          "step_number": 1,
+          "time_horizon": "Immediate Consequences (0‑10 years after change)",
+          "consequence": "The Library retains its full collection of scrolls and continues to employ its existing cadre of scholars, allowing ongoing research in mathematics, astronomy, and medicine.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_1] — the source lists scholars such as Euclid, Hipparchus, Eratosthenes, and Hero of Alexandria who worked at the Library in the 3rd‑2nd centuries BC, showing that a vibrant scholarly community was already in place.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the survival of the Library of Córdoba (a medieval counterpart that avoided destruction) demonstrates how uninterrupted access to texts sustains active research programs.  \n\n**Confidence:** High  \n**Reason for confidence:** Direct evidence of a pre‑existing scholarly ecosystem makes the continuation of work highly plausible.\n\n---",
+          "evidence_chunk_ids": [
+            "library_of_alexandria_1",
+            "list_of_destroyed_libraries_0"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) library_of_alexandria_1; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) list_of_destroyed_libraries_0. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 2,
+          "time_horizon": "Short‑term Ripple (10‑30 years)",
+          "consequence": "The uninterrupted Library becomes a magnet for scholars from the wider Hellenistic world, fostering a surge in commentaries and translations of Greek works into Latin, which accelerates the diffusion of scientific knowledge into the Roman elite.  \n\n**Evidence basis:** [EVIDENCE: history_of_alexandria_6] — the Museion was built under Ptolemy II and housed the Library, indicating institutional support for scholarly exchange.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the House of Wisdom in Baghdad (later period) functioned as a multilingual hub; the Library of Alexandria, if preserved, would play a similar role earlier.  \n\n**Confidence:** Medium  \n**Reason for confidence:** While the existence of the Museion shows capacity for cross‑cultural scholarship, the exact rate of translation into Latin is less documented, requiring inference.\n\n---",
+          "evidence_chunk_ids": [
+            "history_of_alexandria_6",
+            "list_of_destroyed_libraries_0"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) history_of_alexandria_6; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) list_of_destroyed_libraries_0. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 3,
+          "time_horizon": "Medium‑term Transformation (30‑100 years)",
+          "consequence": "As Christianity gains imperial favor, the Library serves as a contested intellectual refuge; pagan scholars use its resources to formulate philosophical defenses that temper the severity of later anti‑pagan edicts, resulting in a less thorough destruction of pagan literature in the late 4th century.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_40] — under Theodosius I, pagan rituals and temples were outlawed, and the Serapeum (a daughter library) was demolished in 391 AD.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the Nalanda university’s destruction shows how a single act of cultural violence can erase a knowledge center; the Library’s survival would provide a counterexample, potentially moderating later attacks.  \n\n**Confidence:** Medium  \n**Reason for confidence:** The historical record of Christian suppression is clear, but the counterfactual influence of an intact Library on imperial policy is inferential.\n\n---",
+          "evidence_chunk_ids": [
+            "library_of_alexandria_40",
+            "list_of_destroyed_libraries_0"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 3 verified fact(s) drawn from chunk(s) library_of_alexandria_40; multiple verified sources corroborate this consequence. Reinforced by analogy from chunk(s) list_of_destroyed_libraries_0. (model self-reported: Unknown)"
+        },
+        {
+          "step_number": 4,
+          "time_horizon": "Long‑term Legacy (100+ years)",
+          "consequence": "By the early Islamic period (7th century), the still‑functioning Library supplies original Greek manuscripts to Arab scholars, enabling a more rapid and comprehensive translation movement that advances mathematics, medicine, and astronomy in the Islamic Golden Age.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_3] — the real Library’s collection had largely vanished by the 260s AD, implying that its survival would preserve texts otherwise lost; the later Arabic translations of Greek works are historically documented, suggesting a plausible conduit.  \n\n**Confidence:** Low — long‑term consequences are inherently speculative, BUT the existence of later translation activity provides a contextual anchor.  \n\n---",
+          "evidence_chunk_ids": [
+            "library_of_alexandria_3"
+          ],
+          "analogy_chunk_ids": [],
+          "confidence": "Unknown",
+          "confidence_reason": "",
+          "is_grounded": true,
+          "unknown_evidence_ids": [],
+          "confidence_level": "HIGH",
+          "confidence_explanation": "HIGH — directly backed by 2 verified fact(s) drawn from chunk(s) library_of_alexandria_3; multiple verified sources corroborate this consequence. (model self-reported: Unknown)"
+        }
+      ],
+      "what_remains_unknowable": "1. **Exact composition of the surviving collection** – we cannot determine which specific scrolls would have survived the centuries of climate, handling, and possible selective copying.  \n2. **The precise impact on Roman‑Christian theological debates** – the degree to which pagan scholarship could have altered imperial policy is unknowable without contemporary polemical records.  \n3. **Whether the Library would have physically withstood later wars (e.g., Arab conquest, Crusades)** – structural resilience and political protection are contingent on many variables absent from the record.\n\n---",
+      "reconnection_point": "The alternate timeline most likely diverges permanently at the 260 AD cessation of the real Library’s activity (see [EVIDENCE: library_of_alexandria_3]) and may re‑converge only if a later catastrophic event (e.g., the 7th‑century Arab siege) destroys the building, mirroring the historical loss of many ancient sites.\n\n---",
+      "historians_note": "A current historiographical debate concerns whether the original Ptolemaic collection was moved to the Serapeum by the end of the 2nd century AD, with a library attested there until its 391 AD destruction ([EVIDENCE: library_of_alexandria_41]). This debate informs how much of the Library’s core corpus might have survived into late antiquity, directly bearing on the plausibility of the counterfactual continuity outlined above.",
+      "raw_response": "**PROPOSED CHANGE:** The Library of Alexandria is never destroyed and continues to function as a center of learning.  \n**DIVERGENCE POINT:** 300 BCE – 200 CE — Egypt (Eastern Mediterranean)\n\n---\n\n### Step 1 — Immediate Consequences (0‑10 years after change)\n[SIMULATED] The Library retains its full collection of scrolls and continues to employ its existing cadre of scholars, allowing ongoing research in mathematics, astronomy, and medicine.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_1] — the source lists scholars such as Euclid, Hipparchus, Eratosthenes, and Hero of Alexandria who worked at the Library in the 3rd‑2nd centuries BC, showing that a vibrant scholarly community was already in place.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the survival of the Library of Córdoba (a medieval counterpart that avoided destruction) demonstrates how uninterrupted access to texts sustains active research programs.  \n\n**Confidence:** High  \n**Reason for confidence:** Direct evidence of a pre‑existing scholarly ecosystem makes the continuation of work highly plausible.\n\n---\n\n### Step 2 — Short‑term Ripple (10‑30 years)\n[SIMULATED] The uninterrupted Library becomes a magnet for scholars from the wider Hellenistic world, fostering a surge in commentaries and translations of Greek works into Latin, which accelerates the diffusion of scientific knowledge into the Roman elite.  \n\n**Evidence basis:** [EVIDENCE: history_of_alexandria_6] — the Museion was built under Ptolemy II and housed the Library, indicating institutional support for scholarly exchange.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the House of Wisdom in Baghdad (later period) functioned as a multilingual hub; the Library of Alexandria, if preserved, would play a similar role earlier.  \n\n**Confidence:** Medium  \n**Reason for confidence:** While the existence of the Museion shows capacity for cross‑cultural scholarship, the exact rate of translation into Latin is less documented, requiring inference.\n\n---\n\n### Step 3 — Medium‑term Transformation (30‑100 years)\n[SIMULATED] As Christianity gains imperial favor, the Library serves as a contested intellectual refuge; pagan scholars use its resources to formulate philosophical defenses that temper the severity of later anti‑pagan edicts, resulting in a less thorough destruction of pagan literature in the late 4th century.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_40] — under Theodosius I, pagan rituals and temples were outlawed, and the Serapeum (a daughter library) was demolished in 391 AD.  \n\n**Analogy (if applicable):** [EVIDENCE: list_of_destroyed_libraries_0] — the Nalanda university’s destruction shows how a single act of cultural violence can erase a knowledge center; the Library’s survival would provide a counterexample, potentially moderating later attacks.  \n\n**Confidence:** Medium  \n**Reason for confidence:** The historical record of Christian suppression is clear, but the counterfactual influence of an intact Library on imperial policy is inferential.\n\n---\n\n### Step 4 — Long‑term Legacy (100+ years)\n[SIMULATED] By the early Islamic period (7th century), the still‑functioning Library supplies original Greek manuscripts to Arab scholars, enabling a more rapid and comprehensive translation movement that advances mathematics, medicine, and astronomy in the Islamic Golden Age.  \n\n**Evidence basis:** [EVIDENCE: library_of_alexandria_3] — the real Library’s collection had largely vanished by the 260s AD, implying that its survival would preserve texts otherwise lost; the later Arabic translations of Greek works are historically documented, suggesting a plausible conduit.  \n\n**Confidence:** Low — long‑term consequences are inherently speculative, BUT the existence of later translation activity provides a contextual anchor.  \n\n---\n\n## WHAT REMAINS UNKNOWABLE\n1. **Exact composition of the surviving collection** – we cannot determine which specific scrolls would have survived the centuries of climate, handling, and possible selective copying.  \n2. **The precise impact on Roman‑Christian theological debates** – the degree to which pagan scholarship could have altered imperial policy is unknowable without contemporary polemical records.  \n3. **Whether the Library would have physically withstood later wars (e.g., Arab conquest, Crusades)** – structural resilience and political protection are contingent on many variables absent from the record.\n\n---\n\n## RECONNECTION POINT\nThe alternate timeline most likely diverges permanently at the 260 AD cessation of the real Library’s activity (see [EVIDENCE: library_of_alexandria_3]) and may re‑converge only if a later catastrophic event (e.g., the 7th‑century Arab siege) destroys the building, mirroring the historical loss of many ancient sites.\n\n---\n\n## HISTORIAN'S NOTE\nA current historiographical debate concerns whether the original Ptolemaic collection was moved to the Serapeum by the end of the 2nd century AD, with a library attested there until its 391 AD destruction ([EVIDENCE: library_of_alexandria_41]). This debate informs how much of the Library’s core corpus might have survived into late antiquity, directly bearing on the plausibility of the counterfactual continuity outlined above.",
+      "parse_warnings": [],
+      "confidence_distribution": {
+        "SPECULATIVE": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "HIGH": 4
+      },
+      "overall_confidence": "HIGH"
+    }
+  }
+}

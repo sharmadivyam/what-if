@@ -39,6 +39,13 @@ logger = logging.getLogger(__name__)
 _llm_clients: dict[str, "OpenAI"] = {}
 _embedding_function = None  # chromadb SentenceTransformerEmbeddingFunction
 
+# Fixed inter-retry wait (seconds). By default the SDK honours the server's
+# ``Retry-After`` header, which on the free tiers swings unpredictably between
+# ~13s and 60s. We pin every retry to a steady interval instead so back-off is
+# predictable (applied via a per-instance override in get_llm_client — no SDK
+# edit). max_retries still bounds the number of attempts.
+_RETRY_INTERVAL_SECONDS = 30.0
+
 
 def get_llm_client(provider: str = "cerebras") -> "OpenAI":
     """Return the cached OpenAI-compatible client for the chosen provider.
@@ -86,12 +93,22 @@ def get_llm_client(provider: str = "cerebras") -> "OpenAI":
     # honours Retry-After and backs off exponentially, so the extra headroom
     # lets a run ride out transient rate limits instead of crashing mid-pipeline.
     # OpenRouter free tier also throttles, so the same headroom applies there.
-    _llm_clients[provider] = OpenAI(
+    client = OpenAI(
         api_key=api_key,
         base_url=base_url,
         max_retries=6,
     )
-    return _llm_clients[provider]
+
+    # Pin the inter-retry wait to a fixed interval. The SDK calls
+    # ``self._calculate_retry_timeout(remaining_retries, options, response_headers)``
+    # before each retry and sleeps the returned seconds; overriding it on the
+    # instance forces a steady wait regardless of the server's Retry-After.
+    client._calculate_retry_timeout = (
+        lambda remaining_retries, options, response_headers=None: _RETRY_INTERVAL_SECONDS
+    )
+
+    _llm_clients[provider] = client
+    return client
 
 
 def call_with_fallback(messages: list[dict], **kwargs: Any) -> "ChatCompletion":
