@@ -47,8 +47,9 @@ logger = logging.getLogger(__name__)
 
 # --- Tunables (local to the loader; promote to config.Settings if needed) ----
 # wikipedia-api requires a descriptive User-Agent (>= 5 chars) identifying the
-# client; see https://meta.wikimedia.org/wiki/User-Agent_policy.
-USER_AGENT = "HistoryOS/0.1 (educational; contact: sharmadivyam86@gmail.com)"
+# client; see https://meta.wikimedia.org/wiki/User-Agent_policy. The contact is
+# read from config (WIKI_CONTACT env var) so no personal address is hardcoded.
+USER_AGENT = f"HistoryOS/0.1 (educational; contact: {settings.WIKI_CONTACT})"
 REQUEST_TIMEOUT = 15.0  # seconds, forwarded to the underlying httpx.Client
 MAX_RETRIES = 3         # wikipedia-api retries transient errors this many times
 RETRY_BACKOFF = 1.0     # base seconds; library waits retry_wait * 2**attempt

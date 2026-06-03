@@ -125,6 +125,16 @@ pipeline** (run per question).
 - **LLM-call budget per question:** ~4 (1 understand + 2 ground + 1 reason). Agents 2
   and 5 make **zero** LLM calls — including Agent 2's dynamic Wikipedia fallback.
 
+**Result cache (instant replay).** Before the pipeline runs, the frontend checks a local
+file cache keyed by the normalized question (`cache.py` → `cache/<sha256>.json`). A hit
+replays the stored result instantly — **no LLM calls, no embedding-model load, no DB
+read** — so the pre-warmed example questions return immediately at ₹0. A miss runs the
+full pipeline above and caches the `ok` result, making any question fast the second time.
+The cache stores exactly what the renderer consumes (the `grounded` + `scored` Pydantic
+models, status, timings) as plain JSON; the 9 example answers ship **pre-warmed** in
+`cache/` (committed). Errors are never cached, so a transient rate-limit failure is never
+frozen in.
+
 ---
 
 ## 3. Every file and what it does
@@ -132,14 +142,14 @@ pipeline** (run per question).
 ### Configuration & shared clients
 | File | Responsibility |
 |------|----------------|
-| `config.py` | `Settings` singleton loaded from `.env` (via `_get`/`_get_int`/`_get_float`; **env shadows defaults**). Holds API keys, model IDs, ChunK/retrieval/guardrail constants, paths. `validate()` fails loudly if `CEREBRAS_API_KEY` is missing. |
-| `core/llm_client.py` | The **only** place provider clients are created (Critical Rule #7). `get_llm_client(provider)` returns a cached OpenAI-compatible client (`max_retries=6` to ride out free-tier 429s). `call_with_fallback()` runs on Cerebras and, on a `RateLimitError`, automatically retries on **OpenRouter**. `get_embedding_function()` returns the cached local sentence-transformers embedder (no API key). |
+| `config.py` | `Settings` singleton loaded from `.env` (via `_get`/`_get_int`/`_get_float`; **env shadows defaults**). Holds API keys, model IDs, chunk/retrieval/guardrail constants, paths, and `WIKI_CONTACT` (the non-personal contact embedded in the Wikipedia User-Agent). `validate()` fails loudly if `CEREBRAS_API_KEY` is missing. |
+| `core/llm_client.py` | The **only** place provider clients are created (Critical Rule #7). `get_llm_client(provider)` returns a cached OpenAI-compatible client (`max_retries=6`, each retry pinned to a fixed **30 s** wait, to ride out free-tier 429s predictably). `call_with_fallback()` runs on Cerebras and, on a `RateLimitError`, automatically retries on **OpenRouter**. `get_embedding_function()` returns the cached local sentence-transformers embedder (no API key). |
 
 ### Ingestion (offline, `ingestion/`)
 | File | Responsibility |
 |------|----------------|
 | `topics.py` | `CORPUS_TOPICS` — the canonical list of 18 Wikipedia articles that make up the corpus. Single source of truth; add a topic and re-run ingestion to grow the store. |
-| `wikipedia_loader.py` | Downloads article text via **`wikipedia-api`** into `data/raw/`. Caches downloads, falls back to full-text search on an exact-title miss (`resolved_via_search`), detects disambiguation pages via categories, and **skips** (never crashes) on per-topic failures after the library's own retries. |
+| `wikipedia_loader.py` | Downloads article text via **`wikipedia-api`** into `data/raw/`. Caches downloads, falls back to full-text search on an exact-title miss (`resolved_via_search`), detects disambiguation pages via categories, and **skips** (never crashes) on per-topic failures after the library's own retries. The API User-Agent's contact is read from `WIKI_CONTACT` (no personal address hardcoded). |
 | `chunker.py` | Cleans articles (drops "References"/"See also" boilerplate), splits **paragraph-aware** into ≤`CHUNK_SIZE` (300) token chunks with `CHUNK_OVERLAP` (100) of whole-paragraph overlap. Token sizing via `tiktoken` `cl100k_base` (heuristic). Assigns a **stable `chunk_id`** = `<slug>_<index>` (the citation handle, Rule #2). Persists to `data/processed/*.jsonl`. |
 | `embedder.py` | Reads processed chunks and upserts them into ChromaDB in batches of 50, skipping already-embedded ids. Embedding is done by Chroma's local embedding function (Rule #7) — never a paid API. |
 
@@ -162,10 +172,18 @@ pipeline** (run per question).
 |------|----------------|
 | `pipeline/historios_pipeline.py` | Wires Agents 1→5 into a LangGraph `StateGraph` over the `HistoriosState` TypedDict. `_run_node` times each node and **captures any exception** (records `error`/`failed_node`, never re-raises). `run(question, progress_callback=None)` validates config, invokes the graph, derives `status` (`ok`/`no_context`/`error`), and **never raises**. The optional `progress_callback` fires as each node finishes (used by the UI). |
 | `output/report_generator.py` | `generate_report(scored, grounded, …)` → `HistoriosReport` (structured fields **+** display-ready markdown), plus `report_from_state(state)`. Enforces the VERIFIED-vs-SIMULATED split in presentation; renders honest notices for error / empty states. **Provenance:** `_used_dynamic_sources(grounded)` looks up the grounded chunk_ids' Chroma metadata (via `chroma_client.get_metadata`); if any is tagged `wikipedia_dynamic`, the report sets the structured field **`augmented_with_dynamic=True`** and renders a "🌐 *Augmented with a live Wikipedia fetch*" note under the banner. The lookup is best-effort (any failure is swallowed → treated as curated), so it never breaks report generation. No LLM, no network beyond the local Chroma read. |
-| `frontend/app.py` | The **WHAT IF?** Streamlit UI (museum/editorial aesthetic; dark default + light toggle; battle-painting page background behind a centred "paper" panel). Landing → 5-stage loading → simulation-first results timeline with confidence-coloured cards + collapsed evidence. The pipeline runs in a **session-state background job polled by an `st.fragment`**, so a theme toggle / rerun never discards an in-flight question. |
+| `frontend/app.py` | The **WHAT IF?** Streamlit UI (museum/editorial **dark** aesthetic; battle-painting page background behind a centred "paper" panel). Landing → 5-stage loading → simulation-first results timeline with confidence-coloured cards + collapsed evidence. **Cache-first:** a known question renders instantly from `cache.py` (with a "cached" badge) before any worker starts; a new one runs the full pipeline in a **session-state background job polled by an `st.fragment`** (so a rerun never discards an in-flight question) and is then cached. The reasoning cards show **clean narrative** — the LLM's `Evidence basis:` / `Confidence:` / `Reason for confidence:` scaffolding lines are stripped at render time (the confidence pill already conveys the level) — and each evidence **citation links to its source Wikipedia article**. |
 | `evaluation/evaluator.py` | Runs the full A1→A5 chain over `test_cases.json` and applies four spot-checks (C1–C4, see §7), printing each case + a pass/fail matrix with an OVERALL-confidence column. Records-and-continues on per-case failure; never crashes. |
 | `evaluation/test_cases.json` | 8 curated counterfactual questions targeting the ingested corpus. |
-| `.streamlit/config.toml` | `[logger] level = "info"` so pipeline logs are visible (noisy transformers/torch warnings are suppressed in `app.py`). |
+| `.streamlit/config.toml` | `[logger] level = "info"` so pipeline logs are visible (noisy transformers/torch warnings are suppressed in `app.py`); `[client] toolbarMode = "minimal"` hides the dev menu on the deployed app. |
+
+### Caching & demo scripts
+| File | Responsibility |
+|------|----------------|
+| `cache.py` | File-based **result cache**. Key = normalized question (lowercased, whitespace-collapsed, trailing punctuation stripped) → `sha256` → `cache/<hash>.json`. `get()` reconstructs the stored `grounded`/`scored` Pydantic models (or returns `None` on a miss/corrupt file — never raises); `put()` writes atomically and swallows errors (a cache write can never break a live run). Stores only what the renderer reads — facts, scores, status, timings, plus a precomputed `augmented_with_dynamic` flag so a hit needs **no ChromaDB read** — and nothing sensitive. |
+| `frontend/examples.py` | The 9 canonical example questions — single source of truth for **both** the UI chips and `prewarm.py`, so they can't drift. |
+| `scripts/prewarm.py` | Runs the real pipeline over `EXAMPLES` and caches each `ok` result → the committed `cache/*.json`. Skips already-cached questions (`--force` to rebuild). Sequential (free-tier rate limits). |
+| `scripts/rewarm_thin.py` | Re-runs only cached answers with a thin reasoning chain (< 2 steps) and overwrites **only on a strictly better** result — so it can never regress the cache. |
 
 ---
 
@@ -241,8 +259,18 @@ rate-limit back-off, not compute).
 - **Never call the LLM without context (Rule #6).** Empty retrieval / empty grounding
   short-circuits without an LLM call and returns an honest "no verified context" result.
 - **Rerun-safe UI job.** The Streamlit run executes in a worker thread tracked in
-  `session_state` and polled by an `st.fragment`, so theme toggles / reruns never discard
-  an in-flight ~2-minute question.
+  `session_state` and polled by an `st.fragment`, so any rerun never discards an
+  in-flight ~2-minute question.
+- **Cache-first serving.** A general file cache (normalized question → JSON) replays a
+  known answer at zero LLM/model/DB cost, so the demo's example questions are instant and
+  free — and the *same* code path serves a pre-warmed example or a question an earlier
+  visitor asked (no question strings are special-cased). Only successful runs are cached,
+  so a transient rate-limit error is never frozen in.
+- **Clean reasoning cards.** The LLM's structured prose carries scaffolding lines
+  (`Evidence basis:`, `Confidence:`, `Reason for confidence:`, `[EVIDENCE: …]`, `---`)
+  that exist to reinforce alignment during generation; the UI strips them **at render
+  time** (not from the stored data) so readers see narrative prose, with the confidence
+  pill and the linked evidence section carrying the meta-information.
 
 ---
 
@@ -278,7 +306,8 @@ The evaluator now also reports each case's Agent-5 `overall_confidence`.
 ## 8. Known limitations
 
 - **Free-tier latency.** Cerebras 429 back-off makes a full run take ~1–3 minutes; the
-  evaluator's 8 cases can take tens of minutes.
+  evaluator's 8 cases can take tens of minutes. (The example questions are **pre-cached**,
+  so they return instantly — only genuinely new questions run live.)
 - **Citation grounding (C2) is the weakest dimension** — the reasoning model sometimes
   emits ungrounded steps or fabricated `chunk_id`s. These are *flagged* (ungrounded /
   `unknown_evidence_ids` → SPECULATIVE), not silently accepted, but not yet prevented.
@@ -314,11 +343,11 @@ The evaluator now also reports each case's Agent-5 `overall_confidence`.
   questions Wikipedia search itself can't serve.
 - Grow and diversify the corpus; add per-source quality weighting (and weight
   dynamically-fetched `wikipedia_dynamic` chunks distinctly if needed).
-- Cache pipeline results by question to make demos instant.
 - Stream tokens / per-step rendering instead of staged polling.
-- Add response/result caching and a proper test harness around the agents (not just the
-  end-to-end evaluator).
+- Add a proper unit-test harness around the agents (not just the end-to-end evaluator).
 - Add a confidence calibration study (do HIGH steps actually hold up?).
+- Add a cache size/expiry policy if visitor-warmed entries grow large (currently the
+  cache is append-only JSON files).
 
 ---
 

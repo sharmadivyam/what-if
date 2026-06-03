@@ -94,6 +94,11 @@ class Settings:
     # --- Ingestion / chunking ------------------------------------------------
     CHUNK_SIZE: int = _get_int("CHUNK_SIZE", 300)
     CHUNK_OVERLAP: int = _get_int("CHUNK_OVERLAP", 100)
+    # Contact string embedded in the Wikipedia API User-Agent (their policy asks
+    # for a way to identify/contact the client). Keep it NON-personal — a repo URL
+    # or project alias — since it ships in the public repo AND is sent on every
+    # request. Override via the WIKI_CONTACT env var in .env.
+    WIKI_CONTACT: str = _get("WIKI_CONTACT", "https://github.com/")
 
     # --- Retrieval -----------------------------------------------------------
     TOP_K: int = _get_int("TOP_K", 5)

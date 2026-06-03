@@ -35,7 +35,7 @@ those apart. Seven concrete differences:
 | 3 | **Per-claim confidence** — every reasoning step is scored HIGH / MEDIUM / LOW / SPECULATIVE from how much evidence backs it. | One confident tone throughout. |
 | 4 | **Hallucination guards** — max 4 causal steps; fabricated or ungrounded citations are detected and flagged. | Unbounded, unverifiable chains. |
 | 5 | **Multi-agent pipeline** — 5 specialized agents (understand → retrieve → ground → reason → score), each returning a validated Pydantic model. | One free-form completion. |
-| 6 | **Shows its work** — evidence chips per step, plus "What remains unknowable" and a "Historian's note" on the real debate. | Opaque. |
+| 6 | **Shows its work** — a confidence pill per step and a separate **cited-evidence** section where each citation links to its Wikipedia source, plus "What remains unknowable" and a "Historian's note" on the real debate. | Opaque. |
 | 7 | **Auditable & evaluated** — 4 automated rule-checks (C1–C4) across a test suite; reproducible. | Not testable. |
 
 …and it runs at **₹0** — free LLM tier, local embeddings, local vector DB.
@@ -70,6 +70,11 @@ it, and re-searches — no LLM call) → `③ ground` extracts & classifies cite
 (VERIFIED/DEBATED/BACKGROUND) → `④ reason` builds a ≤4-step `[SIMULATED]` causal chain
 citing `[EVIDENCE: chunk_id]` → `⑤ score` rates each step by evidence. Full technical
 writeup: **[`docs/PROJECT_DOCUMENTATION.md`](docs/PROJECT_DOCUMENTATION.md)**.
+
+**Instant examples (result cache).** Every answer is cached by question (`cache/*.json`),
+so the example questions replay **immediately** — no LLM calls, no model load — while a
+genuinely new question runs the full pipeline live and is then cached for next time. The 9
+example answers ship **pre-warmed** in the repo (`scripts/prewarm.py` rebuilds them).
 
 ---
 
@@ -156,7 +161,9 @@ accepted. See the docs for the per-case breakdown.
 
 ## ⚠️ Known limitations
 
-- **Latency:** ~1–3 min per question on the free Cerebras tier (rate-limit back-off).
+- **Latency:** ~1–3 min per *new* question on the free Cerebras tier (rate-limit back-off).
+  The example questions are **pre-cached**, so they return instantly; only genuinely new
+  questions run live.
 - **Citation grounding (C2)** is the weakest check — fabricated/ungrounded citations are
   flagged but not yet prevented.
 - **Small curated corpus** — 18 Wikipedia articles. Out-of-corpus questions now trigger

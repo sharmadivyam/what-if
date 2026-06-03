@@ -16,7 +16,8 @@ SIMULATED consequences with confidence scores.
 ## Architecture Overview
 - 5 agents connected sequentially via LangGraph
 - ChromaDB for local vector storage
-- Cerebras qwen-3-235b-a22b-instruct-2507 for all LLM calls (free, OpenAI-compatible)
+- Cerebras gpt-oss-120b for all LLM calls (free, OpenAI-compatible; model list drifts —
+  confirm via client.models.list(), keep config.py/.env/.env.example in sync)
 - sentence-transformers all-mpnet-base-v2 for embeddings (local, free, no API key)
 - Streamlit for frontend UI
 - Dynamic Wikipedia fallback in the retrieval engine: when local Chroma search has
@@ -28,6 +29,13 @@ SIMULATED consequences with confidence scores.
   - `DYNAMIC_CHUNK_CAP` (int, default `200`) — max chunks added per run (bounds latency).
   - `DYNAMIC_MIN_SIMILARITY` (float, default `0.6`) — cosine floor below which the best
     local primary hit is treated as "no real match" (the fallback trigger).
+- Result cache: every answer is cached by normalized question to `cache/<hash>.json`
+  (`cache.py`); a hit replays instantly with no LLM/model/DB cost. The 9 example answers
+  ship pre-warmed (committed). `scripts/prewarm.py` builds them, `scripts/rewarm_thin.py`
+  improves thin ones, and `frontend/examples.py` is the single source of truth for the
+  example list (UI chips + prewarm). Only `status="ok"` runs are cached.
+- Wikipedia API User-Agent contact is read from `WIKI_CONTACT` (non-personal default; no
+  email hardcoded). Cerebras/OpenRouter retries wait a fixed 30 s (predictable back-off).
 - Total API cost: ₹0
 
 ## Critical Rules — Never Violate These
@@ -66,23 +74,29 @@ historios/
 ├── output/
 │   └── report_generator.py
 ├── frontend/
-│   └── app.py
+│   ├── app.py
+│   └── examples.py       # canonical example questions (UI chips + prewarm)
+├── scripts/
+│   ├── prewarm.py        # build the committed result cache over EXAMPLES
+│   └── rewarm_thin.py    # re-warm thin cached answers (overwrite only if better)
+├── cache/                # committed pre-warmed result cache (<hash>.json per question)
 ├── evaluation/
 │   ├── test_cases.json
 │   └── evaluator.py
 ├── .claude/
 │   └── commands/         # custom slash commands
+├── cache.py              # file-based result cache (get/put, normalized-question key)
 ├── config.py
 ├── requirements.txt
 ├── .env
 └── CLAUDE.md
 
 ## Tech Stack
-- Python 3.11
+- Python 3.12 (runtime 3.12.10)
 - LangGraph (agent orchestration)
 - LangChain (LLM + retrieval utilities)
 - ChromaDB (local vector database)
-- Cerebras qwen-3-235b-a22b-instruct-2507 (LLM — free, OpenAI-compatible API)
+- Cerebras gpt-oss-120b (LLM — free, OpenAI-compatible API)
 - sentence-transformers all-mpnet-base-v2 (embeddings — local, free, no API key)
 - Wikipedia Python API (data source)
 - Tavily API (web search)
@@ -100,7 +114,7 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] chunker.py
 [x] embedder.py
 [x] chroma_client.py
-[ ] query_understanding.py
+[x] query_understanding.py
 [x] retrieval_engine.py  (incl. dynamic Wikipedia fallback)
 [x] grounding_layer.py
 [x] reasoning_agent.py
@@ -108,8 +122,11 @@ Phase 0 — Setup complete. Starting Phase 1: Data Ingestion.
 [x] historios_pipeline.py
 [x] report_generator.py
 [x] app.py
-[ ] evaluation/test_cases.json
-[ ] evaluation/evaluator.py
+[x] evaluation/test_cases.json
+[x] evaluation/evaluator.py
+[x] cache.py + cache/ (committed pre-warmed result cache)
+[x] frontend/examples.py (single source of truth for examples)
+[x] scripts/prewarm.py + scripts/rewarm_thin.py
 
 ## Known Issues Log
 - Runtime Python is 3.12.10, not 3.11 as documented above. Non-blocking so far;

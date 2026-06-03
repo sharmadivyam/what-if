@@ -102,6 +102,7 @@ _STAGE_INDEX = {name: i for i, (name, _) in enumerate(STAGES)}
 
 # Historical premium palette → theme tokens. Confidence colours (visual only;
 # LEVEL semantics unchanged): HIGH=gold, MEDIUM=olive, LOW=caramel, SPECULATIVE=red.
+# Single dark theme (the light/parchment theme and its toggle were removed).
 THEMES = {
     "dark": {
         "bg": "#111A19", "surface": "#1B2625", "surface_alt": "#15201E",
@@ -112,17 +113,6 @@ THEMES = {
         "overlay": "radial-gradient(ellipse at 50% 28%, rgba(15,22,21,0.72), rgba(15,22,21,0.95))",
         "panel": "rgba(22,30,28,0.42)", "hair": "rgba(240,230,200,0.16)",
         "paper": "rgba(18,26,24,0.92)",
-    },
-    "light": {
-        "bg": "#F5EDD6", "surface": "#FBF5E1", "surface_alt": "#EEE4C8",
-        "text": "#1C1C1C", "muted": "#6B5E45", "border": "#D9C9A0",
-        # pale gold is unreadable as text on parchment → deeper gold for text roles.
-        "gold": "#E0B873", "gold_text": "#A9712B", "olive": "#4C6338",
-        "caramel": "#BF8336", "spec": "#B23A30", "shadow": "rgba(60,40,10,0.12)",
-        # Parchment vignette wash so the painting only sets the mood; dark text reads.
-        "overlay": "radial-gradient(ellipse at 50% 28%, rgba(245,237,214,0.84), rgba(245,237,214,0.97))",
-        "panel": "rgba(251,245,225,0.62)", "hair": "rgba(28,28,28,0.16)",
-        "paper": "rgba(249,242,223,0.93)",
     },
 }
 
@@ -298,6 +288,47 @@ _CSS = Template(
                    border:1px solid $gold; border-radius:999px; padding:0.15rem 0.7rem; margin:0 0 0.7rem; }
     .cache-note { text-align:center; color:$muted; font-family:'Lora',serif; font-style:italic;
                   font-size:0.82rem; line-height:1.5; max-width:620px; margin:0.7rem auto 0.2rem; }
+
+    /* ---- responsive header: desktop inline nav vs mobile hamburger ---- */
+    /* Both nav versions render server-side; CSS shows exactly one. Default
+       (desktop) hides the mobile block; the breakpoint below flips them so
+       desktop is left pixel-identical. */
+    .st-key-nav_mobile { display: none; }
+    @media (max-width: 640px) {
+        .st-key-nav_desktop { display: none !important; }
+        /* nav_mobile = ONE horizontal row: wordmark left, ☰ right, centered.
+           (st.container's keyed block is itself the flex element.) */
+        .st-key-nav_mobile {
+            display: flex !important; flex-direction: row !important;
+            align-items: center !important; justify-content: space-between !important;
+            flex-wrap: nowrap !important; gap: 0.5rem !important;
+        }
+        .st-key-nav_mobile > * { width: auto !important; }   /* don't stretch full-width */
+        /* bare icon hamburger — transparent, no border/box, tucked top-right */
+        .st-key-nav_mobile [data-testid="stPopover"] > button {
+            background: transparent !important; border: none !important; box-shadow: none !important;
+            padding: 0.15rem 0.25rem !important; min-height: 0 !important; width: auto !important;
+            color: $gold_text !important; font-size: 1.5rem !important; line-height: 1 !important;
+        }
+        .st-key-nav_mobile [data-testid="stPopover"] > button:hover {
+            background: transparent !important; border: none !important; color: $text !important;
+        }
+        /* hamburger panel — museum dark styling, mobile-scoped so the desktop
+           About popover is untouched (the popover body renders in a portal, but
+           this media query only matches on narrow viewports). */
+        [data-testid="stPopoverBody"] {
+            background: $surface; border: 1px solid $gold; border-radius: 4px;
+            color: $text; font-family: 'Lora', serif;
+        }
+        .menu-h { font-family:'Playfair Display',serif; font-weight:700; color:$gold_text;
+                  font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+                  border-bottom:1px solid $hair; padding-bottom:0.4rem; margin:0.1rem 0 0.5rem; }
+        .menu-link { display:block; text-align:center; text-decoration:none;
+                     font-family:'Inter',sans-serif; font-weight:500; color:$text;
+                     border:1px solid $hair; background:$panel; padding:0.55rem 0.7rem;
+                     margin:0.4rem 0; transition:border-color .18s ease, color .18s ease; }
+        .menu-link:hover { border-color:$gold; color:$gold_text; }
+    }
     """
 )
 
@@ -317,8 +348,8 @@ def _bg_data_uri() -> str:
         return ""
 
 
-def inject_css(theme: str) -> None:
-    tokens = dict(THEMES.get(theme, THEMES["dark"]))
+def inject_css() -> None:
+    tokens = dict(THEMES["dark"])
     tokens["bg_uri"] = _bg_data_uri()
     st.markdown(f"<style>{_CSS.substitute(**tokens)}</style>", unsafe_allow_html=True)
 
@@ -431,24 +462,53 @@ def _go_home() -> None:
 # --- Navbar ------------------------------------------------------------------
 
 
-def render_navbar(theme: str) -> None:
-    left, about, gh, toggle = st.columns([5, 1.1, 1.2, 0.9], vertical_alignment="center")
-    with left:
-        st.markdown(
-            f'<div class="nav-logo">WHAT IF?</div>'
-            f'<div class="nav-tag">{APP_TAGLINE}</div>',
-            unsafe_allow_html=True,
-        )
-    with about:
-        with st.popover("About", use_container_width=True):
+def _wordmark() -> None:
+    st.markdown(
+        f'<div class="nav-logo">WHAT IF?</div>'
+        f'<div class="nav-tag">{APP_TAGLINE}</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def render_navbar() -> None:
+    """Header nav (dark theme only; no theme toggle).
+
+    Two versions are rendered; CSS shows exactly one per viewport (see the
+    ``@media`` rules in ``_CSS``). Desktop (≥641px) shows About + GitHub inline;
+    mobile (≤640px) collapses them into a single ``☰`` popover so the header is
+    just the wordmark + menu and the hero sits higher.
+    """
+    # --- Desktop header: items inline, top-right ----------------------------
+    with st.container(key="nav_desktop"):
+        left, about, gh = st.columns([5, 1.1, 1.2], vertical_alignment="center")
+        with left:
+            _wordmark()
+        with about:
+            with st.popover("About", use_container_width=True):
+                st.markdown(ABOUT_TEXT)
+        with gh:
+            st.link_button("★ GitHub", GITHUB_URL, use_container_width=True)
+
+    # --- Mobile header: wordmark + hamburger on ONE row (shown ≤640px via CSS) ---
+    # No st.columns here — columns stack below ~640px (that was the bug). The
+    # nav_mobile container is flexed into a single row in CSS instead, with the
+    # ☰ rendered as a bare icon button pinned to the right.
+    with st.container(key="nav_mobile"):
+        _wordmark()
+        # st.popover is keyboard-focusable + Esc/tap-away dismissible natively;
+        # `help` gives it an accessible name alongside the ☰ glyph. No
+        # use_container_width → the trigger stays icon-sized (styled bare in CSS).
+        with st.popover("☰", help="Menu"):
+            st.markdown('<div class="menu-h">About</div>', unsafe_allow_html=True)
             st.markdown(ABOUT_TEXT)
-    with gh:
-        st.link_button("★ GitHub", GITHUB_URL, use_container_width=True)
-    with toggle:
-        icon = "🌙" if theme == "light" else "☀"
-        if st.button(icon, key="theme_toggle", use_container_width=True, help="Toggle light/dark"):
-            st.session_state.theme = "dark" if theme == "light" else "light"
-            st.rerun()
+            # HTML anchor (not st.link_button) so it can't collide with the
+            # desktop GitHub element; same link, styled to match the menu.
+            st.markdown(
+                f'<a class="menu-link" href="{GITHUB_URL}" target="_blank" '
+                f'rel="noopener">★ GitHub</a>',
+                unsafe_allow_html=True,
+            )
+
     st.markdown('<div class="navbar-rule"></div>', unsafe_allow_html=True)
 
 
@@ -561,7 +621,7 @@ def _start_job(question: str) -> None:
     """Kick off the pipeline in a worker thread, tracked in ``st.session_state``.
 
     The thread + queue live in session_state so they SURVIVE full-app reruns (a
-    theme toggle, a resize, any widget interaction). The pipeline call itself is
+    a resize, any widget interaction). The pipeline call itself is
     unchanged — exactly one ``run_pipeline(question, progress_callback=cb)``.
     """
     events: Queue = Queue()
@@ -618,7 +678,7 @@ def render_loading() -> None:
     """Poll the active job every 0.5s as an isolated fragment (no blocking loop).
 
     Because the job is in session_state and this fragment reruns on its OWN timer,
-    a full-app rerun (e.g. the theme toggle) no longer discards the in-flight run —
+    a full-app rerun (e.g. a sidebar click) no longer discards the in-flight run —
     the fragment simply re-attaches and keeps polling; the worker thread is
     untouched. When the run finishes we commit the result and trigger a full rerun
     to leave the loading state.
@@ -665,7 +725,7 @@ def render_loading() -> None:
 # --- Results (STATE 3) — simulation first ------------------------------------
 
 
-def render_results(question: str, state: dict, theme: str) -> None:
+def render_results(question: str, state: dict) -> None:
     status = state.get("status", "ok")
     grounded = state.get("grounded")
     report = generate_report(
@@ -811,13 +871,11 @@ def _record_history(question: str, state: dict) -> None:
 def main() -> None:
     st.set_page_config(page_title="WHAT IF?", page_icon="❓", layout="wide",
                        initial_sidebar_state="expanded")
-    st.session_state.setdefault("theme", "dark")
     st.session_state.setdefault("history", [])
     st.session_state.setdefault("result", None)
 
-    theme = st.session_state["theme"]
-    inject_css(theme)
-    render_navbar(theme)
+    inject_css()
+    render_navbar()
     render_sidebar()
 
     pending = st.session_state.pop("pending", None)
@@ -834,7 +892,7 @@ def main() -> None:
 
     if "job" in st.session_state:
         # STATE 2 — loading. Search stays visible; the fragment polls on its own
-        # timer so a theme toggle (full rerun) cannot discard the in-flight run.
+        # timer so a full app rerun cannot discard the in-flight run.
         render_search("q_top", "Ask another counterfactual…")
         render_loading()
     elif st.session_state.get("result") is not None:
@@ -844,7 +902,7 @@ def main() -> None:
                 _go_home()
         render_search("q_top", "Ask another counterfactual…")
         q, state = st.session_state["result"]
-        render_results(q, state, theme)  # STATE 3 — results
+        render_results(q, state)  # STATE 3 — results
     else:
         render_landing()  # STATE 1 — landing
 
