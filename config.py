@@ -40,11 +40,20 @@ def _get(name: str, default: str | None = None) -> str | None:
             # Streamlit isn't running (e.g., local background data pipelines).
             pass
 
-    # Treat empty strings as unset
-    if value is not None and str(value).strip() == "":
+    if value is None:
         return default
-        
-    return value if value is not None else default
+
+    # Coerce to str: st.secrets holds real TOML types, so an UNQUOTED secret
+    # (e.g. `ENABLE_DYNAMIC_RETRIEVAL = true` or `TOP_K = 5`) arrives as a bool/
+    # int — and the _get_* parsers call str methods on it, which would crash at
+    # import time. str() makes quoted and unquoted secrets behave identically.
+    value = str(value)
+
+    # Treat empty strings as unset
+    if value.strip() == "":
+        return default
+
+    return value
 
 
 def _get_int(name: str, default: int) -> int:
@@ -69,6 +78,27 @@ def _get_bool(name: str, default: bool) -> bool:
     if raw is None:
         return default
     return raw.strip().lower() in ("1", "true", "yes", "on")
+
+
+# --- Hugging Face Hub download hardening (cloud deployment) -------------------
+# The local embedding model (~420 MB) is downloaded from huggingface.co on first
+# use. On Streamlit Community Cloud the container boots with an EMPTY model cache
+# and a shared egress IP, so unauthenticated downloads get throttled and the
+# hub's default 10s connect/etag timeouts are easily exceeded → connection/
+# timeout errors surfacing in the retrieval layer. Two mitigations, both no-ops
+# locally where the model is already cached on disk:
+# - Generous download timeouts. huggingface_hub reads these env vars at IMPORT
+#   time, so they must land in os.environ here: config is imported before the
+#   HF stack (itself imported lazily inside get_embedding_function).
+# - HF_TOKEN bridge: _get() also reads Streamlit secrets, but huggingface_hub
+#   only looks at os.environ — copy the token across so downloads run
+#   authenticated (much higher rate limits). Free read token:
+#   https://huggingface.co/settings/tokens.
+os.environ.setdefault("HF_HUB_DOWNLOAD_TIMEOUT", "120")
+os.environ.setdefault("HF_HUB_ETAG_TIMEOUT", "120")
+_hf_token = _get("HF_TOKEN")
+if _hf_token:
+    os.environ.setdefault("HF_TOKEN", str(_hf_token))
 
 
 class Settings:

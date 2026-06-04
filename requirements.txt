@@ -1,12 +1,19 @@
-langchain
-# langchain-openai  # removed: OpenAI LLM/embeddings integration no longer used
-#                     (LLM = Cerebras via the raw `openai` client; embeddings local)
-langchain-community
+# CPU-only torch wheels (sentence-transformers pulls torch in). Without this,
+# Linux deploys (e.g. Streamlit Community Cloud) install the multi-GB CUDA
+# build — slow installs + OOM risk on the 2.7 GB container. Harmless locally:
+# the CPU index also serves Windows/macOS wheels.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# langchain / langchain-community / langchain-openai removed: never imported.
+# Only langchain-core is used (Document in ingestion/), declared explicitly
+# below even though langgraph already depends on it.
+langchain-core
 langgraph
 chromadb
 openai  # OpenAI-compatible client for Cerebras (not OpenAI itself)
 wikipedia-api
-tavily-python
+# tavily-python removed: Tavily web-search fallback is stubbed (the dynamic
+# Wikipedia fallback occupies that seam) — re-add if/when it's implemented.
 pydantic
 streamlit
 python-dotenv

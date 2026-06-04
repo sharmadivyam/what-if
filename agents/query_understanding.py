@@ -179,7 +179,14 @@ def analyze_query(user_question: str) -> QueryAnalysis:
             temperature=TEMPERATURE,
             response_format={"type": "json_object"},
         )
-        content = (response.choices[0].message.content or "").strip()
+        # Belt-and-braces: call_with_fallback guarantees choices[0].message, but
+        # guard anyway — a malformed response becomes empty content here, which
+        # fails validation below and goes through the corrective-retry path
+        # instead of crashing with 'NoneType' object is not subscriptable.
+        choice = response.choices[0] if response.choices else None
+        content = (
+            (choice.message.content or "") if choice and choice.message else ""
+        ).strip()
 
         try:
             analysis = QueryAnalysis.model_validate_json(content)

@@ -68,7 +68,7 @@ from pipeline.historios_pipeline import run as run_pipeline  # noqa: E402
 # --- Constants ---------------------------------------------------------------
 
 APP_TAGLINE = "Counterfactual History Engine"
-GITHUB_URL = "https://github.com/"  # TODO: point at the real repository
+GITHUB_URL = "https://github.com/sharmadivyam/what-if"
 DISCLAIMER = "Simulated consequences are AI-generated inferences, not historical fact."
 LOADING_NOTE = "This takes ~2 minutes on the free tier — worth the wait."
 CACHE_NOTE = (
