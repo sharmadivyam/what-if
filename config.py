@@ -28,9 +28,23 @@ load_dotenv(BASE_DIR / ".env")
 def _get(name: str, default: str | None = None) -> str | None:
     """Read an environment variable, treating empty strings as unset."""
     value = os.getenv(name, default)
-    if value is not None and value.strip() == "":
+    
+    # 2. If not found, securely check Streamlit secrets (Cloud deployment)
+    if value is None:
+        try:
+            import streamlit as st
+            if name in st.secrets:
+                value = st.secrets[name]
+        except Exception:
+            # Broad catch: Ignores missing secrets.toml or contexts where 
+            # Streamlit isn't running (e.g., local background data pipelines).
+            pass
+
+    # Treat empty strings as unset
+    if value is not None and str(value).strip() == "":
         return default
-    return value
+        
+    return value if value is not None else default
 
 
 def _get_int(name: str, default: int) -> int:
