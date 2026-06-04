@@ -56,9 +56,9 @@ class SearchResult(BaseModel):
     similarity_score: float  # 1 - cosine_distance, ~0..1 (higher = more similar)
     source_url: str = ""  # kept beyond the base spec — needed to cite (Rule #2)
 
-
+@st.cache_resource
 def get_client() -> chromadb.api.ClientAPI:
-    """Return (and cache) the persistent ChromaDB client at the config path."""
+    """Return the client. Uses Streamlit cache in UI, or global fallback in CLI."""
     global _client
     if _client is None:
         _client = chromadb.PersistentClient(
@@ -68,12 +68,9 @@ def get_client() -> chromadb.api.ClientAPI:
     return _client
 
 
+@st.cache_resource
 def get_collection():
-    """Return (and cache) the HistoryOS collection (created on first use).
-
-    Cosine space + the local embedding function are bound here, so callers never
-    embed text themselves.
-    """
+    """Return the collection. Uses Streamlit cache in UI, or global fallback in CLI."""
     global _collection
     if _collection is None:
         _collection = get_client().get_or_create_collection(
@@ -82,8 +79,6 @@ def get_collection():
             metadata={"hnsw:space": "cosine"},
         )
     return _collection
-
-
 def _metadata_for(chunk) -> dict:
     """Build a Chroma-safe metadata dict from a Chunk (drops null values)."""
     meta = {field: getattr(chunk, field) for field in _METADATA_FIELDS}
