@@ -29,7 +29,7 @@ Implementation notes:
 from __future__ import annotations
 
 import logging
-
+import streamlit as st
 import chromadb
 from chromadb.config import Settings as ChromaSettings
 from pydantic import BaseModel
