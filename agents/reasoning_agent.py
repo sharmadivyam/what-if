@@ -586,6 +586,7 @@ def reason_about_counterfactual(
         ],
         model=settings.CEREBRAS_MODEL,
         temperature=TEMPERATURE,
+        max_completion_tokens=2048,
     )
     raw_response = (response.choices[0].message.content or "").strip()
 

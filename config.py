@@ -120,7 +120,7 @@ class Settings:
 
     # --- LLM: OpenRouter fallback (OpenAI-compatible endpoint) ---------------
     OPENROUTER_BASE_URL: str = _get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-    OPENROUTER_MODEL: str = _get("OPENROUTER_MODEL", "meta-llama/llama-3.3-70b-instruct:free")
+    OPENROUTER_MODEL: str = _get("OPENROUTER_MODEL", "openai/gpt-oss-120b:free")
 
     # --- Embeddings: local sentence-transformers (no API key, runs on torch) -
     EMBEDDING_MODEL: str = _get("EMBEDDING_MODEL", "all-mpnet-base-v2")
