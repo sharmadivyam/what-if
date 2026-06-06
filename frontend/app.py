@@ -204,9 +204,15 @@ _CSS = Template(
 
     /* ---- loading ---- */
     .load-wrap { max-width: 580px; margin: 2.4rem auto; }
-    .stage { display: flex; align-items: center; gap: 0.8rem; font-family: 'Lora', serif;
-             font-size: 1.05rem; padding: 0.5rem 0; color: $muted; }
-    .stage .ic { width: 1.4rem; display: inline-block; text-align: center; font-size: 1.1rem; }
+    .stage { display: flex; align-items: flex-start; gap: 0.8rem; font-family: 'Lora', serif;
+             font-size: 1.05rem; padding: 0.5rem 0; color: $muted; flex-direction: column; }
+    .stage .ic { width: 1.4rem; display: inline-block; text-align: center; font-size: 1.1rem;
+                 flex-shrink: 0; }
+    .stage > :first-child { display: flex; align-items: center; gap: 0.8rem; }
+    .stage { flex-direction: column; align-items: flex-start; }
+    .stage .ic { display: inline-block; }
+    .stage-sub { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: $gold_text;
+                 margin-left: 2.2rem; margin-top: 0.15rem; opacity: 0.85; font-style: italic; }
     .stage.done { color: $text; } .stage.done .ic { color: $gold; }
     .stage.current { color: $text; font-weight: 600; } .stage.current .ic { color: $gold; }
     .timer { text-align: center; color: $gold_text; font-family:'Inter',sans-serif; font-size: 0.9rem;
@@ -216,6 +222,21 @@ _CSS = Template(
     .modelnote { text-align: center; color: $gold_text; font-family:'Inter',sans-serif;
                  font-size: 0.8rem; line-height: 1.5; margin: 0.8rem auto 0; max-width: 460px;
                  border-top: 1px solid $hair; padding-top: 0.7rem; }
+
+    /* ---- premise card ---- */
+    .premise-card { border: 1px solid $border; border-left: 4px solid $gold; border-radius: 6px;
+                    padding: 0.85rem 1.1rem; margin: 0.6rem 0 1.2rem; background: $surface; }
+    .premise-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.68rem;
+                     letter-spacing: 0.16em; text-transform: uppercase; color: $gold_text; }
+    .premise-body { font-family: 'Lora', serif; font-size: 1.0rem; color: $text;
+                    margin: 0.35rem 0 0.2rem; line-height: 1.55; }
+    .premise-meta { font-family: 'Inter', sans-serif; font-size: 0.74rem; color: $muted;
+                    margin-top: 0.15rem; }
+
+    /* ---- dynamic source badge ---- */
+    .dynamic-badge { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: $muted;
+                     border: 1px solid $border; border-radius: 4px; padding: 0.35rem 0.75rem;
+                     display: inline-block; margin: 0.3rem 0 0.8rem; font-style: italic; }
 
     /* ---- results ---- */
     .q-title { font-family: 'Playfair Display', serif; font-size: 2.0rem; font-weight: 700;
@@ -590,9 +611,15 @@ def render_landing() -> None:
 # --- Loading (STATE 2) -------------------------------------------------------
 
 
-def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) -> str:
+def _loading_html(
+    done_idx: int,
+    elapsed: float,
+    show_model_note: bool = False,
+    live_info: dict | None = None,
+) -> str:
+    live_info = live_info or {}
     rows = []
-    for i, (_, label) in enumerate(STAGES):
+    for i, (node_name, label) in enumerate(STAGES):
         if i < done_idx:
             cls, ic = "done", "●"
         elif i == done_idx:
@@ -600,13 +627,25 @@ def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) 
         else:
             cls, ic = "pending", "○"
         check = "  ✓" if i < done_idx else ""
-        rows.append(f'<div class="stage {cls}"><span class="ic">{ic}</span>{label}{check}</div>')
+        # Stage 2 (retrieve) gets a live sub-line showing discovered sources
+        sub = ""
+        if node_name == "retrieve" and i == done_idx:
+            sources = live_info.get("sources_found")
+            dynamic = live_info.get("dynamic_fetch")
+            if dynamic:
+                sub = f'<div class="stage-sub">Running live Wikipedia search for new topic…</div>'
+            elif sources:
+                sub = f'<div class="stage-sub">Found context in: {_esc(sources)}</div>'
+        rows.append(
+            f'<div class="stage {cls}"><span class="ic">{ic}</span>{label}{check}{sub}</div>'
+        )
 
-    # Pass elapsed seconds to JS — it adds to this base on every client tick
-    # so the clock is smooth regardless of how often the fragment fires.
+    # JS-driven timer: data-base gives the server-measured elapsed seconds as
+    # a starting point; JS adds (Date.now() - pageload) on top every second,
+    # so the clock runs smoothly regardless of how often the fragment fires.
     elapsed_int = int(elapsed)
     model_note = (
-        '<div class="modelnote">⏳ First question also loads the local search model '
+        '<div class="modelnote">First question also loads the local search model '
         '(~30–60s, one-time) — later questions skip this.</div>'
         if show_model_note
         else ""
@@ -617,20 +656,23 @@ def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) 
         f'<div class="note">{LOADING_NOTE}</div>{model_note}</div>'
         f'<script>'
         f'(function(){{'
-        f'  var base = parseInt(document.getElementById("wf-timer").dataset.base, 10);'
-        f'  var start = Date.now();'
+        f'  var el=document.getElementById("wf-timer");'
+        f'  if(!el)return;'
+        f'  var base=parseInt(el.dataset.base,10);'
+        f'  var t0=Date.now();'
         f'  function tick(){{'
-        f'    var total = base + Math.floor((Date.now() - start) / 1000);'
-        f'    var mm = String(Math.floor(total / 60)).padStart(2, "0");'
-        f'    var ss = String(total % 60).padStart(2, "0");'
-        f'    var el = document.getElementById("wf-timer");'
-        f'    if (el) el.textContent = "elapsed " + mm + ":" + ss;'
+        f'    var tot=base+Math.floor((Date.now()-t0)/1000);'
+        f'    var mm=String(Math.floor(tot/60)).padStart(2,"0");'
+        f'    var ss=String(tot%60).padStart(2,"0");'
+        f'    var e=document.getElementById("wf-timer");'
+        f'    if(e)e.textContent="elapsed "+mm+":"+ss;'
         f'  }}'
         f'  tick();'
-        f'  setInterval(tick, 1000);'
+        f'  setInterval(tick,1000);'
         f'}})()'
         f'</script>'
     )
+
 
 def _start_job(question: str) -> None:
     """Kick off the pipeline in a worker thread, tracked in ``st.session_state``.
@@ -641,8 +683,30 @@ def _start_job(question: str) -> None:
     """
     events: Queue = Queue()
     holder: dict = {}
+    live_info: dict = {}  # written by worker thread, read by render_loading fragment
 
     def cb(name: str, elapsed: float, errored: bool) -> None:
+        # After retrieval completes, pull source names from the pipeline state
+        # so the loading screen can show "Found context in: Mughal Empire, …"
+        if name == "retrieve" and not errored:
+            try:
+                retrieval_ctx = holder.get("state", {}).get("retrieval")
+                if retrieval_ctx is not None:
+                    chunks = getattr(retrieval_ctx, "primary_chunks", [])
+                    titles = list(dict.fromkeys(
+                        c.source for c in chunks if c.source
+                    ))[:3]
+                    if titles:
+                        live_info["sources_found"] = ", ".join(titles)
+                    # Flag if dynamic Wikipedia fetch was used
+                    dynamic_chunks = [
+                        c for c in chunks
+                        if getattr(c, "source", "") == "wikipedia_dynamic"
+                    ]
+                    if dynamic_chunks:
+                        live_info["dynamic_fetch"] = True
+            except Exception:  # noqa: BLE001 — live info is best-effort
+                pass
         events.put(name)
 
     def worker() -> None:
@@ -668,6 +732,7 @@ def _start_job(question: str) -> None:
     st.session_state["job"] = {
         "question": question, "events": events, "holder": holder,
         "thread": thread, "done_idx": 0, "start": time.monotonic(),
+        "live_info": live_info,
     }
 
 
@@ -706,7 +771,12 @@ def render_loading() -> None:
     # means the embedding model is now loaded in-process for the rest of the run).
     show_model_note = not st.session_state.get("_model_warmed")
     st.markdown(
-        _loading_html(job["done_idx"], time.monotonic() - job["start"], show_model_note),
+        _loading_html(
+            job["done_idx"],
+            time.monotonic() - job["start"],
+            show_model_note,
+            live_info=job.get("live_info", {}),
+        ),
         unsafe_allow_html=True,
     )
     if finished:
@@ -779,16 +849,44 @@ def render_results(question: str, state: dict) -> None:
         return
 
     # ---- SECTION 1 — THE ANSWER (simulation first) -------------------------
+    # Premise card: shows the proposed change + time/geography so the reader
+    # always knows what hypothesis the simulation is built on.
+    analysis = state.get("analysis")
+    if analysis is not None:
+        proposed = getattr(analysis, "proposed_change", None)
+        time_period = getattr(analysis, "time_period", None)
+        geography = getattr(analysis, "geography", None)
+        meta_parts = [p for p in [time_period, geography] if p]
+        meta_line = " · ".join(meta_parts) if meta_parts else ""
+        if proposed:
+            st.markdown(
+                f'<div class="premise-card">'
+                f'<span class="premise-label">Premise</span>'
+                f'<div class="premise-body">{_esc(proposed)}</div>'
+                + (f'<div class="premise-meta">{_esc(meta_line)}</div>' if meta_line else "")
+                + f'</div>',
+                unsafe_allow_html=True,
+            )
+
     st.markdown(
         f'<div style="margin:0.2rem 0 0.4rem;">'
         f'{_cbadge(report.overall_confidence, "OVERALL · ", none_text="UNAVAILABLE")}</div>',
         unsafe_allow_html=True,
     )
+
+    # Dynamic Wikipedia indicator (no emoji — plain text badge)
+    if report.augmented_with_dynamic:
+        st.markdown(
+            '<div class="dynamic-badge">Live Wikipedia fetch — this topic was outside '
+            'the core corpus; sources were retrieved in real time.</div>',
+            unsafe_allow_html=True,
+        )
+
     st.markdown('<div class="sec-h">What might have happened</div>', unsafe_allow_html=True)
     _render_timeline(report.simulated_steps)
     _render_collapsibles(report)
 
-    # ---- SECTION 2 — THE EVIDENCE (secondary, collapsed) -------------------
+    # ---- SECTION 2 — THE EVIDENCE (open by default) -------------------------
     st.markdown('<div class="sec-h">The evidence</div>', unsafe_allow_html=True)
     _render_evidence(report.verified_facts, source_map)
 
@@ -857,8 +955,8 @@ def _render_evidence(facts, source_map: dict) -> None:
             f'<span class="ev-meta">{cite} · {_esc(f.source_title)}</span></div>'
         )
     st.markdown(
-        f'<details class="evidence"><summary>📜 View {n} verified fact{"s" if n != 1 else ""} '
-        f'from {n_sources} source{"s" if n_sources != 1 else ""} (click to expand)</summary>'
+        f'<details class="evidence" open><summary>View {n} verified fact{"s" if n != 1 else ""} '
+        f'from {n_sources} source{"s" if n_sources != 1 else ""}</summary>'
         f'<div class="inner">{"".join(rows)}</div></details>',
         unsafe_allow_html=True,
     )
