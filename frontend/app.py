@@ -70,10 +70,10 @@ from pipeline.historios_pipeline import run as run_pipeline  # noqa: E402
 APP_TAGLINE = "Counterfactual History Engine"
 GITHUB_URL = "https://github.com/sharmadivyam/what-if"
 DISCLAIMER = "Simulated consequences are AI-generated inferences, not historical fact."
-LOADING_NOTE = "This takes ~2 minutes on the free tier — worth the wait."
+LOADING_NOTE = "This takes ~5 minutes on the free tier — worth the wait."
 CACHE_NOTE = (
     "Example questions return instantly from cache; new questions run the full "
-    "pipeline live (~2 min, ~4 LLM calls) and may be slow because API budget is limited."
+    "pipeline live (~4 min, ~4 LLM calls) and may be slow because API budget is limited."
 )
 
 ABOUT_TEXT = (
@@ -428,7 +428,7 @@ def _strip_sim(text: str) -> str:
 # these LLM-scaffolding labels is dropped wholesale — label + its inline content.
 _SCAFFOLD_LABEL_RE = re.compile(
     r'^\s*\*{0,2}\s*'
-    r'(?:Evidence\s+basis'
+    r'(?:Evidence\s+basis(?:\s+\d+)?'
     r'|Analog(?:y|ies)(?:\s*\(if\s+applicable\))?'
     r'|Reason\s+for\s+confidence'
     r'|Confidence)'
@@ -640,40 +640,47 @@ def _loading_html(
             f'<div class="stage {cls}"><span class="ic">{ic}</span>{label}{check}{sub}</div>'
         )
 
-    # JS-driven timer: data-base gives the server-measured elapsed seconds as
-    # a starting point; JS adds (Date.now() - pageload) on top every second,
-    # so the clock runs smoothly regardless of how often the fragment fires.
-    elapsed_int = int(elapsed)
     model_note = (
         '<div class="modelnote">First question also loads the local search model '
         '(~30–60s, one-time) — later questions skip this.</div>'
         if show_model_note
         else ""
     )
+    # Timer rendered separately via st.components.v1.html() — st.markdown
+    # strips <script> tags even with unsafe_allow_html=True.
     return (
         f'<div class="load-wrap">{"".join(rows)}'
-        f'<div class="timer" id="wf-timer" data-base="{elapsed_int}">elapsed --:--</div>'
         f'<div class="note">{LOADING_NOTE}</div>{model_note}</div>'
-        f'<script>'
-        f'(function(){{'
-        f'  var el=document.getElementById("wf-timer");'
-        f'  if(!el)return;'
-        f'  var base=parseInt(el.dataset.base,10);'
-        f'  var t0=Date.now();'
-        f'  function tick(){{'
-        f'    var tot=base+Math.floor((Date.now()-t0)/1000);'
-        f'    var mm=String(Math.floor(tot/60)).padStart(2,"0");'
-        f'    var ss=String(tot%60).padStart(2,"0");'
-        f'    var e=document.getElementById("wf-timer");'
-        f'    if(e)e.textContent="elapsed "+mm+":"+ss;'
-        f'  }}'
-        f'  tick();'
-        f'  setInterval(tick,1000);'
-        f'}})()'
-        f'</script>'
     )
 
 
+def _timer_html(elapsed: float) -> str:
+    """Self-contained HTML+JS clock for st.components.v1.html().
+
+    st.markdown strips <script> even with unsafe_allow_html=True, so the
+    timer must live in a real iframe. elapsed = server-measured seconds so
+    far; JS adds local wall-clock time on top so the tick is always smooth.
+    """
+    elapsed_int = int(elapsed)
+    gold = THEMES["dark"]["gold_text"]
+    return (
+        f'<style>'
+        f'body{{margin:0;padding:4px 0;background:transparent;text-align:center;}}'
+        f'#t{{font-family:Inter,sans-serif;font-size:0.88rem;'
+        f'    color:{gold};letter-spacing:0.05em;}}'
+        f'</style>'
+        f'<div id="t">elapsed --:--</div>'
+        f'<script>'
+        f'var base={elapsed_int},t0=Date.now();'
+        f'function tick(){{'
+        f'  var tot=base+Math.floor((Date.now()-t0)/1000);'
+        f'  var mm=String(Math.floor(tot/60)).padStart(2,"0");'
+        f'  var ss=String(tot%60).padStart(2,"0");'
+        f'  document.getElementById("t").textContent="elapsed "+mm+":"+ss;'
+        f'}}'
+        f'tick();setInterval(tick,1000);'
+        f'</script>'
+    )
 def _start_job(question: str) -> None:
     """Kick off the pipeline in a worker thread, tracked in ``st.session_state``.
 
@@ -770,15 +777,20 @@ def render_loading() -> None:
     # Show the one-time model-load note until a live run has completed (which
     # means the embedding model is now loaded in-process for the rest of the run).
     show_model_note = not st.session_state.get("_model_warmed")
+    elapsed = time.monotonic() - job["start"]
     st.markdown(
         _loading_html(
             job["done_idx"],
-            time.monotonic() - job["start"],
+            elapsed,
             show_model_note,
             live_info=job.get("live_info", {}),
         ),
         unsafe_allow_html=True,
     )
+    # Timer lives in a real iframe so its <script> actually executes.
+    # Height=36 keeps it flush; scrolling=False prevents a scrollbar stub.
+    import streamlit.components.v1 as components
+    components.html(_timer_html(elapsed), height=36, scrolling=False)
     if finished:
         state = job["holder"].get(
             "state",
