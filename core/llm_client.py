@@ -111,9 +111,7 @@ def get_llm_client(provider: str = "cerebras") -> "OpenAI":
     # ``self._calculate_retry_timeout(remaining_retries, options, response_headers)``
     # before each retry and sleeps the returned seconds; overriding it on the
     # instance forces a steady wait regardless of the server's Retry-After.
-    client._calculate_retry_timeout = (
-        lambda remaining_retries, options, response_headers=None: _RETRY_INTERVAL_SECONDS
-    )
+    
 
     _llm_clients[provider] = client
     return client

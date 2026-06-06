@@ -276,7 +276,7 @@ def _extract_pool(
             model=settings.CEREBRAS_MODEL,
             temperature=settings.LLM_TEMPERATURE,
             response_format={"type": "json_object"},
-            max_completion_tokens=1500,
+            
         )
         content = (response.choices[0].message.content or "").strip()
         try:

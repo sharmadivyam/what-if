@@ -178,7 +178,7 @@ def analyze_query(user_question: str) -> QueryAnalysis:
             model=settings.CEREBRAS_MODEL,
             temperature=TEMPERATURE,
             response_format={"type": "json_object"},
-            max_completion_tokens=512,   # ← ADD THIS
+            
         )
         # Belt-and-braces: call_with_fallback guarantees choices[0].message, but
         # guard anyway — a malformed response becomes empty content here, which
