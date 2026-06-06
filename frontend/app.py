@@ -601,9 +601,10 @@ def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) 
             cls, ic = "pending", "○"
         check = "  ✓" if i < done_idx else ""
         rows.append(f'<div class="stage {cls}"><span class="ic">{ic}</span>{label}{check}</div>')
-    mm, ss = divmod(int(elapsed), 60)
-    # First live run of the session also loads the local embedding model (~420 MB)
-    # during the search stage — surface that so the wait isn't a silent hang.
+
+    # Pass elapsed seconds to JS — it adds to this base on every client tick
+    # so the clock is smooth regardless of how often the fragment fires.
+    elapsed_int = int(elapsed)
     model_note = (
         '<div class="modelnote">⏳ First question also loads the local search model '
         '(~30–60s, one-time) — later questions skip this.</div>'
@@ -612,10 +613,24 @@ def _loading_html(done_idx: int, elapsed: float, show_model_note: bool = False) 
     )
     return (
         f'<div class="load-wrap">{"".join(rows)}'
-        f'<div class="timer">elapsed {mm:02d}:{ss:02d}</div>'
+        f'<div class="timer" id="wf-timer" data-base="{elapsed_int}">elapsed --:--</div>'
         f'<div class="note">{LOADING_NOTE}</div>{model_note}</div>'
+        f'<script>'
+        f'(function(){{'
+        f'  var base = parseInt(document.getElementById("wf-timer").dataset.base, 10);'
+        f'  var start = Date.now();'
+        f'  function tick(){{'
+        f'    var total = base + Math.floor((Date.now() - start) / 1000);'
+        f'    var mm = String(Math.floor(total / 60)).padStart(2, "0");'
+        f'    var ss = String(total % 60).padStart(2, "0");'
+        f'    var el = document.getElementById("wf-timer");'
+        f'    if (el) el.textContent = "elapsed " + mm + ":" + ss;'
+        f'  }}'
+        f'  tick();'
+        f'  setInterval(tick, 1000);'
+        f'}})()'
+        f'</script>'
     )
-
 
 def _start_job(question: str) -> None:
     """Kick off the pipeline in a worker thread, tracked in ``st.session_state``.
