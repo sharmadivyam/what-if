@@ -70,10 +70,10 @@ from pipeline.historios_pipeline import run as run_pipeline  # noqa: E402
 APP_TAGLINE = "Counterfactual History Engine"
 GITHUB_URL = "https://github.com/sharmadivyam/what-if"
 DISCLAIMER = "Simulated consequences are AI-generated inferences, not historical fact."
-LOADING_NOTE = "This takes ~5 minutes on the free tier — worth the wait."
+LOADING_NOTE = "This takes ~2 minutes on the free tier — worth the wait."
 CACHE_NOTE = (
     "Example questions return instantly from cache; new questions run the full "
-    "pipeline live (~4 min, ~4 LLM calls) and may be slow because API budget is limited."
+    "pipeline live (~2 min, ~4 LLM calls) and may be slow because API budget is limited."
 )
 
 ABOUT_TEXT = (
@@ -177,6 +177,17 @@ _CSS = Template(
         border-color: $gold; box-shadow: none;
     }
     .stTextInput > div > div > input::placeholder { color: $muted; opacity: 0.8; }
+    /* Mobile autofill (Chrome/Safari) overrides — without these, browsers inject
+       a bright blue/yellow background that makes the text invisible on dark themes. */
+    .stTextInput > div > div > input:-webkit-autofill,
+    .stTextInput > div > div > input:-webkit-autofill:hover,
+    .stTextInput > div > div > input:-webkit-autofill:focus,
+    .stTextInput > div > div > input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 9999px $panel inset !important;
+        -webkit-text-fill-color: $text !important;
+        caret-color: $text !important;
+        border-color: $gold !important;
+    }
     .stForm { border: none; padding: 0; }
 
     /* ---- hero (landing): refined editorial heading over the page painting ---- */
