@@ -110,6 +110,7 @@ class Settings:
     # quota. Embeddings are local (sentence-transformers), so no OpenAI key is
     # needed.
     CEREBRAS_API_KEY: str | None = _get("CEREBRAS_API_KEY")
+    CEREBRAS_API_KEY_2: str | None = _get("CEREBRAS_API_KEY_2")
     OPENROUTER_API_KEY: str | None = _get("OPENROUTER_API_KEY")
     TAVILY_API_KEY: str | None = _get("TAVILY_API_KEY")
 

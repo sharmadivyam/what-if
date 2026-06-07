@@ -55,7 +55,10 @@ _EMBED_LOAD_ATTEMPTS = 3
 _EMBED_RETRY_WAIT_SECONDS = 10.0
 
 
-def get_llm_client(provider: str = "cerebras") -> "OpenAI":
+def get_llm_client(provider: str = "cerebras", api_key: str | None = None) -> "OpenAI":
+    cache_key = f"{provider}:{api_key[:8] if api_key else 'default'}"
+    if cache_key in _llm_clients:
+        return _llm_clients[cache_key]
     """Return the cached OpenAI-compatible client for the chosen provider.
 
     Args:
@@ -177,35 +180,44 @@ def call_with_fallback(messages: list[dict], **kwargs: Any) -> "ChatCompletion":
             if the fallback response is ALSO malformed (the raw body is included
             in the message so the actual provider error is visible).
     """
+
     from openai import RateLimitError
 
-    try:
-        primary = get_llm_client("cerebras")
-        response = primary.chat.completions.create(messages=messages, **kwargs)
-        reason = _malformed_reason(response)
-        if reason is None:
-            return response
-        logger.warning(
-            "Cerebras returned a malformed completion (%s) — falling back to "
-            "OpenRouter. Body: %s",
-            reason,
-            _response_body(response),
-        )
-    except RateLimitError as exc:
-        logger.warning(
-            "Cerebras quota exceeded — falling back to OpenRouter: %s", exc
-        )
+    # Build the provider chain dynamically based on what keys are configured
+    chain = []
+    if settings.CEREBRAS_API_KEY:
+        chain.append(("cerebras", settings.CEREBRAS_API_KEY, settings.CEREBRAS_MODEL))
+    if settings.CEREBRAS_API_KEY_2:
+        chain.append(("cerebras", settings.CEREBRAS_API_KEY_2, settings.CEREBRAS_MODEL))
+    if settings.OPENROUTER_API_KEY:
+        chain.append(("openrouter", settings.OPENROUTER_API_KEY, settings.OPENROUTER_MODEL))
 
-    fallback_kwargs = {**kwargs, "model": settings.OPENROUTER_MODEL}
-    fallback = get_llm_client("openrouter")
-    response = fallback.chat.completions.create(messages=messages, **fallback_kwargs)
-    reason = _malformed_reason(response)
-    if reason is not None:
-        raise RuntimeError(
-            f"OpenRouter (fallback) returned a malformed completion ({reason}). "
-            f"Raw body: {_response_body(response)}"
-        )
-    return response
+    last_exc: Exception | None = None
+
+    for i, (provider, api_key, model) in enumerate(chain):
+        is_last = i == len(chain) - 1
+        try:
+            client = get_llm_client(provider, api_key=api_key)
+            call_kwargs = {**kwargs, "model": model}
+            response = client.chat.completions.create(messages=messages, **call_kwargs)
+            reason = _malformed_reason(response)
+            if reason is None:
+                return response
+            logger.warning(
+                "%s (key %d) returned malformed response (%s) — trying next",
+                provider, i + 1, reason
+            )
+        except RateLimitError as exc:
+            last_exc = exc
+            label = f"Cerebras key {i+1}" if provider == "cerebras" else "OpenRouter"
+            if not is_last:
+                logger.warning("%s quota hit — trying next in chain: %s", label, exc)
+            else:
+                logger.warning("%s quota hit — chain exhausted: %s", label, exc)
+
+    raise RateLimitError(
+        f"All providers exhausted (chain length {len(chain)}). Last error: {last_exc}"
+    )
 
 
 def get_embedding_function():
