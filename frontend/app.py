@@ -191,9 +191,6 @@ _CSS = Template(
     [data-baseweb="base-input"] {
         background: $panel !important;
     }
-    .stTextInput > div > div > input:focus {
-        border-color: $gold; box-shadow: none;
-    }
     .stTextInput > div > div > input::placeholder { color: $muted; opacity: 0.8; }
     /* Mobile autofill (Chrome/Safari) overrides — without these, browsers inject
        a bright blue/yellow background that makes the text invisible on dark themes. */
