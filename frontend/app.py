@@ -151,14 +151,18 @@ _CSS = Template(
     /* ---- buttons / example chips: quiet gallery panels (gold only on hover) ---- */
     .stButton > button, .stLinkButton > a, .stFormSubmitButton button,
     div[data-testid="stPopover"] > button {
-        border-radius: 0; border: 1px solid $hair; background: $panel;
-        color: $text; font-family: 'Inter', sans-serif; font-weight: 500; white-space: normal;
-        line-height: 1.45; box-shadow: none; transition: border-color .18s ease, color .18s ease;
+        border-radius: 0 !important; border: 1px solid $hair !important; 
+        background: $panel !important;
+        color: $text !important; font-family: 'Inter', sans-serif; font-weight: 500; 
+        white-space: normal; line-height: 1.45; box-shadow: none !important; 
+        transition: border-color .18s ease, color .18s ease;
     }
     .stButton > button:hover, .stLinkButton > a:hover, .stFormSubmitButton button:hover,
     div[data-testid="stPopover"] > button:hover {
-        border-color: $gold; color: $gold_text; background: $panel;
+        border-color: $gold !important; color: $gold_text !important; 
+        background: $panel !important;
     }
+    
 
     /* ---- sidebar ---- */
     [data-testid="stSidebar"] .stButton > button { width: 100%; text-align: left; }
@@ -169,9 +173,23 @@ _CSS = Template(
                 letter-spacing: 0.18em; text-transform: uppercase; margin: 1.3rem 0 0.5rem; }
 
     /* ---- text input ---- */
-    .stTextInput > div > div > input {
-        background: $panel; color: $text; border: 1px solid $hair; border-radius: 0;
+    .stTextInput > div > div > input,
+    .stTextInput > div > div > input:not([type]),
+    [data-baseweb="input"] input {
+        background: $panel !important; color: $text !important; 
+        border: 1px solid $hair !important; border-radius: 0 !important;
         font-family: 'Lora', serif; font-size: 1.08rem; padding: 0.95rem 1.1rem;
+    }
+    .stTextInput > div > div > input:focus,
+    [data-baseweb="input"] input:focus {
+        border-color: $gold !important; box-shadow: none !important;
+    }
+    /* Also target the BaseWeb wrapper div that carries its own background */
+    [data-baseweb="input"] {
+        background: $panel !important;
+    }
+    [data-baseweb="base-input"] {
+        background: $panel !important;
     }
     .stTextInput > div > div > input:focus {
         border-color: $gold; box-shadow: none;
