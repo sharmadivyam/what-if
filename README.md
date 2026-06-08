@@ -78,13 +78,6 @@ example answers ship **pre-warmed** in the repo (`scripts/prewarm.py` rebuilds t
 
 ---
 
-## 🎬 Demo
-
-> _Placeholder — add a screen recording at `docs/demo.gif`._
-
-![WHAT IF? demo](docs/demo.gif)
-
----
 
 ## 🚀 Run it locally
 
